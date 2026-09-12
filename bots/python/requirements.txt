@@ -1,0 +1,22 @@
+# Диапазоны версий проверены смоук-тестом на Python 3.14
+# (aiogram 3.31, SQLAlchemy 2.0.52, pydantic-settings 2.x). Нижние границы —
+# минимально необходимые; верхние не фиксируем, чтобы ставилось на новых Python.
+
+# Core bot framework (Telegram)
+aiogram>=3.13,<4
+
+# Settings / validation (NoDecode требует pydantic-settings>=2.2)
+pydantic>=2.9
+pydantic-settings>=2.4
+
+# Database (SQLAlchemy 2.0 async) + drivers
+SQLAlchemy[asyncio]>=2.0.30
+aiosqlite>=0.20          # SQLite driver (default, dev)
+asyncpg>=0.29            # PostgreSQL driver (prod, optional)
+alembic>=1.13            # DB migrations (optional but recommended)
+
+# HTTP (Instagram / MAX platforms use raw HTTP)
+aiohttp>=3.10
+
+# Utilities
+python-dotenv>=1.0

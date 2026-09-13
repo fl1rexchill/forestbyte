@@ -18,6 +18,10 @@
 
 Слой БД един: **SQLAlchemy 2.0 async**. По умолчанию SQLite (`aiosqlite`), для продакшена —
 PostgreSQL (`asyncpg`), переключается одной строкой в `.env` (`DATABASE_URL`).
+Node-стек использует ту же схему (Drizzle ORM) — оба стека могут работать с одной БД.
+
+Общие гайды: [`docs/`](docs/) — соглашения, контракт модуля, как добавить модуль/платформу, деплой.
+Боты рассчитаны на **один процесс на бота** (что живёт в памяти — `docs/DEPLOYMENT.md`).
 
 ---
 
@@ -39,12 +43,12 @@ PostgreSQL (`asyncpg`), переключается одной строкой в 
 | Модуль | Что делает | Зависит от | Теги |
 |--------|-----------|-----------|------|
 | `users/` | Регистрация/учёт пользователей, автозапись при `/start`, бан/разбан | core.db | users, registration, ban |
-| `admin/` | Режим админа: панель, управление, доступ по ID из конфига | core.db, users | admin, panel, access-control |
-| `statistics/` | Статистика: DAU/WAU/MAU, новые/активные, графики-выгрузки | core.db, users | stats, analytics, metrics |
-| `broadcast/` | Массовые рассылки: очередь, троттлинг, отчёт, отмена | core.db, users, admin | broadcast, mailing, queue |
+| `admin/` | Режим админа: панель, пользователи всех платформ, `/ban <id> [платформа]`, доступ по ID из конфига | core.db, users | admin, panel, access-control |
+| `statistics/` | Статистика: DAU/WAU/MAU, новые/активные — по всем платформам с разбивкой | core.db, users | stats, analytics, metrics |
+| `broadcast/` | Массовые рассылки (Telegram): очередь, троттлинг, отчёт, отмена | core.db, users, admin | broadcast, mailing, queue |
 | `referral/` | Реферальная система: deep-link `/start`, учёт приглашённых, `/ref` | core.db, users | referral, invite, deep-link |
 | `support/` | Тикеты поддержки: юзер пишет → админ отвечает, история в БД | core.db, users, admin | support, tickets, helpdesk |
-| `scheduler/` | Отложенные посты/рассылки по времени + фоновый цикл | core.db, users, admin | scheduler, cron, delayed |
+| `scheduler/` | Отложенные посты/рассылки (Telegram) + фоновый цикл; задачи забираются атомарно | core.db, users, admin | scheduler, cron, delayed |
 | `payments/` | Оплата: Telegram Stars и провайдеры, pre_checkout, запись | core.db, users | payments, stars, invoice |
 | `shop/` | Магазин: каталог, корзина, заказы, оплата в Stars | core.db, users, payments | shop, catalog, cart, orders, ecommerce |
 | `captcha/` | Антибот-капча для новых участников группы (+кик по таймауту) | core | captcha, antibot, group |
@@ -54,9 +58,9 @@ PostgreSQL (`asyncpg`), переключается одной строкой в 
 #### Платформы — `bots/python/platforms/` 
 | Платформа | Статус | Заметки |
 |-----------|--------|---------|
-| `telegram/` | 🟢 | aiogram 3.x, polling + webhook |
-| `instagram/` | 🟡 | Instagram Graph API (Messaging). Нужен бизнес-аккаунт + Meta App |
-| `max/` | 🟡 | MAX Bot API (max.ru). Long-polling/webhook |
+| `telegram/` | 🟢 | aiogram 3.x, polling + webhook (с `secret_token`) |
+| `instagram/` | 🟢 | Instagram API with Instagram Login (Graph API v26.0): клиент, вебхук с проверкой `X-Hub-Signature-256` и фоновой обработкой, профиль собеседника. Нужен бизнес-аккаунт + Meta App |
+| `max/` | 🟢 | MAX Bot API (`platform-api2.max.ru`): long polling + webhook (`X-Max-Bot-Api-Secret`, фоновая обработка), inline-клавиатуры, загрузка файлов |
 
 #### Шаблоны — `bots/python/templates/` 
 | Шаблон | Что внутри | Статус |
@@ -65,11 +69,63 @@ PostgreSQL (`asyncpg`), переключается одной строкой в 
 | `telegram_full/` | Полный бот: users+admin+stats+broadcast+scheduler+shop+payments+referral+support | 🟢 |
 | `telegram_group/` | Бот-модератор группы: captcha+moderation+антифлуд | 🟢 |
 
+#### Миграции и тесты — `bots/python/` 🟢
+| Что | Где | Теги |
+|-----|-----|------|
+| Миграции Alembic (async, SQLite/Postgres), `0001_initial` — текущая схема ядра и модулей | `alembic.ini`, `migrations/` | alembic, migrations, schema |
+| Тесты pytest: репозитории, сервисы, хендлеры всех Telegram-модулей, клиенты и вебхуки Instagram/MAX — без сети и токенов | `tests/test_*.py`, `requirements-dev.txt` | tests, pytest, asyncio |
+| Смоук-тест сборки | `tests/smoke_test.py` | smoke, ci |
+
 ---
 
 ### Node.js · стек grammY (TypeScript)
 
-Расположение: [`bots/node/`](bots/node/) — 🟡 зеркалит структуру Python.
+Расположение: [`bots/node/`](bots/node/) — зеркалит структуру Python (strict TypeScript,
+Drizzle ORM, zod + dotenv, grammY Composer вместо Router).
+
+#### Ядро — `bots/node/src/core/` 🟢
+| Файл | Назначение | Теги |
+|------|-----------|------|
+| `config.ts` | Настройки из `.env`/окружения (zod + dotenv), те же переменные, что в Python | config, env, zod |
+| `db/client.ts` | Drizzle: SQLite (better-sqlite3) / PostgreSQL (postgres.js) по `DATABASE_URL`; `transaction()` | db, drizzle, sqlite, postgres, transaction |
+| `db/schema.ts` | users, message_logs, broadcast_jobs, settings — 1:1 с Python-моделями | db, schema, orm |
+| `db/ddl.ts` | `CREATE TABLE IF NOT EXISTS` (тот же SQL, что у Alembic), `registerDdl` для модулей | db, ddl |
+| `db/repositories.ts` | Репозитории с тем же набором методов, что в Python | db, repository, crud |
+| `logger.ts` | Логирование (консоль + асинхронная запись в файл с ротацией) | logging |
+| `i18n.ts` | Мультиязычность ru/en | i18n, localization |
+
+#### Модули — `bots/node/src/modules/` 🟢
+| Модуль | Что делает | Зависит от | Теги |
+|--------|-----------|-----------|------|
+| `users/` | `usersMiddleware`: регистрация, бан, лог сообщений, `ctx.db`/`ctx.dbUser` | core.db | users, middleware |
+| `common/` | /start, /help, /cancel, эхо | core | common, start, help |
+| `admin/` | Панель `/admin`, пользователи всех платформ, `/ban <id> [платформа]`, фильтр `isAdmin` | core.db, users | admin, panel |
+| `statistics/` | `/stats`, кнопка `admin:stats`, `buildStatsText` — по всем платформам | core.db, admin | stats, analytics |
+| `broadcast/` | Диалог рассылки + `runBroadcast` (троттлинг, 429/403) | core.db, admin | broadcast, mailing |
+| `referral/` | Deep-link `/start <id>`, `/ref` | core.db, users | referral, deep-link |
+| `support/` | Тикеты `/support`, `/reply`, `/close`, `/tickets` | core.db, admin | support, tickets |
+| `scheduler/` | `/schedule` и фоновый цикл (хуки `onStartup`/`onShutdown`), атомарный захват задач | core.db, admin | scheduler, delayed |
+| `payments/` | `/donate`, pre_checkout, запись оплат, `sendStarsInvoice` | core.db, users | payments, stars |
+| `shop/` | Каталог, корзина, заказы (транзакцией), оплата в Stars | core.db, payments | shop, cart, orders |
+| `captcha/` | Капча новичков группы + кик по таймауту | core | captcha, group |
+| `moderation/` | ban/kick/mute/unmute/warn + антифлуд | core | moderation, antiflood |
+
+#### Платформы — `bots/node/src/platforms/`
+| Платформа | Статус | Заметки |
+|-----------|--------|---------|
+| `telegram/` | 🟢 | grammY: `createBot`/`createComposer`, polling + webhook, FSM на сессии, lifecycle-хуки, `hasUser` |
+| `instagram/` | 🟢 | Зеркало Python: клиент Graph API v26.0, вебхук (`X-Hub-Signature-256`, фоновая обработка), профиль собеседника |
+| `max/` | 🟢 | Зеркало Python: long polling + webhook, клавиатуры, загрузка файлов с повтором `attachment.not.ready` |
+
+#### Шаблоны — `bots/node/src/templates/`
+| Шаблон | Что внутри | Статус |
+|--------|-----------|--------|
+| `telegram_starter/` | Минимальный бот: /start, /help, БД юзеров | 🟢 |
+| `telegram_full/` | users+admin+stats+broadcast+scheduler+shop+payments+referral+support | 🟢 |
+| `telegram_group/` | captcha+moderation+антифлуд | 🟢 |
+
+Тесты: `bots/node/tests/` (vitest) — ядро, репозитории, транзакции, все модули и шаблоны,
+Instagram и MAX без сети; `npm run typecheck` проверяет типы и кода, и тестов.
 
 ---
 
@@ -81,21 +137,31 @@ PostgreSQL (`asyncpg`), переключается одной строкой в 
 
 ## 🏷 Индекс по задачам (быстрый поиск)
 
-| «Мне нужно...» | Бери |
-|----------------|------|
-| Просто запустить бота с /start | `templates/telegram_starter` |
-| Бот с админкой, статой и рассылками | `templates/telegram_full` |
-| Добавить админ-панель к своему боту | `modules/admin` |
-| Считать активных пользователей | `modules/statistics` |
-| Разослать сообщение всем | `modules/broadcast` |
-| Отложенная рассылка по времени | `modules/scheduler` |
-| Реферальная программа | `modules/referral` |
-| Поддержка/тикеты в боте | `modules/support` |
-| Приём оплаты (звёзды/деньги) | `modules/payments` |
-| Магазин/продажи в боте | `modules/shop` (+ `payments`) |
-| Защита группы от ботов | `modules/captcha` |
-| Модерация группы / антифлуд | `modules/moderation` |
-| Хранить пользователей в БД | `modules/users` + `core/database` |
-| Переключиться SQLite → Postgres | поменять `DATABASE_URL` в `.env` |
-| Бот на Instagram | `platforms/instagram` (🟡) |
-| Бот на MAX | `platforms/max` (🟡) |
+Пути: Python — `bots/python/…`, Node.js — `bots/node/src/…` (одинаковые имена модулей и шаблонов).
+
+| «Мне нужно...» | Python | Node.js |
+|----------------|--------|---------|
+| Просто запустить бота с /start | `bots/python/templates/telegram_starter` | `bots/node/src/templates/telegram_starter` |
+| Бот с админкой, статой и рассылками | `bots/python/templates/telegram_full` | `bots/node/src/templates/telegram_full` |
+| Бот-модератор группы | `bots/python/templates/telegram_group` | `bots/node/src/templates/telegram_group` |
+| Добавить админ-панель к своему боту | `bots/python/modules/admin` | `bots/node/src/modules/admin` |
+| Считать активных пользователей (все платформы) | `bots/python/modules/statistics` | `bots/node/src/modules/statistics` |
+| Разослать сообщение всем | `bots/python/modules/broadcast` | `bots/node/src/modules/broadcast` |
+| Отложенная рассылка по времени | `bots/python/modules/scheduler` | `bots/node/src/modules/scheduler` |
+| Реферальная программа | `bots/python/modules/referral` | `bots/node/src/modules/referral` |
+| Поддержка/тикеты в боте | `bots/python/modules/support` | `bots/node/src/modules/support` |
+| Приём оплаты (звёзды/деньги) | `bots/python/modules/payments` | `bots/node/src/modules/payments` |
+| Магазин/продажи в боте | `bots/python/modules/shop` (+ `payments`) | `bots/node/src/modules/shop` (+ `payments`) |
+| Защита группы от ботов | `bots/python/modules/captcha` | `bots/node/src/modules/captcha` |
+| Модерация группы / антифлуд | `bots/python/modules/moderation` | `bots/node/src/modules/moderation` |
+| Хранить пользователей в БД | `bots/python/modules/users` + `core/database` | `bots/node/src/modules/users` + `core/db` |
+| Переключиться SQLite → Postgres | `DATABASE_URL` в `bots/python/.env` | `DATABASE_URL` в `bots/node/.env` |
+| Бот на Instagram | `bots/python/platforms/instagram` | `bots/node/src/platforms/instagram` |
+| Бот на MAX | `bots/python/platforms/max` | `bots/node/src/platforms/max` |
+| Отправить файл/картинку в MAX | `MaxClient.send_file` | `MaxClient.sendFile` |
+| Несколько записей атомарно | сессия `get_session()` | `transaction()` из `core/db` |
+| Миграции схемы БД | `bots/python/migrations` → `alembic upgrade head` | (схему ведёт Alembic из Python) |
+| Запустить тесты | `cd bots/python && pytest` | `cd bots/node && npm test` |
+| Правила кода и контракт модуля | `docs/CONVENTIONS.md`, `docs/MODULE_CONTRACT.md` | то же |
+| Добавить свой модуль / платформу | `docs/ADDING_MODULE.md`, `docs/ADDING_PLATFORM.md` | то же |
+| Задеплоить (systemd, Docker, вебхуки) | `docs/DEPLOYMENT.md` | то же |

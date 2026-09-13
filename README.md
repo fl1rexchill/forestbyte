@@ -55,7 +55,11 @@ devbase/
 | Боты · модули (referral/support/scheduler/payments) | Python | 🟢 готово |
 | Боты · модули (shop/captcha/moderation) | Python | 🟢 готово |
 | Боты · группы (модератор) | Python | 🟢 готово |
-| Боты · Instagram | Python | 🟡 в работе |
-| Боты · MAX | Python | 🟡 в работе |
-| Боты · всё | Node.js | 🟡 в работе |
+| Боты · Instagram | Python | 🟢 готово |
+| Боты · MAX | Python | 🟢 готово |
+| Боты · миграции (Alembic) + тесты (pytest) | Python | 🟢 готово |
+| Боты · ядро + Telegram | Node.js | 🟢 готово |
+| Боты · модули (все 12) + шаблоны (starter/full/group) + тесты (vitest) | Node.js | 🟢 готово |
+| Боты · Instagram / MAX | Node.js | 🟢 готово |
+| Общие гайды (`docs/`) | — | 🟢 готово |
 | Сайты | — | ⚪ запланировано |

@@ -15,6 +15,7 @@
 """
 from __future__ import annotations
 
+import html
 import time
 from collections import defaultdict, deque
 
@@ -71,7 +72,7 @@ async def cmd_ban(message: Message, bot: Bot) -> None:
     if not target:
         return
     await bot.ban_chat_member(message.chat.id, target.from_user.id)
-    await message.answer(f"🚫 {target.from_user.full_name} забанен.")
+    await message.answer(f"🚫 {html.escape(target.from_user.full_name)} забанен.")
 
 
 @router.message(Command("kick"))
@@ -81,7 +82,7 @@ async def cmd_kick(message: Message, bot: Bot) -> None:
         return
     await bot.ban_chat_member(message.chat.id, target.from_user.id)
     await bot.unban_chat_member(message.chat.id, target.from_user.id)
-    await message.answer(f"👢 {target.from_user.full_name} исключён.")
+    await message.answer(f"👢 {html.escape(target.from_user.full_name)} исключён.")
 
 
 @router.message(Command("mute"))
@@ -94,7 +95,7 @@ async def cmd_mute(message: Message, command: CommandObject, bot: Bot) -> None:
     await bot.restrict_chat_member(
         message.chat.id, target.from_user.id, permissions=_MUTED, until_date=until
     )
-    await message.answer(f"🔇 {target.from_user.full_name} заглушён на {minutes} мин.")
+    await message.answer(f"🔇 {html.escape(target.from_user.full_name)} заглушён на {minutes} мин.")
 
 
 @router.message(Command("unmute"))
@@ -105,7 +106,7 @@ async def cmd_unmute(message: Message, bot: Bot) -> None:
     await bot.restrict_chat_member(
         message.chat.id, target.from_user.id, permissions=_UNMUTED
     )
-    await message.answer(f"🔊 {target.from_user.full_name} снова может писать.")
+    await message.answer(f"🔊 {html.escape(target.from_user.full_name)} снова может писать.")
 
 
 @router.message(Command("warn"))
@@ -123,11 +124,11 @@ async def cmd_warn(message: Message, bot: Bot) -> None:
         )
         _warns[key] = 0
         await message.answer(
-            f"⚠️ {target.from_user.full_name}: {MAX_WARNS}/{MAX_WARNS} — мут на час."
+            f"⚠️ {html.escape(target.from_user.full_name)}: {MAX_WARNS}/{MAX_WARNS} — мут на час."
         )
     else:
         await message.answer(
-            f"⚠️ Предупреждение {count}/{MAX_WARNS} для {target.from_user.full_name}."
+            f"⚠️ Предупреждение {count}/{MAX_WARNS} для {html.escape(target.from_user.full_name)}."
         )
 
 
@@ -150,7 +151,7 @@ async def antiflood(message: Message, bot: Bot) -> None:
                 message.chat.id, message.from_user.id, permissions=_MUTED, until_date=until
             )
             await message.answer(
-                f"🔇 {message.from_user.full_name} заглушён на 5 мин за флуд."
+                f"🔇 {html.escape(message.from_user.full_name)} заглушён на 5 мин за флуд."
             )
         except Exception as e:  # noqa: BLE001
             log.warning("Antiflood mute failed: %s", e)

@@ -1,6 +1,8 @@
 """Фоновый цикл планировщика: раз в N секунд шлёт наступившие задачи.
 
 Регистрируется на старте бота через setup(dp). Использует те же рассылки/БД.
+Задачи забираются атомарно (claim_due_posts), поэтому два процесса бота не отправят
+одну задачу дважды.
 """
 from __future__ import annotations
 
@@ -8,7 +10,7 @@ import asyncio
 from datetime import datetime, timezone
 
 from aiogram import Bot, Dispatcher
-from sqlalchemy import select
+from sqlalchemy import update
 
 from core.database.base import get_session
 from core.database.models import Platform
@@ -39,24 +41,29 @@ async def _deliver(bot: Bot, post: ScheduledPost) -> None:
             log.error("Scheduled post %s delivery failed: %s", post.id, e)
 
 
+async def claim_due_posts() -> list[ScheduledPost]:
+    """Атомарно забрать наступившие задачи: pending → done одним UPDATE ... RETURNING.
+
+    Строку меняет только один UPDATE, поэтому при нескольких процессах каждая задача
+    достаётся ровно одному из них. Помечаем до отправки, чтобы не дублировать.
+    """
+    now = datetime.now(timezone.utc)
+    async with get_session() as session:
+        result = await session.execute(
+            update(ScheduledPost)
+            .where(ScheduledPost.status == "pending", ScheduledPost.run_at <= now)
+            .values(status="done")
+            .returning(ScheduledPost)
+        )
+        return list(result.scalars())
+
+
 async def scheduler_loop(bot: Bot) -> None:
     """Бесконечный цикл проверки и отправки наступивших задач."""
     log.info("Scheduler loop started (interval=%ss)", CHECK_INTERVAL)
     while True:
         try:
-            now = datetime.now(timezone.utc)
-            async with get_session() as session:
-                due = list(
-                    await session.scalars(
-                        select(ScheduledPost).where(
-                            ScheduledPost.status == "pending",
-                            ScheduledPost.run_at <= now,
-                        )
-                    )
-                )
-                for post in due:
-                    post.status = "done"  # помечаем до отправки, чтобы не дублировать
-            for post in due:
+            for post in await claim_due_posts():
                 await _deliver(bot, post)
                 log.info("Scheduled post %s delivered", post.id)
         except asyncio.CancelledError:

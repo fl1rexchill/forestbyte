@@ -1,6 +1,8 @@
 """Роутер поддержки: создание тикетов пользователем и ответы админов."""
 from __future__ import annotations
 
+import html
+
 from aiogram import Bot, F, Router
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
@@ -31,7 +33,8 @@ async def cmd_support(message: Message, state: FSMContext) -> None:
     await message.answer("✍️ Опишите ваш вопрос одним сообщением. /cancel — отмена.")
 
 
-@router.message(SupportStates.waiting_message, F.text)
+# Команды (/cancel и т.п.) не считаем текстом обращения — их обработают другие роутеры
+@router.message(SupportStates.waiting_message, F.text, ~F.text.startswith("/"))
 async def got_support_message(
     message: Message, state: FSMContext, session: AsyncSession, db_user: User, bot: Bot
 ) -> None:
@@ -53,8 +56,8 @@ async def got_support_message(
         try:
             await bot.send_message(
                 admin_id,
-                f"🆕 <b>Тикет №{ticket.id}</b> от {db_user.full_name} "
-                f"(<code>{db_user.external_id}</code>):\n\n{message.text}\n\n"
+                f"🆕 <b>Тикет №{ticket.id}</b> от {html.escape(db_user.full_name)} "
+                f"(<code>{db_user.external_id}</code>):\n\n{message.html_text}\n\n"
                 f"Ответ: <code>/reply {ticket.id} текст</code>",
             )
         except Exception:  # noqa: BLE001

@@ -42,17 +42,19 @@ async def cb_broadcast(call: CallbackQuery, state: FSMContext, db_user: User) ->
     await call.answer()
 
 
-@router.message(BroadcastStates.waiting_text, F.text)
+# Команды (/cancel и т.п.) не считаем текстом рассылки — их обработают другие роутеры.
+# html_text: форматирование сохраняется, спецсимволы экранированы (parse_mode=HTML).
+@router.message(BroadcastStates.waiting_text, F.text, ~F.text.startswith("/"))
 async def got_text(
     message: Message, state: FSMContext, session: AsyncSession, db_user: User
 ) -> None:
-    await state.update_data(text=message.text)
+    await state.update_data(text=message.html_text)
     await state.set_state(BroadcastStates.waiting_confirm)
 
     count = len(await UserRepository(session).all_active_ids(Platform.TELEGRAM))
     preview = (
         f"{t('broadcast.confirm', locale=_loc(db_user), count=count)}\n\n"
-        f"<b>Превью:</b>\n{message.text}"
+        f"<b>Превью:</b>\n{message.html_text}"
     )
     await message.answer(preview, reply_markup=broadcast_confirm_kb())
 

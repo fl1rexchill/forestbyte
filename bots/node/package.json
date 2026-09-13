@@ -1,0 +1,35 @@
+{
+  "name": "devbase-bots-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DevBase: модульная база ботов на grammY + Drizzle (зеркало bots/python)",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "lint": "biome check src tests",
+    "format": "biome format --write src tests",
+    "start:starter": "node dist/templates/telegram_starter/main.js",
+    "start:full": "node dist/templates/telegram_full/main.js",
+    "start:group": "node dist/templates/telegram_group/main.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "grammy": "^1.46.0",
+    "postgres": "^3.4.9",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.13",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

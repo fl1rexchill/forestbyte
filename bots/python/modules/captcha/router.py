@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import asyncio
+import html
 
 from aiogram import Bot, F, Router
 from aiogram.types import CallbackQuery, ChatPermissions, Message
@@ -64,7 +65,7 @@ async def on_join(message: Message, bot: Bot) -> None:
         kb = InlineKeyboardBuilder()
         kb.button(text="✅ Я человек", callback_data=f"captcha:{chat_id}:{user_id}")
         sent = await message.answer(
-            f"👋 {member.full_name}, подтвердите, что вы не бот, за {TIMEOUT} сек.",
+            f"👋 {html.escape(member.full_name)}, подтвердите, что вы не бот, за {TIMEOUT} сек.",
             reply_markup=kb.as_markup(),
         )
         _pending[(chat_id, user_id)] = asyncio.create_task(

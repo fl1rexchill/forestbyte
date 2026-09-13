@@ -29,8 +29,8 @@ bots/python/
 │   └── moderation/       # модерация групп: ban/mute/warn + антифлуд
 ├── platforms/            # адаптеры мессенджеров
 │   ├── telegram/         # 🟢 aiogram: фабрики Bot/Dispatcher, раннер
-│   ├── instagram/        # 🟡 Instagram Graph API
-│   └── max/              # 🟡 MAX Bot API
+│   ├── instagram/        # 🟢 Instagram API (Graph v26.0): клиент, вебхук, раннер
+│   └── max/              # 🟢 MAX Bot API: long polling + webhook
 └── templates/            # готовые боты «под ключ»
     ├── telegram_starter/ # минимальный
     ├── telegram_full/    # админка, стата, рассылки, магазин, оплата, рефералка, поддержка
@@ -55,6 +55,44 @@ cd bots/python
 pip install -r requirements.txt
 python tests/smoke_test.py     # → SMOKE TEST PASSED
 ```
+
+## Тесты (pytest)
+
+Без токенов и сети: БД — SQLite in-memory, HTTP и Telegram замоканы (`tests/conftest.py`).
+
+```bash
+cd bots/python
+pip install -r requirements-dev.txt   # requirements.txt + pytest, pytest-asyncio
+pytest                                # tests/test_*.py
+```
+
+| Файл | Что проверяет |
+|------|---------------|
+| `tests/test_repositories.py` | репозитории `core/database/repositories.py` |
+| `tests/test_services.py` | сервисы broadcast / scheduler (атомарный захват) / statistics / payments |
+| `tests/test_handlers.py` | хендлеры всех Telegram-модулей через `Dispatcher.feed_update` |
+| `tests/test_background.py` | пул фоновой обработки вебхуков `platforms/background.py` |
+| `tests/test_instagram.py` | клиент, подпись, парсинг и эндпоинт вебхука `platforms/instagram` |
+| `tests/test_max.py` | клиент, загрузка файлов, парсинг, эндпоинт вебхука и polling `platforms/max` |
+
+Вебхуки проверяются напрямую через эндпоинт (`handle_post`) — сокеты не открываются.
+
+## Миграции БД (Alembic)
+
+Схема описана миграциями в `migrations/versions/`; URL берётся из `DATABASE_URL` (`.env`),
+движок и metadata — из `core/database/base.py`. Запуск — из `bots/python`:
+
+```bash
+alembic upgrade head        # новая БД: создать схему (делай ДО первого запуска бота)
+alembic stamp 0001          # БД уже создана ботом через init_db() — пометить как актуальную
+alembic check               # модели и миграции совпадают → "No new upgrade operations detected."
+alembic revision --autogenerate -m "описание"   # после изменения моделей
+alembic downgrade -1        # откатить последнюю миграцию
+```
+
+`0001_initial` — текущая схема без изменений: users, message_logs, broadcast_jobs, settings +
+таблицы модулей payments, shop, support, scheduler. Новая таблица в модуле → добавь импорт её
+`models.py` в `migrations/env.py`. Подробнее: [`docs/DEPLOYMENT.md`](../../docs/DEPLOYMENT.md).
 
 ## Переключение SQLite → PostgreSQL
 

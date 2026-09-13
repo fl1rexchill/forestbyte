@@ -1,6 +1,8 @@
 """Базовые хендлеры: /start, /help, /cancel, эхо."""
 from __future__ import annotations
 
+import html
+
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
@@ -21,7 +23,7 @@ def _locale(user: User) -> str:
 async def cmd_start(message: Message, db_user: User) -> None:
     # created флаг тут не пробрасываем — простое приветствие
     await message.answer(
-        t("start.hello", locale=_locale(db_user), name=db_user.first_name or "друг")
+        t("start.hello", locale=_locale(db_user), name=html.escape(db_user.first_name or "друг"))
     )
 
 
@@ -41,4 +43,5 @@ async def cmd_cancel(message: Message, state: FSMContext, db_user: User) -> None
 # Эхо — ловит всё, что не поймали другие роутеры. Подключай последним.
 @router.message(F.text)
 async def echo(message: Message) -> None:
-    await message.answer(message.text)
+    # html_text: форматирование сохраняется, спецсимволы экранированы (parse_mode=HTML)
+    await message.answer(message.html_text)

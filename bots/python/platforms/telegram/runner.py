@@ -31,11 +31,18 @@ async def run_polling(bot: Bot, dp: Dispatcher) -> None:
 # from aiohttp import web
 # from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 #
-# async def run_webhook(bot, dp, *, base_url, path="/webhook", host="0.0.0.0", port=8080):
+# async def run_webhook(bot, dp, *, base_url, secret_token, path="/webhook",
+#                       host="0.0.0.0", port=8080):
+#     # secret_token (1–256 символов A-Z a-z 0-9 _ -) Telegram присылает в заголовке
+#     # X-Telegram-Bot-Api-Secret-Token; SimpleRequestHandler отклоняет запросы без него.
 #     await init_db()
-#     await bot.set_webhook(f"{base_url}{path}", drop_pending_updates=True)
+#     await bot.set_webhook(
+#         f"{base_url}{path}", drop_pending_updates=True, secret_token=secret_token
+#     )
 #     app = web.Application()
-#     SimpleRequestHandler(dispatcher=dp, bot=bot).register(app, path=path)
+#     SimpleRequestHandler(dispatcher=dp, bot=bot, secret_token=secret_token).register(
+#         app, path=path
+#     )
 #     setup_application(app, dp, bot=bot)
 #     web.run_app(app, host=host, port=port)
 # ---------------------------------------------------------------------------

@@ -6,6 +6,8 @@ successful_payment этого модуля (подключай shop ДО payment
 """
 from __future__ import annotations
 
+import html
+
 from aiogram import Bot, F, Router
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
@@ -49,7 +51,11 @@ async def cmd_shop(message: Message, session: AsyncSession) -> None:
         return
     await message.answer("🛍 <b>Каталог</b>. Нажмите «В корзину» у нужных товаров, затем /cart.")
     for p in products:
-        text = f"<b>{p.title}</b>\n{p.description}\n\nЦена: <b>{p.price_stars} ⭐️</b>"
+        # Тексты товаров вводит админ — экранируем для parse_mode=HTML
+        text = (
+            f"<b>{html.escape(p.title)}</b>\n{html.escape(p.description)}\n\n"
+            f"Цена: <b>{p.price_stars} ⭐️</b>"
+        )
         await message.answer(text, reply_markup=product_kb(p))
 
 
@@ -76,7 +82,7 @@ async def cmd_cart(message: Message, state: FSMContext, session: AsyncSession) -
             continue
         subtotal = product.price_stars * qty
         total += subtotal
-        lines.append(f"• {product.title} × {qty} = {subtotal} ⭐️")
+        lines.append(f"• {html.escape(product.title)} × {qty} = {subtotal} ⭐️")
 
     text = "🛒 <b>Ваша корзина:</b>\n" + "\n".join(lines) + f"\n\nИтого: <b>{total} ⭐️</b>"
     await message.answer(text, reply_markup=cart_kb())
@@ -175,7 +181,7 @@ async def cmd_addproduct(message: Message, session: AsyncSession) -> None:
     product = Product(title=title, price_stars=price, description=description)
     session.add(product)
     await session.flush()
-    await message.answer(f"✅ Товар №{product.id} «{title}» добавлен ({price} ⭐️).")
+    await message.answer(f"✅ Товар №{product.id} «{html.escape(title)}» добавлен ({price} ⭐️).")
 
 
 @router.message(Command("products"), IsAdmin())
@@ -185,7 +191,7 @@ async def cmd_products(message: Message, session: AsyncSession) -> None:
         await message.answer("Товаров нет.")
         return
     text = "📦 <b>Товары:</b>\n" + "\n".join(
-        f"• №{p.id} {'🟢' if p.is_active else '🔴'} {p.title} — {p.price_stars} ⭐️"
+        f"• №{p.id} {'🟢' if p.is_active else '🔴'} {html.escape(p.title)} — {p.price_stars} ⭐️"
         for p in rows
     )
     await message.answer(text + "\n\nСкрыть: <code>/delproduct id</code>")

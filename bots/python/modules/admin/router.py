@@ -50,13 +50,17 @@ async def cb_home(call: CallbackQuery, db_user: User) -> None:
 @router.callback_query(F.data == "admin:users")
 async def cb_users(call: CallbackQuery, session: AsyncSession, db_user: User) -> None:
     users = UserRepository(session)
-    total = await users.count(Platform.TELEGRAM)
+    # Пользователи всех платформ из общей БД; рассылка — только в Telegram
+    counts = {p.value: await users.count(p) for p in Platform}
+    used = {name: n for name, n in counts.items() if n}
+    breakdown = f" ({', '.join(f'{name}: {n}' for name, n in used.items())})" if len(used) > 1 else ""
     active_ids = await users.all_active_ids(Platform.TELEGRAM)
     text = (
         f"👥 <b>Пользователи</b>\n\n"
-        f"Всего: <b>{total}</b>\n"
-        f"Активных (не заблокировали бота): <b>{len(active_ids)}</b>\n\n"
-        f"Бан/разбан: <code>/ban &lt;id&gt;</code> · <code>/unban &lt;id&gt;</code>"
+        f"Всего: <b>{sum(counts.values())}</b>{breakdown}\n"
+        f"Активных в Telegram (не заблокировали бота): <b>{len(active_ids)}</b>\n\n"
+        f"Бан/разбан: <code>/ban &lt;id&gt; [платформа]</code> · "
+        f"<code>/unban &lt;id&gt; [платформа]</code>"
     )
     await call.message.edit_text(text, reply_markup=back_kb(_loc(db_user)))
     await call.answer()
@@ -72,14 +76,25 @@ async def cmd_unban(message: Message, session: AsyncSession) -> None:
     await _set_ban(message, session, banned=False)
 
 
+_PLATFORMS = {p.value for p in Platform}
+
+
 async def _set_ban(message: Message, session: AsyncSession, banned: bool) -> None:
+    """/ban <user_id> [telegram|instagram|max] — по умолчанию telegram."""
     parts = (message.text or "").split()
     if len(parts) < 2 or not parts[1].lstrip("-").isdigit():
-        await message.answer("Использование: /ban &lt;user_id&gt;")
+        await message.answer("Использование: /ban &lt;user_id&gt; [telegram|instagram|max]")
+        return
+    platform = parts[2].lower() if len(parts) > 2 else Platform.TELEGRAM.value
+    if platform not in _PLATFORMS:
+        await message.answer("Платформа: telegram, instagram или max.")
         return
     target = int(parts[1])
-    ok = await UserRepository(session).set_banned(Platform.TELEGRAM, target, banned)
+    ok = await UserRepository(session).set_banned(platform, target, banned)
+    where = "" if platform == Platform.TELEGRAM else f" ({platform})"
     if ok:
-        await message.answer(f"{'🚫 Забанен' if banned else '✅ Разбанен'}: <code>{target}</code>")
+        await message.answer(
+            f"{'🚫 Забанен' if banned else '✅ Разбанен'}: <code>{target}</code>{where}"
+        )
     else:
-        await message.answer(f"Пользователь <code>{target}</code> не найден.")
+        await message.answer(f"Пользователь <code>{target}</code>{where} не найден.")

@@ -5,15 +5,18 @@
 
 Важно: этот роутер подключается ДО common, чтобы ловить /start с payload.
 Обычный /start (без payload) обрабатывает common.
+Приглашённые считаются в платформе пользователя (db_user.platform).
 """
 from __future__ import annotations
+
+import html
 
 from aiogram import Bot, Router
 from aiogram.filters import Command, CommandObject, CommandStart
 from aiogram.types import Message
 
 from core.config import settings
-from core.database.models import Platform, User
+from core.database.models import User
 from core.database.repositories import UserRepository
 from core.i18n import t
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -42,17 +45,17 @@ async def start_with_ref(
         if await users.set_referrer(db_user, inviter_id):
             # Уведомляем пригласившего (не критично, если не дойдёт)
             try:
-                total = await users.count_referrals(Platform.TELEGRAM, inviter_id)
+                total = await users.count_referrals(db_user.platform, inviter_id)
                 await bot.send_message(
                     inviter_id,
-                    f"🎉 По вашей ссылке присоединился {db_user.full_name}!\n"
+                    f"🎉 По вашей ссылке присоединился {html.escape(db_user.full_name)}!\n"
                     f"Всего приглашено: <b>{total}</b>",
                 )
             except Exception:  # noqa: BLE001
                 pass
 
     await message.answer(
-        t("start.hello", locale=_loc(db_user), name=db_user.first_name or "друг")
+        t("start.hello", locale=_loc(db_user), name=html.escape(db_user.first_name or "друг"))
     )
 
 
@@ -60,9 +63,7 @@ async def start_with_ref(
 async def cmd_ref(message: Message, session: AsyncSession, db_user: User, bot: Bot) -> None:
     me = await bot.get_me()
     link = f"https://t.me/{me.username}?start={db_user.external_id}"
-    count = await UserRepository(session).count_referrals(
-        Platform.TELEGRAM, db_user.external_id
-    )
+    count = await UserRepository(session).count_referrals(db_user.platform, db_user.external_id)
     await message.answer(
         f"🔗 <b>Ваша реферальная ссылка:</b>\n<code>{link}</code>\n\n"
         f"👥 Приглашено: <b>{count}</b>\n\n"

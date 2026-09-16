@@ -1,0 +1,72 @@
+/* ============================================================
+   Дизайн-токены Forestbyte. Подключается один раз на страницу.
+   Все виджеты (Web Components) читают эти CSS-переменные —
+   переопредели их в :root, чтобы перекрасить всё под бренд.
+   Переменные наследуются внутрь Shadow DOM, поэтому темизация работает.
+   ============================================================ */
+:root {
+  /* Палитра */
+  --fb-bg: #ffffff;
+  --fb-surface: #f5f6f8;
+  --fb-text: #1a1d21;
+  --fb-text-muted: #6b7280;
+  --fb-border: #e5e7eb;
+  --fb-accent: #4f46e5;
+  --fb-accent-contrast: #ffffff;
+  --fb-danger: #ef4444;
+
+  /* Градиент для сториз/акцентов */
+  --fb-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+
+  /* Типографика */
+  --fb-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --fb-fs-sm: 0.875rem;
+  --fb-fs-base: 1rem;
+  --fb-fs-lg: 1.25rem;
+  --fb-fs-xl: 1.75rem;
+
+  /* Форма и тени */
+  --fb-radius: 14px;
+  --fb-radius-sm: 8px;
+  --fb-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --fb-shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.18);
+
+  /* Отступы */
+  --fb-gap: 16px;
+  --fb-gap-lg: 32px;
+
+  /* Слои */
+  --fb-z-nav: 1000;
+  --fb-z-modal: 2000;
+
+  /* Скорость анимаций */
+  --fb-transition: 0.25s ease;
+
+  /* Контейнер */
+  --fb-container: 1200px;
+}
+
+/* Тёмная тема — авто по системной настройке.
+   Отключить: добавь data-theme="light" на <html>. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fb-bg: #0f1115;
+    --fb-surface: #181b21;
+    --fb-text: #f3f4f6;
+    --fb-text-muted: #9ca3af;
+    --fb-border: #2a2f38;
+    --fb-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --fb-shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Принудительная тёмная тема: data-theme="dark" на <html>. */
+:root[data-theme="dark"] {
+  --fb-bg: #0f1115;
+  --fb-surface: #181b21;
+  --fb-text: #f3f4f6;
+  --fb-text-muted: #9ca3af;
+  --fb-border: #2a2f38;
+  --fb-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --fb-shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.6);
+}

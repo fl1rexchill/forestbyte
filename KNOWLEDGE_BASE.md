@@ -131,7 +131,35 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 
 ## 🌐 САЙТЫ
 
-Расположение: [`sites/`](sites/) — ⚪ запланировано (следующий крупный этап).
+Расположение: [`sites/`](sites/). Философия та же: самодостаточные блоки, копируешь и дополняешь.
+Виджеты — на чистом JS (Web Components), падают в WordPress и на любой сайт.
+
+### Виджеты — `sites/components/` 🟢
+| Тег | Файл | Назначение | Теги |
+|-----|------|-----------|------|
+| `shared/tokens.css` | — | Дизайн-токены и темизация (`--fb-*`), тёмная тема | theme, tokens, css-vars, dark |
+| `<fb-navbar>` | `navbar/fb-navbar.js` | Адаптивное меню: бургер, sticky, CTA | navbar, menu, responsive, burger |
+| `<fb-footer>` | `footer/fb-footer.js` | Футер: колонки, соцсети, подписка | footer, socials, newsletter |
+| `<fb-video-circles>` | `video-circles/fb-video-circles.js` | Кружки-видео как в Telegram | video, circles, telegram |
+| `<fb-stories>` | `stories/fb-stories.js` | Сториз как в Instagram (прогресс, тапы, seen) | stories, instagram, viewer |
+| `<fb-social-feed>` | `social-feed/fb-social-feed.js` | Лента постов из соцсетей (VK/TG/IG/YT) | feed, social, grid |
+| `<fb-cookie-consent>` | `cookie-consent/fb-cookie-consent.js` | Баннер согласия 152-ФЗ/GDPR + события | cookie, consent, 152fz, gdpr |
+
+Демо со всеми виджетами (проверено в браузере, адаптив): `sites/components/demo/index.html`.
+
+### Юр-шаблоны — `sites/legal/` 🟢
+| Файл | Что | Теги |
+|------|-----|------|
+| `privacy-policy-152fz.md` | Политика обработки ПД (152-ФЗ), плейсхолдеры | 152fz, privacy, legal |
+| `consent-personal-data.md` | Согласие на обработку ПД + чекбокс для форм | consent, forms, 152fz |
+| `cookie-policy.md` | Политика cookie | cookie, legal |
+
+### В работе 🟡
+| Раздел | Расположение | Статус |
+|--------|-------------|--------|
+| Интеграции CRM (amoCRM, Bitrix24) | `sites/integrations/crm/` | 🟡 |
+| WordPress плагин + тема | `sites/wordpress/` | 🟡 |
+| Полные шаблоны (vanilla / Next.js) | `sites/templates/` | 🟡 |
 
 ---
 
@@ -165,3 +193,16 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | Правила кода и контракт модуля | `docs/CONVENTIONS.md`, `docs/MODULE_CONTRACT.md` | то же |
 | Добавить свой модуль / платформу | `docs/ADDING_MODULE.md`, `docs/ADDING_PLATFORM.md` | то же |
 | Задеплоить (systemd, Docker, вебхуки) | `docs/DEPLOYMENT.md` | то же |
+
+### Сайты — быстрый поиск
+
+| «Мне нужно...» | Бери |
+|----------------|------|
+| Адаптивное меню / футер | `sites/components/navbar` · `sites/components/footer` |
+| Кружки-видео как в Telegram | `sites/components/video-circles` |
+| Сториз как в Instagram | `sites/components/stories` |
+| Лента из соцсетей | `sites/components/social-feed` |
+| Баннер cookie / согласие 152-ФЗ | `sites/components/cookie-consent` |
+| Политика конфиденциальности 152-ФЗ | `sites/legal/privacy-policy-152fz.md` |
+| Согласие на обработку ПД (форма) | `sites/legal/consent-personal-data.md` |
+| Перекрасить виджеты под бренд | `sites/components/shared/tokens.css` (`--fb-*`) |

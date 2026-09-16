@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forestbyte · Демо виджетов</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <style>
+    body { margin: 0; font-family: var(--fb-font); background: var(--fb-bg); color: var(--fb-text); }
+    main { max-width: var(--fb-container); margin: 0 auto; padding: 32px 20px 64px; }
+    section { margin: 48px 0; }
+    h2 { font-size: var(--fb-fs-xl); margin: 0 0 8px; }
+    p.lead { color: var(--fb-text-muted); margin: 0 0 20px; }
+  </style>
+  <!-- Виджеты (каждый — независимый модуль) -->
+  <script type="module" src="../navbar/fb-navbar.js"></script>
+  <script type="module" src="../footer/fb-footer.js"></script>
+  <script type="module" src="../video-circles/fb-video-circles.js"></script>
+  <script type="module" src="../stories/fb-stories.js"></script>
+  <script type="module" src="../social-feed/fb-social-feed.js"></script>
+  <script type="module" src="../cookie-consent/fb-cookie-consent.js"></script>
+</head>
+<body>
+  <fb-navbar logo-text="🌲 Forestbyte" sticky>
+    <a href="#circles">Кружки</a>
+    <a href="#stories">Сториз</a>
+    <a href="#feed">Лента</a>
+    <a href="#" data-cta>Заказать</a>
+  </fb-navbar>
+
+  <main>
+    <section id="stories">
+      <h2>Сториз (как в Instagram)</h2>
+      <p class="lead">Кольца-аватары, полноэкранный просмотр, прогресс-бары, тап-навигация.</p>
+      <fb-stories items='[
+        {"id":"s1","avatar":"https://picsum.photos/id/1011/200","title":"Новинки","slides":[
+          {"type":"image","src":"https://picsum.photos/id/1011/900/1600","duration":4000,"link":"#","linkText":"В каталог"},
+          {"type":"image","src":"https://picsum.photos/id/1015/900/1600","duration":4000}]},
+        {"id":"s2","avatar":"https://picsum.photos/id/1027/200","title":"Отзывы","slides":[
+          {"type":"image","src":"https://picsum.photos/id/1025/900/1600","duration":4000}]},
+        {"id":"s3","avatar":"https://picsum.photos/id/1005/200","title":"Кейсы","slides":[
+          {"type":"image","src":"https://picsum.photos/id/1043/900/1600","duration":4000}]}
+      ]'></fb-stories>
+    </section>
+
+    <section id="circles">
+      <h2>Кружки (как в Telegram)</h2>
+      <p class="lead">Круглые видео с автоплеем без звука; по клику — крупно и со звуком.</p>
+      <fb-video-circles size="120" items='[
+        {"video":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4","title":"Обзор"},
+        {"video":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4","title":"Отзыв Анны"},
+        {"video":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4","title":"Как мы работаем"}
+      ]'></fb-video-circles>
+    </section>
+
+    <section id="feed">
+      <h2>Лента из соцсетей</h2>
+      <p class="lead">Адаптивная сетка постов с бейджами сетей. Данные — из вашего бэкенда (JSON).</p>
+      <fb-social-feed columns="3" items='[
+        {"network":"telegram","author":"Наш канал","avatar":"https://picsum.photos/id/64/80","text":"Запустили новую услугу — сайты за 3 дня!","image":"https://picsum.photos/id/180/600/400","link":"#","date":"10.09.2026"},
+        {"network":"vk","author":"Сообщество","avatar":"https://picsum.photos/id/65/80","text":"Кейс: интернет-магазин с ростом заказов на 40%.","image":"https://picsum.photos/id/48/600/400","link":"#","date":"08.09.2026"},
+        {"network":"instagram","author":"@studio","avatar":"https://picsum.photos/id/91/80","text":"Новый дизайн лендинга для клиента 🔥","image":"https://picsum.photos/id/160/600/400","link":"#","date":"05.09.2026"}
+      ]'></fb-social-feed>
+    </section>
+  </main>
+
+  <fb-footer
+    brand="🌲 Forestbyte"
+    about="Делаем сайты и ботов быстро — из готовых проверенных блоков."
+    columns='[
+      {"title":"Услуги","links":[{"text":"Сайты","href":"#"},{"text":"Боты","href":"#"},{"text":"Интеграции","href":"#"}]},
+      {"title":"Компания","links":[{"text":"О нас","href":"#"},{"text":"Блог","href":"#"},{"text":"Контакты","href":"#"}]},
+      {"title":"Документы","links":[{"text":"Политика","href":"#"},{"text":"Оферта","href":"#"}]}
+    ]'
+    socials='[{"name":"telegram","href":"#"},{"name":"vk","href":"#"},{"name":"instagram","href":"#"},{"name":"youtube","href":"#"}]'
+    newsletter
+    copyright="© 2026 Forestbyte. Все права защищены.">
+  </fb-footer>
+
+  <fb-cookie-consent policy-href="#" categories></fb-cookie-consent>
+
+  <script>
+    document.addEventListener("fb-consent", (e) => console.log("consent:", e.detail));
+    document.addEventListener("fb-subscribe", (e) => console.log("subscribe:", e.detail));
+  </script>
+</body>
+</html>

@@ -26,7 +26,7 @@ devbase/
 │   │   ├── platforms/     #    адаптеры платформ: telegram, instagram, max
 │   │   └── templates/     #    готовые боты «под ключ»
 │   └── node/              #    стек Node.js (grammY / TypeScript) — зеркало python
-├── sites/                 # 🌐 База сайтов (следующий этап)
+├── sites/                 # 🌐 База сайтов (виджеты, юр-шаблоны, CRM, WordPress)
 └── docs/                  # 📚 общие гайды и соглашения
 ```
 
@@ -62,4 +62,6 @@ devbase/
 | Боты · модули (все 12) + шаблоны (starter/full/group) + тесты (vitest) | Node.js | 🟢 готово |
 | Боты · Instagram / MAX | Node.js | 🟢 готово |
 | Общие гайды (`docs/`) | — | 🟢 готово |
-| Сайты | — | ⚪ запланировано |
+| Сайты · виджеты (меню, футер, кружки, сториз, лента, cookie) | Vanilla JS | 🟢 готово |
+| Сайты · юр-шаблоны 152-ФЗ | — | 🟢 готово |
+| Сайты · CRM / WordPress / шаблоны страниц | Vanilla + Next.js | 🟡 в работе |

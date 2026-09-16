@@ -161,11 +161,28 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | `consent-personal-data.md` | Согласие на обработку ПД + чекбокс для форм | consent, forms, 152fz |
 | `cookie-policy.md` | Политика cookie | cookie, legal |
 
+### Интеграции CRM — `sites/integrations/crm/` 🟢
+| CRM | Файлы | Как подключить | Теги |
+|-----|-------|----------------|------|
+| Bitrix24 | `bitrix24/bitrix24.php` · `bitrix24.js` | `bitrix24/TUTORIAL.md` (входящий вебхук, 1 ссылка) | crm, bitrix24, lead, webhook |
+| amoCRM | `amocrm/amocrm.php` · `amocrm.js` | `amocrm/TUTORIAL.md` (поддомен + долгосрочный токен) | crm, amocrm, lead, oauth |
+
+Единый интерфейс `createLead({name, phone, email, comment, title})` в PHP и Node.
+
+### WordPress — `sites/wordpress/` 🟢
+| Компонент | Расположение | Что даёт |
+|-----------|-------------|----------|
+| Плагин Forestbyte | `wordpress/plugin/forestbyte/` | Админ-панель (цвет/тема/CRM), шорткоды всех виджетов, форма-заявка → CRM (Bitrix24/amoCRM) + e-mail + антиспам. Самодостаточен (виджеты и CRM-адаптеры внутри). |
+| Стартовая тема | `wordpress/theme/forestbyte-starter/` | Адаптивный каркас + демо-главная на шорткодах |
+| Туториал установки | `wordpress/TUTORIAL.md` | Пошагово «на пальцах»: установка, настройка, CRM |
+| Сборка ZIP | `wordpress/build-zips.sh` | Готовые архивы для загрузки в админку |
+
+Шорткоды: `[fb_lead_form]`, `[fb_stories]`, `[fb_video_circles]`, `[fb_social_feed]`,
+`[fb_testimonials]`, `[fb_faq]`, `[fb_counter]`, `[fb_cookie_consent]`, `[fb_reveal]`, `[fb_modal]`.
+
 ### В работе 🟡
 | Раздел | Расположение | Статус |
 |--------|-------------|--------|
-| Интеграции CRM (amoCRM, Bitrix24) | `sites/integrations/crm/` | 🟡 |
-| WordPress плагин + тема | `sites/wordpress/` | 🟡 |
 | Полные шаблоны (vanilla / Next.js) | `sites/templates/` | 🟡 |
 
 ---
@@ -215,6 +232,10 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | FAQ-аккордеон | `sites/components/faq` |
 | Отзывы (слайдер) | `sites/components/testimonials` |
 | Попап/лид-магнит | `sites/components/modal` |
+| Форма-заявка → CRM | `sites/wordpress` (шорткод `[fb_lead_form]`) |
+| Подключить Bitrix24 | `sites/integrations/crm/bitrix24/TUTORIAL.md` |
+| Подключить amoCRM | `sites/integrations/crm/amocrm/TUTORIAL.md` |
+| Сайт на WordPress (плагин+тема) | `sites/wordpress/` → `TUTORIAL.md` |
 | Политика конфиденциальности 152-ФЗ | `sites/legal/privacy-policy-152fz.md` |
 | Согласие на обработку ПД (форма) | `sites/legal/consent-personal-data.md` |
 | Перекрасить виджеты под бренд | `sites/components/shared/tokens.css` (`--fb-*`) |

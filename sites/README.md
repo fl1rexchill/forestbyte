@@ -23,9 +23,9 @@ sites/
 │   ├── social-feed/      #    лента из соцсетей (VK/TG/Instagram)
 │   └── cookie-consent/   #    баннер согласия (152-ФЗ / GDPR)
 ├── legal/                # ⚖️ шаблоны документов по 152-ФЗ
-├── integrations/crm/     # 🔌 коннекторы CRM (amoCRM, Bitrix24, ...)
-├── wordpress/            # 🟦 плагин + стартовая тема
-└── templates/            # 📄 полные шаблоны: vanilla/ и nextjs/
+├── integrations/crm/     # 🔌 коннекторы CRM (Bitrix24, amoCRM) + туториалы
+├── wordpress/            # 🟦 плагин (админка+шорткоды+форма→CRM) + тема + TUTORIAL.md
+└── templates/            # 📄 полные шаблоны: vanilla/ и nextjs/ (🟡)
 ```
 
 ## Быстрый старт (виджет за 30 секунд)
@@ -59,8 +59,9 @@ sites/
 | Раздел | Статус |
 |--------|--------|
 | Виджеты (navbar, footer, circles, stories, feed, cookie) | 🟢 готово |
+| Виджеты анимированные (reveal, counter, faq, testimonials, modal) | 🟢 готово |
 | Юр-шаблоны 152-ФЗ | 🟢 готово |
-| Интеграции CRM (amoCRM, Bitrix24) | 🟡 в работе |
-| WordPress плагин + тема | 🟡 в работе |
+| Интеграции CRM (amoCRM, Bitrix24) + туториалы | 🟢 готово |
+| WordPress плагин + тема + туториал | 🟢 готово |
 | Полные шаблоны (vanilla / Next.js) | 🟡 в работе |
 | Адаптив под все устройства | 🟢 встроен во все виджеты |

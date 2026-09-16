@@ -1,0 +1,56 @@
+/*
+Theme Name: Forestbyte Starter
+Theme URI: https://github.com/fl1rexchill/forestbyte
+Author: Forestbyte
+Description: Лёгкая стартовая тема под плагин Forestbyte. Адаптивная, с чистым каркасом (шапка/подвал под кастомизацию) и демо-главной на шорткодах виджетов. Требует плагин Forestbyte для виджетов.
+Version: 1.0.0
+Requires at least: 5.8
+Requires PHP: 7.4
+License: MIT
+Text Domain: forestbyte-starter
+*/
+
+/* Базовые стили. Цвета берём из токенов плагина (--fb-*), с фолбэками. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--fb-font, "Inter", system-ui, sans-serif);
+  color: var(--fb-text, #16211f);
+  background: var(--fb-bg, #fff);
+  line-height: 1.6;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--fb-accent, #0ea5a4); }
+
+.container { max-width: var(--fb-container, 1200px); margin: 0 auto; padding: 0 20px; }
+
+/* Шапка (кастомизируйте под свой сайт) */
+.site-header {
+  position: sticky; top: 0; z-index: var(--fb-z-nav, 1000);
+  background: var(--fb-bg, #fff);
+  border-bottom: 1px solid var(--fb-border, #e4e8e8);
+}
+.site-header .container { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+.site-title { font-weight: 800; font-size: 1.3rem; text-decoration: none; color: var(--fb-text, #111); }
+.main-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.main-nav a { text-decoration: none; color: var(--fb-text, #111); padding: 8px 12px; border-radius: 8px; }
+.main-nav a:hover { background: var(--fb-surface, #f4f6f7); }
+
+/* Контент */
+.site-main { padding: 40px 0; }
+.hero { text-align: center; padding: 72px 0; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 16px; }
+.hero p { color: var(--fb-text-muted, #5f6b69); font-size: 1.15rem; max-width: 640px; margin: 0 auto 28px; }
+.section { padding: 48px 0; }
+.section h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin: 0 0 24px; }
+
+/* Подвал (кастомизируйте под свой сайт) */
+.site-footer {
+  background: var(--fb-surface, #f4f6f7);
+  border-top: 1px solid var(--fb-border, #e4e8e8);
+  padding: 32px 0; color: var(--fb-text-muted, #5f6b69); text-align: center;
+}
+
+@media (max-width: 700px) {
+  .site-header .container { flex-direction: column; gap: 10px; }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forestbyte · Демо анимированных виджетов</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <style>
+    body { margin:0; font-family: var(--fb-font); background: var(--fb-bg); color: var(--fb-text); }
+    main { max-width: var(--fb-container); margin:0 auto; padding: 40px 20px 80px; }
+    section { margin: 56px 0; }
+    h2 { font-size: var(--fb-fs-xl); margin:0 0 20px; }
+    .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+    .card { background: var(--fb-surface); border:1px solid var(--fb-border);
+            border-radius: var(--fb-radius); padding:24px; }
+    .stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:24px; text-align:center; }
+    .stat b { display:block; font-size:2.6rem; color: var(--fb-accent); font-weight:800; }
+    .stat span { color: var(--fb-text-muted); }
+  </style>
+  <script type="module" src="../reveal/fb-reveal.js"></script>
+  <script type="module" src="../counter/fb-counter.js"></script>
+  <script type="module" src="../faq/fb-faq.js"></script>
+  <script type="module" src="../testimonials/fb-testimonials.js"></script>
+  <script type="module" src="../modal/fb-modal.js"></script>
+</head>
+<body>
+  <main>
+    <section>
+      <h2>Кнопки (человечные, без фиолетового)</h2>
+      <button class="fb-btn">Основная</button>
+      <button class="fb-btn fb-btn--ghost">Вторичная</button>
+      <button class="fb-btn fb-btn--outline">Контурная</button>
+      <button class="fb-btn" data-fb-open="promo">Открыть попап</button>
+    </section>
+
+    <section>
+      <h2>Счётчики (анимация при скролле)</h2>
+      <div class="stats">
+        <div class="stat"><fb-counter to="1500" suffix="+"></fb-counter><span>проектов</span></div>
+        <div class="stat"><fb-counter to="98.6" decimals="1" suffix="%"></fb-counter><span>довольны</span></div>
+        <div class="stat"><fb-counter to="12" suffix=" лет"></fb-counter><span>на рынке</span></div>
+        <div class="stat"><fb-counter to="1200000" separator=" " prefix="₽"></fb-counter><span>сэкономлено</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Появление при скролле (fb-reveal)</h2>
+      <fb-reveal animation="fade-up" stagger="120" class="cards">
+        <div class="card"><b>Быстро</b><p>Собираем из готовых блоков.</p></div>
+        <div class="card"><b>Красиво</b><p>Современный дизайн и анимации.</p></div>
+        <div class="card"><b>Надёжно</b><p>Проверенные компоненты.</p></div>
+      </fb-reveal>
+    </section>
+
+    <section>
+      <h2>Отзывы</h2>
+      <fb-testimonials autoplay="6000" items='[
+        {"name":"Анна","role":"Основатель, ООО Ромашка","avatar":"https://picsum.photos/id/1027/100","text":"Сделали сайт за неделю, заявки пошли сразу.","rating":5},
+        {"name":"Игорь","role":"Маркетолог","avatar":"https://picsum.photos/id/1005/100","text":"Чистая работа, всё по срокам и без лишних слов.","rating":5},
+        {"name":"Мария","role":"Владелец магазина","avatar":"https://picsum.photos/id/1011/100","text":"Кружки и сториз на сайте реально подняли вовлечённость.","rating":4}
+      ]'></fb-testimonials>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <fb-faq single items='[
+        {"q":"Сколько стоит сайт?","a":"От 30 000 ₽ — зависит от задач и объёма."},
+        {"q":"Какие сроки?","a":"Обычно 1–2 недели от брифа до запуска."},
+        {"q":"Помогаете с поддержкой?","a":"Да, есть пакеты сопровождения. <a href=\"#\">Подробнее</a>."}
+      ]'></fb-faq>
+    </section>
+  </main>
+
+  <fb-modal id="promo" open-on="delay" delay="3000" title="Скидка 10% на первый проект">
+    <p>Оставьте заявку сегодня — и получите скидку 10% на разработку.</p>
+    <button class="fb-btn" data-fb-close>Забрать скидку</button>
+  </fb-modal>
+</body>
+</html>

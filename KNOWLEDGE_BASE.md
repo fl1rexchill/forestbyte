@@ -144,8 +144,15 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | `<fb-stories>` | `stories/fb-stories.js` | Сториз как в Instagram (прогресс, тапы, seen) | stories, instagram, viewer |
 | `<fb-social-feed>` | `social-feed/fb-social-feed.js` | Лента постов из соцсетей (VK/TG/IG/YT) | feed, social, grid |
 | `<fb-cookie-consent>` | `cookie-consent/fb-cookie-consent.js` | Баннер согласия 152-ФЗ/GDPR + события | cookie, consent, 152fz, gdpr |
+| `<fb-reveal>` | `reveal/fb-reveal.js` | Появление при скролле (anime.js, stagger) | animation, scroll, reveal, anime |
+| `<fb-counter>` | `counter/fb-counter.js` | Анимированный счётчик чисел (anime.js) | counter, stats, animation, anime |
+| `<fb-faq>` | `faq/fb-faq.js` | Аккордеон FAQ с плавным раскрытием (anime.js) | faq, accordion, anime |
+| `<fb-testimonials>` | `testimonials/fb-testimonials.js` | Слайдер отзывов (anime.js, автоплей) | testimonials, reviews, slider, anime |
+| `<fb-modal>` | `modal/fb-modal.js` | Попап/модалка (anime.js): load/delay/exit/клик | modal, popup, lead, anime |
 
-Демо со всеми виджетами (проверено в браузере, адаптив): `sites/components/demo/index.html`.
+Общее: `shared/tokens.css` (палитра без фиолетового + токены человечных кнопок),
+`shared/anim.js` (мягкая загрузка anime.js v4). Демо: `sites/components/demo/index.html`
+(базовые) и `demo/widgets2.html` (анимированные) — проверены в браузере.
 
 ### Юр-шаблоны — `sites/legal/` 🟢
 | Файл | Что | Теги |
@@ -203,6 +210,11 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | Сториз как в Instagram | `sites/components/stories` |
 | Лента из соцсетей | `sites/components/social-feed` |
 | Баннер cookie / согласие 152-ФЗ | `sites/components/cookie-consent` |
+| Анимация появления при скролле | `sites/components/reveal` |
+| Анимированные цифры/статистика | `sites/components/counter` |
+| FAQ-аккордеон | `sites/components/faq` |
+| Отзывы (слайдер) | `sites/components/testimonials` |
+| Попап/лид-магнит | `sites/components/modal` |
 | Политика конфиденциальности 152-ФЗ | `sites/legal/privacy-policy-152fz.md` |
 | Согласие на обработку ПД (форма) | `sites/legal/consent-personal-data.md` |
 | Перекрасить виджеты под бренд | `sites/components/shared/tokens.css` (`--fb-*`) |

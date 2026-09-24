@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Линия — студия барре и пилатеса в Хамовниках</title>
+  <meta name="theme-color" content="#f4efe6">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b2f28'/%3E%3Cpath d='M18 46 C 28 20, 36 20, 46 46' stroke='%23f6ecd2' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<header class="header" id="top">
+  <div class="header__inner">
+    <a class="logo" href="#top" aria-label="Линия — на главную">
+      <span class="logo__mark">Линия</span>
+      <span class="logo__sub">студия барре и&nbsp;пилатеса</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <a href="#directions">Направления</a>
+      <a href="#schedule">Расписание</a>
+      <a href="#prices">Абонементы</a>
+      <a href="#coaches">Тренеры</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <div class="nav__mobile-extra">
+        <a class="btn btn--dark" href="#trial">Пробное за&nbsp;0&nbsp;₽</a>
+        <a class="nav__phone" data-phone href="#"></a>
+      </div>
+    </nav>
+    <div class="header__actions">
+      <button class="btn btn--ghost btn--sm" type="button" data-open="cabinet">Мой абонемент</button>
+      <a class="btn btn--dark btn--sm header__cta" href="#trial">Пробное за&nbsp;0&nbsp;₽</a>
+      <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <img src="img/hero.webp" width="960" height="540" alt="Две девушки медитируют на ковриках в светлом зале студии с кирпичными стенами" fetchpriority="high">
+    </div>
+    <div class="hero__content">
+      <p class="hero__place">Хамовники · 3 минуты от м. Фрунзенская</p>
+      <h1 id="hero-title" class="hero__title" data-split>Сильное тело <em>без&nbsp;спешки и&nbsp;травм</em></h1>
+      <p class="hero__lead" data-reveal style="--reveal-delay:.35s">Барре, пилатес, функциональные тренировки и&nbsp;растяжка в&nbsp;группах до&nbsp;10&nbsp;человек. Первое занятие — бесплатно, ответим в&nbsp;течение 15&nbsp;минут.</p>
+      <div class="hero__btns" data-reveal style="--reveal-delay:.5s">
+        <a class="btn btn--cream" href="#trial">Записаться на&nbsp;пробное <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--glass" data-tg="Здравствуйте! Хочу на пробное занятие" href="#">Написать в&nbsp;Telegram</a>
+      </div>
+    </div>
+    <a class="hero__next" href="#schedule" data-reveal="fade" style="--reveal-delay:.8s" aria-label="Ближайшее занятие — открыть расписание">
+      <img src="img/stretch.webp" width="512" height="640" alt="" loading="lazy">
+      <span class="hero__next-body">
+        <span class="hero__next-label">Ближайшее занятие</span>
+        <strong id="nextClassTitle">Смотрим расписание…</strong>
+        <span id="nextClassMeta"></span>
+      </span>
+    </a>
+  </section>
+
+  <!-- ФАКТЫ -->
+  <section class="facts" aria-label="Коротко о студии">
+    <ul class="facts__list" role="list" data-stagger="120">
+      <li data-reveal>
+        <span class="facts__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M11 19c0-3 2.5-5 5-5s5 2 5 5"/></svg></span>
+        <strong>Группы до 10 человек</strong>
+        <span>Тренер видит каждого и&nbsp;поправляет технику</span>
+      </li>
+      <li data-reveal>
+        <span class="facts__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <strong><span data-count="38">38</span> занятий в&nbsp;неделю</strong>
+        <span>С 7:30 до 21:30, в&nbsp;выходные — с&nbsp;9:00</span>
+      </li>
+      <li data-reveal>
+        <span class="facts__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span>
+        <strong>Первое занятие — 0 ₽</strong>
+        <span>Без обязательств и&nbsp;навязанных абонементов</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- НАПРАВЛЕНИЯ -->
+  <section class="directions" id="directions" aria-labelledby="dir-title">
+    <h2 class="h2 center" id="dir-title" data-split>Четыре направления — <em>одна система</em></h2>
+    <p class="section-lead center" data-reveal>Комбинируйте занятия как удобно: абонемент действует на&nbsp;все направления.</p>
+    <div class="dir-grid">
+      <article class="dir-card" data-reveal style="--lift:0px">
+        <span class="dir-card__num">01</span>
+        <h3>Барре</h3>
+        <p>Упражнения у&nbsp;станка на&nbsp;ягодицы, ноги и&nbsp;осанку. Маленькая амплитуда, много повторов — мышцы «горят», суставы в&nbsp;безопасности.</p>
+        <p class="dir-card__meta">55 минут · любой уровень</p>
+        <button class="link-btn" type="button" data-filter-dir="barre">Расписание барре →</button>
+        <img src="img/loft.webp" width="512" height="640" alt="Девушка с гантелями у кирпичной стены в светлом зале" loading="lazy">
+      </article>
+      <article class="dir-card" data-reveal style="--lift:48px">
+        <span class="dir-card__num">02</span>
+        <h3>Пилатес</h3>
+        <p>Глубокие мышцы кора, дыхание и&nbsp;контроль. Помогает при сидячей работе и&nbsp;после родов — с&nbsp;разрешения врача.</p>
+        <p class="dir-card__meta">55 минут · любой уровень</p>
+        <button class="link-btn" type="button" data-filter-dir="pilates">Расписание пилатеса →</button>
+        <img src="img/meditate.webp" width="512" height="640" alt="Девушка сидит в позе лотоса на коврике" loading="lazy">
+      </article>
+      <article class="dir-card" data-reveal style="--lift:96px">
+        <span class="dir-card__num">03</span>
+        <h3>Функциональный</h3>
+        <p>Круговые тренировки с&nbsp;канатами, гантелями и&nbsp;собственным весом. Выносливость и&nbsp;сила за&nbsp;45&nbsp;минут.</p>
+        <p class="dir-card__meta">45 минут · средний уровень</p>
+        <button class="link-btn" type="button" data-filter-dir="func">Расписание функционального →</button>
+        <img src="img/rope.webp" width="960" height="640" alt="Девушка работает с тяжёлыми канатами у белой стены" loading="lazy">
+      </article>
+      <article class="dir-card" data-reveal style="--lift:144px">
+        <span class="dir-card__num">04</span>
+        <h3>Растяжка</h3>
+        <p>Мягкая работа над гибкостью спины и&nbsp;тазобедренных. Хорошо сочетается с&nbsp;барре и&nbsp;снимает напряжение после офиса.</p>
+        <p class="dir-card__meta">60 минут · любой уровень</p>
+        <button class="link-btn" type="button" data-filter-dir="stretch">Расписание растяжки →</button>
+        <img src="img/child.webp" width="1024" height="682" alt="Девушка в позе ребёнка на розовом коврике" loading="lazy">
+      </article>
+    </div>
+  </section>
+
+  <!-- ДЛЯ КОГО -->
+  <section class="foryou" aria-labelledby="foryou-title">
+    <div class="foryou__head">
+      <h2 class="h2" id="foryou-title" data-split>Если вы узнали себя — <em>вам к&nbsp;нам</em></h2>
+    </div>
+    <div class="foryou__track" data-lenis-prevent-horizontal>
+      <figure class="foryou__card" data-reveal>
+        <img src="img/back.webp" width="509" height="637" alt="Спина девушки в спортивном топе" loading="lazy">
+        <figcaption><strong>Раньше занимались</strong>Хотите вернуть форму, но&nbsp;в&nbsp;большом зале теряете мотивацию.</figcaption>
+      </figure>
+      <figure class="foryou__card" data-reveal>
+        <img src="img/shoes.webp" width="960" height="640" alt="Девушка завязывает кроссовки на коврике" loading="lazy">
+        <figcaption><strong>Работа за&nbsp;компьютером</strong>Затекает шея, болит поясница, к&nbsp;вечеру нет сил.</figcaption>
+      </figure>
+      <figure class="foryou__card" data-reveal>
+        <img src="img/result.webp" width="512" height="640" alt="Девушка тянется вверх на набережной" loading="lazy">
+        <figcaption><strong>После родов</strong>Нужна аккуратная нагрузка и&nbsp;тренер, который знает про диастаз.</figcaption>
+      </figure>
+      <figure class="foryou__card" data-reveal>
+        <img src="img/press.webp" width="957" height="638" alt="Девушка выполняет жим ногами в тренажёре" loading="lazy">
+        <figcaption><strong>Хотите результат</strong>Готовы заниматься 2–3&nbsp;раза в&nbsp;неделю и&nbsp;видеть прогресс по&nbsp;замерам.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- РАСПИСАНИЕ -->
+  <section class="schedule" id="schedule" aria-labelledby="sch-title">
+    <div class="schedule__head">
+      <div>
+        <h2 class="h2" id="sch-title" data-split>Расписание <em>на&nbsp;неделю</em></h2>
+        <p class="section-lead">Запишитесь на&nbsp;занятие за&nbsp;минуту. Нет мест — встаньте в&nbsp;лист ожидания, напишем, если кто-то отменит.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Фильтры расписания">
+        <label class="select"><span class="sr-only">Направление</span>
+          <select id="fDir">
+            <option value="">Все направления</option>
+            <option value="barre">Барре</option>
+            <option value="pilates">Пилатес</option>
+            <option value="func">Функциональный</option>
+            <option value="stretch">Растяжка</option>
+          </select>
+        </label>
+        <label class="select"><span class="sr-only">Тренер</span>
+          <select id="fCoach"><option value="">Все тренеры</option></select>
+        </label>
+        <label class="select"><span class="sr-only">Время</span>
+          <select id="fTime">
+            <option value="">Любое время</option>
+            <option value="morning">Утро · до 12:00</option>
+            <option value="day">День · 12–17</option>
+            <option value="evening">Вечер · после 17:00</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="days" role="tablist" aria-label="День недели" id="days"></div>
+    <div class="classes" id="classes" role="tabpanel" aria-live="polite"></div>
+  </section>
+
+  <!-- КАК НАЧАТЬ -->
+  <section class="start" aria-labelledby="start-title">
+    <h2 class="h2 center" id="start-title" data-split>Как <em>начать</em></h2>
+    <ol class="steps" role="list" data-stagger="120">
+      <li data-reveal><span class="steps__n">1</span><h3>Заявка</h3><p>Оставьте телефон — администратор перезвонит в&nbsp;течение 15&nbsp;минут в&nbsp;рабочее время и&nbsp;подберёт занятие.</p></li>
+      <li data-reveal><span class="steps__n">2</span><h3>Пробное занятие</h3><p>Приходите за&nbsp;10&nbsp;минут: покажем раздевалку, выдадим коврик и&nbsp;носки для барре. Бесплатно.</p></li>
+      <li data-reveal><span class="steps__n">3</span><h3>План на&nbsp;месяц</h3><p>Тренер оценит технику и&nbsp;подскажет, какие направления и&nbsp;сколько раз в&nbsp;неделю подойдут под вашу цель.</p></li>
+    </ol>
+  </section>
+
+  <!-- МЕТОД -->
+  <section class="method" aria-labelledby="method-title">
+    <div class="method__media">
+      <img src="img/class.webp" width="960" height="640" alt="Группа девушек растягивается на ковриках в зале" loading="lazy" data-parallax>
+    </div>
+    <div class="method__card" data-reveal="right">
+      <h2 class="h2" id="method-title">Наш метод — <em>это</em></h2>
+      <p>Каждое занятие строится по&nbsp;одной схеме: разминка суставов, силовой блок на&nbsp;целевую зону, работа на&nbsp;баланс и&nbsp;заминка с&nbsp;дыханием.</p>
+      <p>Раз в&nbsp;месяц — бесплатные замеры и&nbsp;фото осанки, чтобы прогресс был виден не&nbsp;только в&nbsp;зеркале.</p>
+      <a class="btn btn--cream" href="#trial">Попробовать бесплатно <span class="btn__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <!-- АБОНЕМЕНТЫ -->
+  <section class="prices" id="prices" aria-labelledby="prices-title">
+    <div class="prices__head">
+      <h2 class="h2" id="prices-title" data-split>Абонементы <em>без&nbsp;скрытых условий</em></h2>
+      <div class="period" role="radiogroup" aria-label="Срок абонемента">
+        <label><input type="radio" name="period" value="1" checked><span>1 месяц</span></label>
+        <label><input type="radio" name="period" value="3"><span>3 месяца <em>−10%</em></span></label>
+      </div>
+    </div>
+    <div class="plans" id="plans"></div>
+    <div class="compare" data-reveal>
+      <table>
+        <caption class="sr-only">Сравнение абонементов</caption>
+        <thead><tr><th scope="col">Что входит</th><th scope="col">Разовое</th><th scope="col">8 занятий</th><th scope="col">12 занятий</th><th scope="col">Безлимит</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Все направления</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row">Заморозка</th><td>—</td><td>7 дней</td><td>14 дней</td><td>30 дней</td></tr>
+          <tr><th scope="row">Гостевой визит для подруги</th><td>—</td><td>—</td><td>1</td><td>2</td></tr>
+          <tr><th scope="row">Замеры и фото осанки</th><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row">Персональная вводная</th><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ТРЕНЕРЫ -->
+  <section class="coaches" id="coaches" aria-labelledby="coaches-title">
+    <h2 class="h2 center" id="coaches-title" data-split>Тренеры, <em>которые объясняют</em></h2>
+    <div class="coach-grid" id="coachGrid" data-stagger="120"></div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" id="reviews" aria-labelledby="rev-title">
+    <div class="reviews__head">
+      <h2 class="h2" id="rev-title" data-split>Что говорят <em>ученицы</em></h2>
+      <div class="reviews__nav">
+        <button class="round-btn" type="button" id="revPrev" aria-label="Предыдущий отзыв">←</button>
+        <button class="round-btn" type="button" id="revNext" aria-label="Следующий отзыв">→</button>
+      </div>
+    </div>
+    <div class="reviews__viewport" id="revViewport" data-lenis-prevent-horizontal>
+      <div class="reviews__track" id="revTrack">
+        <blockquote class="review"><p>«Хожу на&nbsp;барре полгода. Ушла боль в&nbsp;пояснице, а&nbsp;ещё впервые не&nbsp;бросила спорт через месяц. Тренеры правда смотрят на&nbsp;технику».</p><footer>Ольга, 34&nbsp;года · март 2026 · Яндекс Карты</footer></blockquote>
+        <blockquote class="review"><p>«Пришла после вторых родов с&nbsp;диастазом. Анна подобрала упражнения, через 3&nbsp;месяца живот ушёл на&nbsp;4&nbsp;см по&nbsp;замерам».</p><footer>Мария, 31&nbsp;год · январь 2026 · 2ГИС</footer></blockquote>
+        <blockquote class="review"><p>«Удобно, что можно записаться с&nbsp;телефона и&nbsp;отменить за&nbsp;3&nbsp;часа без списания. Группы маленькие, всегда есть место у&nbsp;станка».</p><footer>Екатерина, 27&nbsp;лет · июнь 2026 · Яндекс Карты</footer></blockquote>
+        <blockquote class="review"><p>«Муж подарил сертификат, теперь ходим вместе на&nbsp;функциональные по&nbsp;субботам. Илья гоняет, но&nbsp;весело».</p><footer>Светлана, 42&nbsp;года · август 2026 · Google</footer></blockquote>
+        <blockquote class="review"><p>«Растяжка по&nbsp;вечерам спасает после 9&nbsp;часов за&nbsp;ноутбуком. Спина благодарит, сон стал лучше».</p><footer>Дарья, 29&nbsp;лет · май 2026 · Яндекс Карты</footer></blockquote>
+      </div>
+    </div>
+    <p class="note">Результаты индивидуальны и&nbsp;зависят от&nbsp;регулярности занятий, питания и&nbsp;состояния здоровья. Отзывы публикуем с&nbsp;согласия авторов.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" aria-labelledby="faq-title">
+    <h2 class="h2" id="faq-title" data-split>Частые <em>вопросы</em></h2>
+    <div class="faq__list">
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q1">Нужна ли медицинская справка?<span aria-hidden="true"></span></button></h3>
+        <div id="q1" class="faq__a"><p>Справка не&nbsp;нужна. Перед первым занятием попросим заполнить короткую анкету о&nbsp;здоровье. При беременности, травмах и&nbsp;после операций — только с&nbsp;разрешения врача.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q2">Как отменить или перенести занятие?<span aria-hidden="true"></span></button></h3>
+        <div id="q2" class="faq__a"><p>В&nbsp;разделе «Мой абонемент» или в&nbsp;Telegram. Отмена позже чем за&nbsp;3&nbsp;часа до&nbsp;начала списывает занятие с&nbsp;абонемента.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q3">Можно ли заморозить абонемент?<span aria-hidden="true"></span></button></h3>
+        <div id="q3" class="faq__a"><p>Да: 7&nbsp;дней на&nbsp;абонементе «8&nbsp;занятий», 14 — на&nbsp;«12&nbsp;занятий», 30 — на&nbsp;безлимите. Заморозить можно в&nbsp;личном кабинете в&nbsp;пару кликов.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q4">Что взять с&nbsp;собой?<span aria-hidden="true"></span></button></h3>
+        <div id="q4" class="faq__a"><p>Удобную одежду и&nbsp;воду. Коврики, мячи, ленты и&nbsp;нескользящие носки для барре выдаём. В&nbsp;раздевалке есть душ, фен и&nbsp;шкафчики с&nbsp;замком.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q5">Можно прийти с&nbsp;подругой?<span aria-hidden="true"></span></button></h3>
+        <div id="q5" class="faq__a"><p>Да. Пробное занятие бесплатно для каждой новой гостьи, а&nbsp;на&nbsp;абонементах «12&nbsp;занятий» и&nbsp;«Безлимит» есть гостевые визиты.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ФИНАЛЬНЫЙ CTA -->
+  <section class="trial" id="trial" aria-labelledby="trial-title">
+    <div class="trial__media"><img src="img/t1.webp" width="510" height="638" alt="" loading="lazy"></div>
+    <div class="trial__box">
+      <h2 class="h2" id="trial-title" data-split>Пробное занятие <em>за&nbsp;0&nbsp;₽</em></h2>
+      <p class="section-lead">Оставьте контакты — перезвоним за&nbsp;15&nbsp;минут (с&nbsp;9:00 до&nbsp;21:00) и&nbsp;подберём время.</p>
+      <form class="form" id="trialForm">
+        <div class="form__row">
+          <div class="field" data-field><label for="tName">Имя</label><input id="tName" name="name" autocomplete="given-name" data-validate="required name" placeholder="Как к вам обращаться"></div>
+          <div class="field" data-field><label for="tPhone">Телефон</label><input id="tPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <div class="field" data-field>
+          <span class="field__label" id="goalLbl">Цель</span>
+          <div class="chips" role="radiogroup" aria-labelledby="goalLbl">
+            <label class="chip"><input type="radio" name="goal" value="Подтянуть тело" data-validate="required" data-msg="Выберите цель — так подберём направление"><span>Подтянуть тело</span></label>
+            <label class="chip"><input type="radio" name="goal" value="Спина и осанка"><span>Спина и&nbsp;осанка</span></label>
+            <label class="chip"><input type="radio" name="goal" value="Гибкость"><span>Гибкость</span></label>
+            <label class="chip"><input type="radio" name="goal" value="Восстановление после родов"><span>После родов</span></label>
+            <label class="chip"><input type="radio" name="goal" value="Выносливость"><span>Выносливость</span></label>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field" data-field><label for="tLevel">Уровень подготовки</label>
+            <select id="tLevel" name="level"><option>Новичок</option><option>Занимаюсь иногда</option><option>Тренируюсь регулярно</option></select></div>
+          <div class="field" data-field><label for="tWhen">Удобное время</label>
+            <select id="tWhen" name="when"><option>Утро будни</option><option>Вечер будни</option><option>Выходные</option><option>Любое</option></select></div>
+        </div>
+        <div class="field" data-field><label for="tComment">Ограничения по здоровью или комментарий <span class="opt">необязательно</span></label>
+          <textarea id="tComment" name="comment" rows="2" placeholder="Например: грыжа L5, 6 месяцев после родов"></textarea></div>
+        <div class="field" data-field>
+          <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласна(ен) на&nbsp;обработку персональных данных по&nbsp;<a href="../_shared/privacy.html?site=Линия" target="_blank" rel="noopener">политике</a></span></label>
+        </div>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--dark btn--wide" type="submit">Записаться на&nbsp;пробное <span class="btn__arrow" aria-hidden="true">→</span></button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contacts">
+  <div class="footer__grid">
+    <div>
+      <p class="logo__mark logo__mark--big">Линия</p>
+      <p class="footer__muted">Студия барре и&nbsp;пилатеса в&nbsp;Хамовниках</p>
+    </div>
+    <div>
+      <h2 class="footer__h">Адрес</h2>
+      <p>Москва, Комсомольский пр-т, 28, 2&nbsp;этаж<br>3&nbsp;минуты от&nbsp;м.&nbsp;Фрунзенская</p>
+      <a class="footer__link" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%BE%D0%BC%D1%81%D0%BE%D0%BC%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2C%2028" target="_blank" rel="noopener">Открыть на карте ↗</a>
+    </div>
+    <div>
+      <h2 class="footer__h">Часы работы</h2>
+      <p>Пн–Пт 7:00–22:00<br>Сб–Вс 8:30–20:00</p>
+      <p class="footer__muted">Парковка во&nbsp;дворе — 2&nbsp;часа бесплатно</p>
+    </div>
+    <div>
+      <h2 class="footer__h">Связь</h2>
+      <p><a class="footer__link" data-phone href="#"></a></p>
+      <p><a class="footer__link" data-tg href="#">Telegram</a></p>
+      <p class="footer__muted">Ответ в&nbsp;течение 15&nbsp;минут с&nbsp;9:00 до&nbsp;21:00</p>
+    </div>
+  </div>
+  <div class="footer__legal">
+    <span>© <span data-year></span> ИП Соколова А.&nbsp;В., ИНН 770100000000 (демо)</span>
+    <a href="../_shared/privacy.html?site=Линия" target="_blank" rel="noopener">Политика конфиденциальности</a>
+    <a href="../_shared/privacy.html?site=Линия#consent" target="_blank" rel="noopener">Согласие на&nbsp;обработку данных</a>
+  </div>
+</footer>
+
+<!-- Мобильная панель -->
+<div class="mobile-bar">
+  <a class="btn btn--dark" href="#trial">Пробное за&nbsp;0&nbsp;₽</a>
+  <a class="btn btn--ghost" href="#schedule">Расписание</a>
+</div>
+
+<!-- МОДАЛКА: запись на занятие -->
+<div class="fb-modal" id="booking" role="dialog" aria-modal="true" aria-labelledby="bkTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div data-step="form">
+      <p class="modal__kicker" id="bkKicker">Запись на занятие</p>
+      <h2 class="modal__title" id="bkTitle">Барре</h2>
+      <p class="modal__meta" id="bkMeta"></p>
+      <form class="form" id="bookingForm">
+        <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" autocomplete="given-name" data-validate="required name"></div>
+        <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
+        <div class="field" data-field id="bFirstWrap"><label class="check"><input type="checkbox" name="first" value="yes"><span>Это моё первое занятие — пробное, бесплатно</span></label></div>
+        <div class="field" data-field><label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласна(ен) с&nbsp;<a href="../_shared/privacy.html?site=Линия" target="_blank" rel="noopener">обработкой данных</a> и&nbsp;правилом отмены за&nbsp;3&nbsp;часа</span></label></div>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--dark btn--wide" type="submit" id="bkSubmit">Записаться</button>
+      </form>
+    </div>
+    <div data-step="done" hidden>
+      <div class="done-mark" aria-hidden="true">✓</div>
+      <h2 class="modal__title" id="bkDoneTitle">Вы записаны</h2>
+      <p class="modal__meta" id="bkDoneText"></p>
+      <div class="done-actions">
+        <a class="btn btn--dark" id="bkIcs" href="#" download="lineya-zanyatie.ics">Добавить в&nbsp;календарь</a>
+        <a class="btn btn--ghost" id="bkTg" href="#" target="_blank" rel="noopener">Написать в&nbsp;Telegram</a>
+      </div>
+      <p class="note">В&nbsp;календаре уже стоят напоминания за&nbsp;24&nbsp;часа и&nbsp;за&nbsp;2&nbsp;часа. Отменить запись можно в&nbsp;«Моём абонементе».</p>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА: покупка абонемента -->
+<div class="fb-modal" id="buy" role="dialog" aria-modal="true" aria-labelledby="buyTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div data-step="form">
+      <p class="modal__kicker">Оформление абонемента</p>
+      <h2 class="modal__title" id="buyTitle">—</h2>
+      <p class="modal__meta" id="buyMeta"></p>
+      <form class="form" id="buyForm">
+        <div class="form__row">
+          <div class="field" data-field><label for="pName">Имя</label><input id="pName" name="name" autocomplete="name" data-validate="required name"></div>
+          <div class="field" data-field><label for="pPhone">Телефон</label><input id="pPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <div class="field" data-field><label for="pStart">Дата начала</label><input id="pStart" name="start" type="date" data-validate="required"></div>
+        <div class="field" data-field>
+          <span class="field__label" id="payLbl">Оплата</span>
+          <div class="chips" role="radiogroup" aria-labelledby="payLbl">
+            <label class="chip"><input type="radio" name="payment" value="online" checked><span>Картой онлайн — пришлём ссылку</span></label>
+            <label class="chip"><input type="radio" name="payment" value="studio"><span>В&nbsp;студии при первом визите</span></label>
+          </div>
+        </div>
+        <div class="field" data-field><label for="pPromo">Промокод <span class="opt">необязательно</span></label>
+          <div class="promo"><input id="pPromo" name="promo" autocomplete="off" placeholder="Например, LINIYA10"><button class="btn btn--ghost btn--sm" type="button" id="promoApply">Применить</button></div>
+          <span class="promo__msg" id="promoMsg" aria-live="polite"></span></div>
+        <div class="total"><span>К оплате</span><strong id="buyTotal">—</strong></div>
+        <div class="field" data-field><label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласна(ен) с&nbsp;<a href="../_shared/privacy.html?site=Линия" target="_blank" rel="noopener">обработкой данных</a> и&nbsp;правилами клуба</span></label></div>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--dark btn--wide" type="submit">Оформить</button>
+      </form>
+    </div>
+    <div data-step="done" hidden>
+      <div class="done-mark" aria-hidden="true">✓</div>
+      <h2 class="modal__title">Абонемент оформлен</h2>
+      <p class="modal__meta" id="buyDoneText"></p>
+      <div class="done-actions">
+        <button class="btn btn--dark" type="button" data-open="cabinet">Открыть «Мой абонемент»</button>
+        <a class="btn btn--ghost" href="#schedule" data-close>Записаться на&nbsp;занятие</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА: личный кабинет -->
+<div class="fb-modal" id="cabinet" role="dialog" aria-modal="true" aria-labelledby="cabTitle" style="--modal-w:640px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <p class="modal__kicker">Личный кабинет</p>
+    <h2 class="modal__title" id="cabTitle">Мой абонемент</h2>
+    <div id="cabBody"></div>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'fitness', prefix: 'LN', name: 'Студия «Линия»', phone: '+7 (495) 120-45-67', telegram: 'liniya_studio' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

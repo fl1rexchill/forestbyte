@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Хвост — ветклиника в Перми, запись к врачу и помощь 24/7</title>
+  <meta name="theme-color" content="#f3f1ea">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2313233f'/%3E%3Cpath d='M18 44c10 2 22-4 26-16' stroke='%23ffc53d' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<div class="sos-strip">
+  <span class="sos-strip__dot" aria-hidden="true"></span>
+  <span>Срочно? Круглосуточно, без записи:</span>
+  <a class="sos-strip__tel" href="tel:+73422000303">+7 (342) 200-03-03</a>
+  <button class="sos-strip__btn" type="button" data-open="sos">Что делать до приезда →</button>
+</div>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top" aria-label="Хвост — наверх"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12"/><path d="M11 28c7 1.5 14-2.5 17-10"/></svg><span>хвост<small>ветклиника · Пермь</small></span></a>
+    <nav class="nav" id="nav" aria-label="Основное">
+      <a href="#services">Услуги и цены</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#prevent">Прививки</a>
+      <a href="#lab">Анализы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <button class="nav__pets" type="button" data-open="pets">Мои питомцы <b id="petCount" hidden></b></button>
+    </nav>
+    <button class="btn btn--sun btn--sm header__cta" type="button" data-book>Записать питомца</button>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO — бенто -->
+  <section class="bento" id="top" aria-labelledby="hero-title">
+    <div class="tile tile--hero" data-reveal>
+      <p class="eyebrow">Пермь, ул. Революции, 22 · приём 9:00–21:00</p>
+      <h1 class="hero__title" id="hero-title" data-split>Запишите питомца к&nbsp;врачу за&nbsp;минуту</h1>
+      <p class="hero__lead">Терапевт, хирург, кардиолог, стоматолог и врач для экзотов. Своя лаборатория, УЗИ и рентген. Экстренная помощь — круглосуточно.</p>
+      <div class="hero__btns">
+        <button class="btn btn--sun" type="button" data-book>Записать питомца</button>
+        <a class="btn btn--line" href="tel:+73422000300" data-track="call">Позвонить в клинику</a>
+      </div>
+    </div>
+
+    <button class="tile tile--plan" type="button" data-book data-reveal>
+      <span class="tile__tag">Плановый приём</span>
+      <b>Осмотр, прививки, анализы, операции по записи</b>
+      <span class="tile__next" id="heroNext">Ближайшее время: ищем…</span>
+      <span class="tile__arr" aria-hidden="true">→</span>
+    </button>
+    <button class="tile tile--sos" type="button" data-open="sos" data-reveal>
+      <span class="tile__tag">Срочно · 24/7</span>
+      <b>Травма, отравление, судороги, не может дышать</b>
+      <span class="tile__next">Приезжайте сразу, позвоните по пути</span>
+      <span class="tile__arr" aria-hidden="true">→</span>
+    </button>
+
+    <figure class="tile tile--img tile--tall" data-reveal><img src="img/vetcat.webp" alt="Врач осматривает котёнка на приёме" width="731" height="913" fetchpriority="high"></figure>
+    <div class="tile tile--stat" data-reveal>
+      <b><span data-count="6">6</span> врачей</b>
+      <span>принимают сегодня, <span id="heroDocs">смотрите расписание</span></span>
+    </div>
+    <figure class="tile tile--img" data-reveal><img src="img/puppy.webp" alt="Щенок золотистого ретривера на руках" width="1024" height="682"></figure>
+    <button class="tile tile--pets" type="button" data-open="pets" data-reveal>
+      <span class="tile__tag">Мои питомцы</span>
+      <b id="heroPets">Карточки питомцев и напоминания о прививках</b>
+      <span class="tile__next" id="heroPetsNext">Добавьте питомца — напомним о прививке и обработке</span>
+      <span class="tile__arr" aria-hidden="true">→</span>
+    </button>
+    <button class="tile tile--lab" type="button" data-jump="#lab" data-reveal>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+      <b>Анализ готов?</b>
+      <span>Проверьте по номеру заявки</span>
+    </button>
+  </section>
+
+  <!-- СРОЧНО: признаки -->
+  <section class="signs" aria-labelledby="signs-title">
+    <div class="signs__head">
+      <p class="eyebrow">Когда ехать сразу, без записи</p>
+      <h2 class="h2" id="signs-title" data-split>Хотя бы один признак — <em>звоните и&nbsp;везите</em></h2>
+      <p class="muted">Это не диагноз, а поводы не ждать. Решение о лечении принимает врач после осмотра.</p>
+    </div>
+    <ul class="signs__list" role="list" data-stagger="50">
+      <li data-reveal>Тяжело дышит, дышит ртом (кошка), синеет язык</li>
+      <li data-reveal>Травма: сбила машина, упал с высоты, кровотечение</li>
+      <li data-reveal>Съел яд, таблетки, батарейку, нитку или кость</li>
+      <li data-reveal>Судороги, потеря сознания, шаткая походка</li>
+      <li data-reveal>Рвота больше 3 раз или с кровью</li>
+      <li data-reveal>Кот не может помочиться или ходит в лоток впустую</li>
+      <li data-reveal>Вздутый твёрдый живот, пустые позывы к рвоте</li>
+      <li data-reveal>Тепловой удар, укус змеи, ожог</li>
+    </ul>
+    <div class="signs__cta">
+      <a class="btn btn--red" href="tel:+73422000303">Позвонить: +7 (342) 200-03-03</a>
+      <button class="btn btn--line-light" type="button" data-open="sos">Предупредить, что едем</button>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section class="services sec" id="services" aria-labelledby="svc-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Услуги и цены</p>
+        <h2 class="h2" id="svc-title" data-split>Цены «от» — <em>итог после осмотра</em></h2>
+      </div>
+      <div class="species" role="radiogroup" aria-label="Кто у вас" id="svcSpecies">
+        <button type="button" role="radio" aria-checked="true" data-sp="all">Все</button>
+        <button type="button" role="radio" aria-checked="false" data-sp="dog">Собаки</button>
+        <button type="button" role="radio" aria-checked="false" data-sp="cat">Кошки</button>
+        <button type="button" role="radio" aria-checked="false" data-sp="exotic">Экзоты</button>
+      </div>
+    </div>
+    <div class="svc-wrap">
+      <div class="svc-tabs" role="tablist" aria-label="Разделы" id="svcTabs"></div>
+      <div id="svcPanel" role="tabpanel" tabindex="-1">
+        <div class="svc-table" id="svcTable"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВРАЧИ -->
+  <section class="doctors sec" id="doctors" aria-labelledby="doc-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Врачи и часы приёма</p>
+        <h2 class="h2" id="doc-title" data-split>К кому <em>записаться</em></h2>
+      </div>
+      <p class="sec-head__note">Не знаете, к кому? Начните с терапевта — он направит к узкому специалисту, если нужно.</p>
+    </div>
+    <div class="doc-grid" id="docGrid"></div>
+    <p class="fine lic">Лицензия на ветеринарную деятельность № 59-00-0000 от 12.03.2019. Все врачи — с профильным образованием, дипломы в клинике на стенде.</p>
+  </section>
+
+  <!-- ПРОФИЛАКТИКА -->
+  <section class="prevent sec" id="prevent" aria-labelledby="prev-title">
+    <div class="prevent__card">
+      <div class="prevent__form">
+        <p class="eyebrow">Профилактический календарь</p>
+        <h2 class="h2" id="prev-title" data-split>Когда прививка <em>и&nbsp;обработка</em></h2>
+        <p class="muted">Посчитаем даты по общей схеме. Точную схему для вашего питомца утвердит врач на приёме.</p>
+        <form id="calcForm" class="pform">
+          <div class="field">
+            <span class="label">Кто</span>
+            <div class="seg" id="pcSpecies">
+              <label><input type="radio" name="pcSp" value="dog" checked><span>Собака</span></label>
+              <label><input type="radio" name="pcSp" value="cat"><span>Кошка</span></label>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="pcBirth">Дата рождения</label><input id="pcBirth" type="date"></div>
+            <div class="field"><label for="pcVac">Последняя прививка <span class="opt">если была</span></label><input id="pcVac" type="date"></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="pcWorm">Последняя обработка от глистов</label><input id="pcWorm" type="date"></div>
+            <div class="field"><label for="pcOut">Гуляет на улице</label>
+              <select id="pcOut"><option value="yes">Да, регулярно</option><option value="no">Нет, только дома</option></select></div>
+          </div>
+        </form>
+      </div>
+      <div class="prevent__plan">
+        <ol class="tl" id="pcPlan" aria-live="polite"></ol>
+        <div class="prevent__btns">
+          <button class="btn btn--sun" type="button" id="pcSave">Сохранить в «Мои питомцы»</button>
+          <a class="btn btn--line" id="pcIcs" download="hvost-privivki.ics" href="#">Даты в календарь</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЧТО ВЗЯТЬ -->
+  <section class="bring sec" aria-labelledby="bring-title">
+    <div class="bring__img"><img src="img/vetdog.webp" alt="Собачка на руках у владельца в клинике" width="726" height="908" loading="lazy"></div>
+    <div class="bring__body">
+      <p class="eyebrow">Подготовка к приёму</p>
+      <h2 class="h2" id="bring-title" data-split>Что взять <em>с&nbsp;собой</em></h2>
+      <ul class="check-list" id="bringList" role="list"></ul>
+      <p class="fine">Отметки сохраняются на этом устройстве — удобно собираться перед выходом.</p>
+    </div>
+  </section>
+
+  <!-- АНАЛИЗЫ -->
+  <section class="lab sec" id="lab" aria-labelledby="lab-title">
+    <div class="lab__grid">
+      <div class="tile lab__tile">
+        <p class="eyebrow">Результаты анализов</p>
+        <h2 class="h3" id="lab-title">Проверить готовность</h2>
+        <p class="muted">Большинство анализов готово за 1 рабочий день. Когда результат будет готов, пришлём уведомление, а врач свяжется и объяснит, что он значит.</p>
+        <form class="lookup" id="labForm">
+          <label for="labId" class="sr-only">Номер заявки</label>
+          <input id="labId" placeholder="Например, VT-1003" autocomplete="off">
+          <button class="btn btn--navy btn--sm" type="submit">Проверить</button>
+        </form>
+        <div class="lab__out" id="labOut" aria-live="polite"></div>
+      </div>
+      <div class="tile lab__tile">
+        <p class="eyebrow">Документы к приёму</p>
+        <h2 class="h3">Загрузить анализы из другой клиники</h2>
+        <p class="muted">Врач посмотрит их до приёма — не придётся повторять лишнее.</p>
+        <form id="docForm" class="pform">
+          <div class="field drop" data-drop>
+            <label class="drop__zone"><input type="file" id="docFiles" accept="image/*,.pdf" multiple class="sr-only"><span>Фото или PDF — перетащите сюда или <u>выберите</u></span></label>
+            <ul class="fb-files" id="docList"></ul>
+          </div>
+          <div class="grid2">
+            <div class="field" data-field><label for="docPet">Кличка питомца</label><input id="docPet" name="pet" data-validate="required"></div>
+            <div class="field" data-field><label for="docPhone">Ваш телефон</label><input id="docPhone" name="phone" type="tel" data-validate="required phone" autocomplete="tel"></div>
+          </div>
+          <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Хвост" target="_blank" rel="noopener">обработку данных</a></span></label>
+          <p class="form__error" data-form-error role="alert"></p>
+          <button class="btn btn--navy" type="submit">Отправить врачу</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews sec" id="reviews" aria-labelledby="rev-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Отзывы владельцев</p>
+        <h2 class="h2" id="rev-title" data-split>Как <em>всё прошло</em></h2>
+      </div>
+      <p class="sec-head__note"><b class="big-rate">4,9</b> средняя оценка · 860 отзывов на Яндекс Картах и 2ГИС</p>
+    </div>
+    <div class="rev-grid" id="revGrid"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq sec" id="faq" aria-labelledby="faq-title">
+    <div class="sec-head"><div><p class="eyebrow">Вопросы</p><h2 class="h2" id="faq-title" data-split>Частые <em>вопросы</em></h2></div></div>
+    <div class="faq__list">
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q1">Нужно ли делать прививку, если питомец не выходит из дома?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="q1"><p>Да. Инфекции приносят на обуви и одежде. Схему и набор вакцин подберёт врач по возрасту и образу жизни — посчитайте ориентировочные даты в календаре выше.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q2">Как подготовиться к анализам и УЗИ?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="q2"><p>Не кормить 8–12 часов, воду можно. Мочу для анализа — утреннюю, в стерильном контейнере (выдадим бесплатно). Если питомец на лекарствах — возьмите их с собой.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q3">Как везти кошку, которая боится переноски?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="q3"><p>Поставьте переноску дома открытой за пару дней, положите туда плед и лакомство. В дороге накройте переноску тканью. У нас отдельный «кошачий» зал ожидания без собак.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q4">Как оплатить?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="q4"><p>Картой, наличными или по QR после приёма. Для операций — предоплата за препараты при записи. Итоговую стоимость лечения врач называет после осмотра, до начала процедур.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q5">Можно получить совет онлайн?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="q5"><p>Можем подсказать по подготовке и срочности. Диагнозы и назначения по переписке не ставим — это небезопасно без осмотра. Если сомневаетесь, срочно ли, — звоните на круглосуточный номер.</p></div></div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="contacts sec" id="contacts" aria-labelledby="c-title">
+    <div class="tile contacts__main">
+      <p class="eyebrow">Контакты</p>
+      <h2 class="h2" id="c-title">ул. Революции, 22</h2>
+      <dl class="cdl">
+        <div><dt>Плановый приём</dt><dd>Ежедневно 9:00–21:00<br><a href="tel:+73422000300">+7 (342) 200-03-00</a></dd></div>
+        <div><dt>Экстренная помощь</dt><dd>Круглосуточно, без записи<br><a href="tel:+73422000303">+7 (342) 200-03-03</a></dd></div>
+        <div><dt>Как добраться</dt><dd>Остановка «Цирк», 3 минуты пешком. Вход со двора, пандус для колясок и тележек.</dd></div>
+        <div><dt>Парковка</dt><dd>Бесплатная, 8 мест у входа — для экстренных держим 2 места свободными.</dd></div>
+      </dl>
+      <div class="hero__btns">
+        <a class="btn btn--sun" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D0%B2%D0%BE%D0%BB%D1%8E%D1%86%D0%B8%D0%B8%2C%2022" target="_blank" rel="noopener">Маршрут в Яндекс Картах</a>
+        <a class="btn btn--line" data-tg="Здравствуйте! Вопрос по записи в «Хвост»" href="#">Написать в Telegram</a>
+      </div>
+    </div>
+    <div class="tile contacts__map" aria-hidden="true">
+      <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="400" fill="var(--map)"/>
+        <path d="M-10 70 C 90 40, 180 110, 410 60 L410 -10 L-10 -10Z" fill="var(--river)"/>
+        <g stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"><path d="M0 200 H400"/><path d="M200 0 V400"/><path d="M40 400 L360 120"/></g>
+        <g stroke="#fff" stroke-width="5" fill="none"><path d="M0 300 H400"/><path d="M100 0 V400"/><path d="M300 100 V400"/></g>
+      </svg>
+      <span class="map-pin"><b>хвост</b></span>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <div class="footer__big">
+      <p>Если сомневаетесь, срочно ли, — звоните. Лучше лишний раз спросить.</p>
+      <a class="footer__tel" href="tel:+73422000303">+7 (342) 200-03-03</a>
+    </div>
+    <div class="footer__row">
+      <p>ООО «Ветклиника Хвост», ОГРН 1195958000000<br>Пермь, ул. Революции, 22</p>
+      <p><a href="../_shared/privacy.html?site=Хвост" target="_blank" rel="noopener">Политика обработки данных</a><br><button class="link" type="button" data-open="pets">Мои питомцы</button></p>
+      <p>© <span data-year></span> · Сайт не ставит диагнозы. Медицинские решения принимает врач.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobileCta">
+  <a class="btn btn--red" href="tel:+73422000303" aria-label="Срочно позвонить">SOS</a>
+  <button class="btn btn--sun" type="button" data-book>Записать питомца</button>
+</div>
+
+<!-- СРОЧНО -->
+<div class="fb-modal" id="sos" role="dialog" aria-modal="true" aria-labelledby="sosTitle" style="--modal-w:680px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal modal--sos">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <p class="eyebrow">Экстренная помощь · круглосуточно</p>
+    <h2 class="modal__title" id="sosTitle">Везите сразу, запись не нужна</h2>
+    <a class="sos-call" href="tel:+73422000303"><span>Позвонить дежурному врачу</span><b>+7 (342) 200-03-03</b></a>
+    <p class="sos-addr">Пермь, ул. Революции, 22 · вход со двора · <a href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D0%B2%D0%BE%D0%BB%D1%8E%D1%86%D0%B8%D0%B8%2C%2022" target="_blank" rel="noopener">маршрут</a></p>
+    <div class="sos-grid">
+      <div>
+        <h3>До приезда</h3>
+        <ul>
+          <li>Сохраняйте спокойствие, говорите с питомцем ровным голосом.</li>
+          <li>Перевозите в переноске или на плотном покрывале, как на носилках.</li>
+          <li>Не давайте человеческие лекарства — многие смертельно опасны для животных.</li>
+          <li>Отравление — возьмите упаковку или остатки вещества.</li>
+          <li>Кровотечение — прижмите чистой тканью и держите.</li>
+          <li>Если кусается от боли — аккуратно наденьте намордник или обмотайте мордочку бинтом.</li>
+        </ul>
+      </div>
+      <form id="sosForm" class="pform">
+        <h3>Предупредить, что едем</h3>
+        <p class="fine">Дежурный врач подготовит кабинет. Это не заменяет звонок, если питомцу совсем плохо.</p>
+        <div class="field" data-field><label for="sName">Ваше имя</label><input id="sName" name="name" autocomplete="given-name" data-validate="required name"></div>
+        <div class="field" data-field><label for="sPhone">Телефон</label><input id="sPhone" name="phone" type="tel" autocomplete="tel" data-validate="required phone"></div>
+        <div class="field" data-field><label for="sPet">Кто и что случилось</label><textarea id="sPet" name="comment" rows="2" placeholder="Кот, 5 лет, выпал с 4 этажа" data-validate="required min:5" data-msg="Пара слов о том, что случилось"></textarea></div>
+        <div class="field" data-field><label for="sEta">Будем через</label>
+          <select id="sEta" name="eta"><option>10 минут</option><option selected>20 минут</option><option>30 минут</option><option>40+ минут</option></select></div>
+        <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Хвост" target="_blank" rel="noopener">обработку данных</a></span></label>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--red btn--wide" type="submit">Предупредить клинику</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ЗАПИСЬ -->
+<div class="fb-modal" id="book" role="dialog" aria-modal="true" aria-labelledby="bTitle" style="--modal-w:760px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div id="bFlow">
+      <p class="eyebrow" id="bMode">Запись на приём</p>
+      <h2 class="modal__title" id="bTitle">Записать питомца</h2>
+      <ol class="steps" id="bSteps" aria-label="Шаги записи"><li data-s="1">Питомец</li><li data-s="2">Услуга и врач</li><li data-s="3">Время</li><li data-s="4">Контакты</li></ol>
+      <form id="bookForm" class="pform">
+        <fieldset class="step" data-step="1">
+          <legend class="sr-only">Питомец</legend>
+          <div class="pet-pick" id="bPets" role="radiogroup" aria-label="Ваши питомцы"></div>
+          <div class="newpet" id="bNewPet">
+            <div class="grid2">
+              <div class="field" data-field><label for="npName">Кличка</label><input id="npName" autocomplete="off"></div>
+              <div class="field"><label for="npSpecies">Вид</label>
+                <select id="npSpecies"><option value="dog">Собака</option><option value="cat">Кошка</option><option value="rabbit">Кролик</option><option value="ferret">Хорёк</option><option value="rodent">Грызун</option><option value="bird">Птица</option></select></div>
+            </div>
+            <div class="grid3">
+              <div class="field"><label for="npBreed">Порода <span class="opt">если есть</span></label><input id="npBreed" autocomplete="off"></div>
+              <div class="field"><label for="npBirth">Дата рождения <span class="opt">примерно</span></label><input id="npBirth" type="date"></div>
+              <div class="field"><label for="npWeight">Вес, кг</label><input id="npWeight" type="number" min="0.05" max="120" step="0.1" inputmode="decimal"></div>
+            </div>
+          </div>
+          <p class="form__error" id="e1" role="alert"></p>
+          <div class="step__nav"><span></span><button class="btn btn--navy" type="button" data-next>Дальше: услуга</button></div>
+        </fieldset>
+        <fieldset class="step" data-step="2" hidden>
+          <legend class="sr-only">Услуга и врач</legend>
+          <div class="field"><label for="bSvc">Услуга</label><select id="bSvc"></select></div>
+          <p class="svc-note" id="bSvcNote"></p>
+          <div class="field"><span class="label">Врач</span><div class="doc-pick" id="bDocs" role="radiogroup" aria-label="Врач"></div></div>
+          <p class="form__error" id="e2" role="alert"></p>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--navy" type="button" data-next>Дальше: время</button></div>
+        </fieldset>
+        <fieldset class="step" data-step="3" hidden>
+          <legend class="sr-only">Дата и время</legend>
+          <div class="days" id="bDays" role="radiogroup" aria-label="Дата"></div>
+          <div class="slots" id="bSlots" role="radiogroup" aria-label="Время"></div>
+          <p class="fine" id="bSlotNote"></p>
+          <p class="form__error" id="e3" role="alert"></p>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--navy" type="button" data-next>Дальше: контакты</button></div>
+        </fieldset>
+        <fieldset class="step" data-step="4" hidden>
+          <legend class="sr-only">Контакты</legend>
+          <div class="grid2">
+            <div class="field" data-field><label for="bName">Ваше имя</label><input id="bName" name="name" autocomplete="name" data-validate="required name"></div>
+            <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" autocomplete="tel" data-validate="required phone"></div>
+          </div>
+          <div class="field" data-field><label for="bReason">Что беспокоит или цель визита</label><textarea id="bReason" name="comment" rows="3" placeholder="Например: плановая прививка; или: третий день плохо ест, вялый"></textarea></div>
+          <div class="field drop" data-drop>
+            <span class="label">Анализы, выписки, фото <span class="opt">до 6 файлов — врач посмотрит заранее</span></span>
+            <label class="drop__zone"><input type="file" id="bFiles" accept="image/*,.pdf" multiple class="sr-only"><span>Перетащите файлы или <u>выберите</u></span></label>
+            <ul class="fb-files" id="bFileList"></ul>
+          </div>
+          <div class="field">
+            <span class="label">Напоминания и уведомления</span>
+            <div class="seg">
+              <label><input type="radio" name="notify" value="telegram" checked><span>Telegram</span></label>
+              <label><input type="radio" name="notify" value="sms"><span>SMS</span></label>
+            </div>
+          </div>
+          <div class="sum" id="bSum"></div>
+          <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Хвост" target="_blank" rel="noopener">обработку персональных данных</a></span></label>
+          <p class="form__error" data-form-error role="alert"></p>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--sun" type="submit">Записаться</button></div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="bDone" hidden></div>
+  </div>
+</div>
+
+<!-- МОИ ПИТОМЦЫ -->
+<div class="fb-modal" id="pets" role="dialog" aria-modal="true" aria-labelledby="petsTitle" style="--modal-w:780px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <p class="eyebrow">Профиль владельца</p>
+    <h2 class="modal__title" id="petsTitle">Мои питомцы</h2>
+    <div id="petsBody"></div>
+  </div>
+</div>
+
+<!-- КАРТОЧКА ПИТОМЦА -->
+<div class="fb-modal" id="petEdit" role="dialog" aria-modal="true" aria-labelledby="peTitle" style="--modal-w:720px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="peTitle">Карточка питомца</h2>
+    <form id="peForm" class="pform" novalidate>
+      <input type="hidden" id="peId">
+      <div class="grid2">
+        <div class="field" data-field><label for="peName">Кличка</label><input id="peName" required></div>
+        <div class="field"><label for="peSpecies">Вид</label>
+          <select id="peSpecies"><option value="dog">Собака</option><option value="cat">Кошка</option><option value="rabbit">Кролик</option><option value="ferret">Хорёк</option><option value="rodent">Грызун</option><option value="bird">Птица</option></select></div>
+      </div>
+      <div class="grid3">
+        <div class="field"><label for="peBreed">Порода</label><input id="peBreed"></div>
+        <div class="field"><label for="peBirth">Дата рождения</label><input id="peBirth" type="date"></div>
+        <div class="field"><label for="peWeight">Вес, кг</label><input id="peWeight" type="number" min="0.05" max="120" step="0.1" inputmode="decimal"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="peSex">Пол</label><select id="peSex"><option value="">—</option><option value="m">Мальчик</option><option value="f">Девочка</option></select></div>
+        <div class="field"><label for="peSter">Кастрация / стерилизация</label><select id="peSter"><option value="">—</option><option value="yes">Да</option><option value="no">Нет</option></select></div>
+      </div>
+      <div class="field"><label for="peAllergy">Аллергии и непереносимость <span class="opt">корм, препараты</span></label><input id="peAllergy"></div>
+      <div class="field"><label for="peChronic">Хронические особенности <span class="opt">что должен знать врач</span></label><input id="peChronic"></div>
+      <fieldset class="vacs">
+        <legend class="label">Прививки и обработки</legend>
+        <ul class="vac-list" id="peVacs" role="list"></ul>
+        <div class="vac-add">
+          <select id="peVacType" aria-label="Что сделали">
+            <option value="complex">Комплексная прививка</option><option value="rabies">Бешенство</option><option value="worm">От глистов</option><option value="ticks">От клещей и блох</option>
+          </select>
+          <input id="peVacDate" type="date" aria-label="Дата">
+          <button class="btn btn--line btn--sm" type="button" id="peVacAdd">Добавить</button>
+        </div>
+      </fieldset>
+      <p class="form__error" id="peErr" role="alert"></p>
+      <div class="step__nav"><button class="btn btn--line" type="button" id="peDel" hidden>Удалить питомца</button><button class="btn btn--navy" type="submit">Сохранить</button></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'vet', prefix: 'VT', name: 'Хвост — ветклиника', phone: '+7 (342) 200-03-00', telegram: 'hvost_vet' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

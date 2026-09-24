@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Кройка — одежда в наличии, под заказ и по вашим меркам</title>
+  <meta name="theme-color" content="#e9e5df">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c8603d'/%3E%3Cpath d='M18 44 L46 20 M22 20 L44 44' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+<div class="curtain" id="curtain" aria-hidden="true"><span>Кройка</span></div>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top">Кройка<span class="logo__mark" aria-hidden="true"></span></a>
+    <nav class="nav" aria-label="Основное">
+      <a href="#catalog">Каталог</a>
+      <a href="#tailor">Пошив</a>
+      <a href="#delivery">Доставка</a>
+      <button type="button" data-open="sizeModal">Размеры</button>
+    </nav>
+    <div class="header__tools">
+      <button class="icon-btn" type="button" data-open="statusModal" aria-label="Статус заказа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></button>
+      <button class="icon-btn" type="button" id="favToggle" aria-pressed="false" aria-label="Показать избранное"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><span class="badge" id="favCount" hidden>0</span></button>
+      <button class="btn btn--accent btn--sm" type="button" id="cartBtn" aria-controls="cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.5 11h-11zM9 8a3 3 0 0 1 6 0"/></svg><span class="cart-word">Корзина</span> <span class="badge badge--in" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="intro" id="top" aria-labelledby="catalog-title">
+    <h1 class="giant" id="catalog-title"><span class="giant__line" data-split>Каталог</span></h1>
+    <ul class="intro__facts" role="list" data-stagger="100">
+      <li data-reveal><b>В наличии</b> — отправим сегодня до 18:00</li>
+      <li data-reveal><b>Привоз</b> из Турции и Италии за 10–14 дней</li>
+      <li data-reveal><b>Пошив</b> по вашим меркам за 3 недели</li>
+      <li data-reveal><b>Примерка</b> при получении, возврат 14 дней</li>
+    </ul>
+  </section>
+
+  <section class="catalog" id="catalog" aria-label="Товары">
+    <div class="tabs" role="tablist" aria-label="Категории" id="catTabs"></div>
+    <div class="toolbar">
+      <label class="search"><span class="sr-only">Поиск</span><input type="search" id="q" placeholder="Поиск: лён, пальто, 42…" autocomplete="off"></label>
+      <div class="sizes" role="group" aria-label="Размер" id="sizeFilter"></div>
+      <label class="switch"><input type="checkbox" id="inStock"><span>Только в наличии</span></label>
+      <label class="sort"><span class="sr-only">Сортировка</span>
+        <select id="sort"><option value="new">Сначала новинки</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select></label>
+    </div>
+    <p class="found" id="found" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- ПОШИВ -->
+  <section class="tailor" id="tailor" aria-labelledby="tailor-title">
+    <div class="tailor__head">
+      <h2 class="h2" id="tailor-title" data-split>Пошив по&nbsp;вашим меркам</h2>
+      <p class="lead" data-reveal>Выберите модель из каталога или пришлите референс, подберите ткань — закройщица свяжется, уточнит детали и&nbsp;назначит примерку. Предоплата 30% после согласования эскиза.</p>
+    </div>
+    <div class="tailor__media" data-reveal>
+      <img src="img/tailor.webp" width="864" height="576" alt="Закройщица обводит лекало на ткани" loading="lazy">
+      <img src="img/sketch.webp" width="960" height="640" alt="Эскиз платья и подушечка с булавками" loading="lazy">
+      <img src="img/scissors.webp" width="1024" height="682" alt="Золотые портновские ножницы" loading="lazy">
+    </div>
+    <form class="tailor-form" id="tailorForm">
+      <div class="tf-col">
+        <div class="field" data-field><label for="tModel">Модель</label>
+          <select id="tModel" name="model" data-validate="required" data-msg="Выберите модель или «по референсу»"></select></div>
+        <div class="field" data-field><span class="field__label" id="fabLbl">Ткань</span>
+          <div class="fabrics" role="radiogroup" aria-labelledby="fabLbl" id="fabrics"></div></div>
+        <div class="field" data-field><span class="field__label" id="colLbl">Цвет</span>
+          <div class="colors" role="radiogroup" aria-labelledby="colLbl" id="tColors"></div></div>
+        <div class="field" data-field><label for="tRef">Референс и пожелания</label>
+          <textarea id="tRef" name="comment" rows="3" placeholder="Длина ниже колена, без подплечников, потайная застёжка"></textarea></div>
+        <label class="upload" data-drop><input type="file" id="tFiles" multiple accept="image/*"><span>+ Фото референса</span></label>
+        <ul class="fb-files" id="tFileList" role="list"></ul>
+      </div>
+      <div class="tf-col">
+        <fieldset class="measures">
+          <legend>Мерки, см <button class="link" type="button" data-open="howModal">как снять мерки?</button></legend>
+          <div class="grid3">
+            <div class="field" data-field><label for="mH">Рост</label><input id="mH" name="height" inputmode="numeric" data-validate="required" data-msg="Нужен рост" placeholder="168"></div>
+            <div class="field" data-field><label for="mC">Грудь</label><input id="mC" name="chest" inputmode="numeric" data-validate="required" data-msg="Нужен обхват груди" placeholder="88"></div>
+            <div class="field" data-field><label for="mW">Талия</label><input id="mW" name="waist" inputmode="numeric" data-validate="required" data-msg="Нужен обхват талии" placeholder="70"></div>
+            <div class="field" data-field><label for="mHip">Бёдра</label><input id="mHip" name="hips" inputmode="numeric" data-validate="required" data-msg="Нужен обхват бёдер" placeholder="96"></div>
+            <div class="field" data-field><label for="mS">Рукав</label><input id="mS" name="sleeve" inputmode="numeric" placeholder="60"></div>
+            <div class="field" data-field><label for="mL">Длина изделия</label><input id="mL" name="length" inputmode="numeric" placeholder="105"></div>
+          </div>
+          <p class="hint" id="sizeHint"></p>
+        </fieldset>
+        <div class="grid2">
+          <div class="field" data-field><label for="tName">Имя</label><input id="tName" name="name" autocomplete="name" data-validate="required name"></div>
+          <div class="field" data-field><label for="tPhone">Телефон</label><input id="tPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <div class="field" data-field><label for="tDate">Нужно к дате <span class="opt">необязательно</span></label><input id="tDate" name="deadline" type="date"></div>
+        <div class="estimate"><span>Ориентир стоимости</span><strong id="tPrice">—</strong><small id="tTerm"></small></div>
+        <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласна(ен) на <a href="../_shared/privacy.html?site=Кройка" target="_blank" rel="noopener">обработку данных</a></span></label>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--accent btn--wide" type="submit">Отправить заявку на пошив</button>
+      </div>
+    </form>
+    <div class="tailor-done" id="tailorDone" hidden></div>
+  </section>
+
+  <!-- ДОСТАВКА -->
+  <section class="info" id="delivery" aria-labelledby="del-title">
+    <h2 class="h2" id="del-title">Доставка, примерка, возврат</h2>
+    <div class="info__grid">
+      <div class="info__card" data-reveal><h3>По Петербургу</h3><p>Курьер с примеркой — 390&nbsp;₽, бесплатно от 15&nbsp;000&nbsp;₽. Ждёт 15&nbsp;минут, вы оплачиваете только то, что подошло.</p></div>
+      <div class="info__card" data-reveal><h3>По России</h3><p>СДЭК до пункта выдачи 2–5&nbsp;дней — от 350&nbsp;₽. Примерка в пункте, неподошедшее отправляем обратно за наш счёт.</p></div>
+      <div class="info__card" data-reveal><h3>Шоурум</h3><p>Литейный пр., 26, пн–сб 11:00–20:00. Можно отложить вещи онлайн на 2&nbsp;дня и&nbsp;примерить.</p></div>
+      <div class="info__card" data-reveal><h3>Возврат</h3><p>14&nbsp;дней для вещей из наличия и привоза. Изделия по меркам возврату не подлежат, но переделку по посадке делаем бесплатно.</p></div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" aria-labelledby="rv-title">
+    <h2 class="h2" id="rv-title" data-split>Как сидит — пишут покупательницы</h2>
+    <div class="rv-grid">
+      <figure class="rv" data-reveal><blockquote>«Пальто по меркам село идеально, рукав наконец-то нужной длины. Две примерки, всё спокойно и по срокам».</blockquote><figcaption>Анна · рост 176, размер 44 · пошив пальто · сентябрь 2026</figcaption></figure>
+      <figure class="rv" data-reveal><blockquote>«Заказала платье под привоз, пришло через 11 дней. Размер подобрали по моим обхватам — не ошиблись».</blockquote><figcaption>Екатерина · рост 164, размер 42 · привоз · август 2026</figcaption></figure>
+      <figure class="rv" data-reveal><blockquote>«Курьер подождал, пока я примерю три вещи. Одну вернула сразу, заплатила за две».</blockquote><figcaption>Мария · рост 170, размер 46 · доставка по СПб · июль 2026</figcaption></figure>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <p class="logo logo--foot">Кройка<span class="logo__mark" aria-hidden="true"></span></p>
+    <div><h2 class="footer__h">Шоурум</h2><p>Санкт-Петербург, Литейный пр., 26</p><p>Пн–сб 11:00–20:00</p></div>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p></div>
+    <div><h2 class="footer__h">Покупателям</h2><p><button class="link" type="button" data-open="sizeModal">Таблица размеров</button></p><p><button class="link" type="button" data-open="statusModal">Статус заказа</button></p><p><a href="../_shared/privacy.html?site=Кройка" target="_blank" rel="noopener">Политика конфиденциальности</a></p></div>
+  </div>
+  <p class="footer__legal">© <span data-year></span> ИП Лебедева О.&nbsp;Н., ИНН 781000000000 (демо). Фото товаров — демонстрационные.</p>
+</footer>
+
+<!-- КАРТОЧКА ТОВАРА -->
+<div class="fb-modal" id="product" role="dialog" aria-modal="true" aria-labelledby="pTitle" style="--modal-w:1040px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog pmodal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div class="pm" id="pmBody"></div>
+  </div>
+</div>
+
+<!-- КОРЗИНА (выезжающая панель) -->
+<div class="fb-modal drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog drawer__panel">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="drawer__title" id="cartTitle">Корзина</h2>
+    <div id="cartBody"></div>
+  </div>
+</div>
+
+<!-- РАЗМЕРЫ -->
+<div class="fb-modal" id="sizeModal" role="dialog" aria-modal="true" aria-labelledby="sTitle" style="--modal-w:720px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="sTitle">Подбор размера</h2>
+    <div class="size-calc">
+      <label>Грудь, см<input id="scC" inputmode="numeric" placeholder="88"></label>
+      <label>Талия, см<input id="scW" inputmode="numeric" placeholder="70"></label>
+      <label>Бёдра, см<input id="scH" inputmode="numeric" placeholder="96"></label>
+    </div>
+    <p class="size-result" id="scOut" aria-live="polite">Введите обхваты — подскажем размер.</p>
+    <div class="table-wrap"><table class="size-table" id="sizeTable"><caption class="sr-only">Таблица размеров</caption></table></div>
+  </div>
+</div>
+
+<!-- КАК СНЯТЬ МЕРКИ -->
+<div class="fb-modal" id="howModal" role="dialog" aria-modal="true" aria-labelledby="hTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="hTitle">Как снять мерки</h2>
+    <ol class="how">
+      <li><b>Грудь</b> — по самым выступающим точкам, лента горизонтально, без натяжения.</li>
+      <li><b>Талия</b> — по самому узкому месту, не втягивая живот.</li>
+      <li><b>Бёдра</b> — по самым выступающим точкам ягодиц.</li>
+      <li><b>Рукав</b> — от плечевой точки через локоть до косточки запястья, рука слегка согнута.</li>
+      <li><b>Длина</b> — от седьмого шейного позвонка до нужной точки.</li>
+    </ol>
+    <p class="hint">Сомневаетесь — приходите в шоурум, снимем мерки бесплатно за 10 минут.</p>
+  </div>
+</div>
+
+<!-- СТАТУС ЗАКАЗА -->
+<div class="fb-modal" id="statusModal" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="stTitle">Статус заказа</h2>
+    <form class="st-form" id="stForm"><label class="sr-only" for="stId">Номер заказа</label><input id="stId" name="orderId" placeholder="KR-1001" autocomplete="off" required><button class="btn btn--accent" type="submit">Проверить</button></form>
+    <div id="stOut" aria-live="polite"></div>
+    <div id="myOrders"></div>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'clothing', prefix: 'KR', name: 'Кройка — одежда', phone: '+7 (812) 407-18-20', telegram: 'kroyka_spb' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

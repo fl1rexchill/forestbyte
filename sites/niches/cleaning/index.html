@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Свежо — клининг в Новосибирске, цена за минуту</title>
+  <meta name="theme-color" content="#f6f6f4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23177e6b'/%3E%3Cpath d='M20 34 l8 8 l16 -18' stroke='%23fff' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top">свежо<span>.</span></a>
+    <nav class="nav" id="nav" aria-label="Основное">
+      <a href="#services">Услуги</a>
+      <a href="#included">Что входит</a>
+      <a href="#regular">Регулярно</a>
+      <a href="#zones">Районы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="header__phone" data-phone href="#"></a>
+    <button class="btn btn--dark btn--sm" type="button" data-open="order">Заказать уборку</button>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO с калькулятором -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__left">
+      <p class="eyebrow" data-reveal>Новосибирск и Бердск · бригады с 8:00 до 22:00</p>
+      <h1 class="hero__title" id="hero-title" data-split>Чистая квартира без&nbsp;хлопот. Цена&nbsp;— сразу.</h1>
+      <form class="quick" id="quick" aria-label="Быстрый расчёт">
+        <div class="quick__row">
+          <label class="q-field"><span>Объект</span>
+            <select id="qType"><option value="flat">Квартира</option><option value="house">Дом</option><option value="office">Офис</option><option value="commercial">Коммерческое</option></select></label>
+          <label class="q-field"><span>Уборка</span>
+            <select id="qKind"><option value="support">Поддерживающая</option><option value="general">Генеральная</option><option value="repair">После ремонта</option></select></label>
+        </div>
+        <label class="q-area"><span>Площадь <output id="qAreaOut">50 м²</output></span><input type="range" id="qArea" min="20" max="300" step="5" value="50"></label>
+        <div class="quick__res">
+          <div><strong id="qPrice">—</strong><small id="qMeta"></small></div>
+          <button class="btn btn--accent" type="button" id="qGo">Выбрать время →</button>
+        </div>
+        <p class="quick__note" id="qSlot">Ищем ближайшее окно…</p>
+      </form>
+    </div>
+    <div class="hero__media" data-reveal="fade"><img src="img/hero.webp" width="960" height="540" alt="Светлая спальня после уборки: заправленная кровать, лампа, белые шторы" fetchpriority="high"></div>
+  </section>
+
+  <!-- DUTEN-НАВИГАЦИЯ ПО УСЛУГАМ -->
+  <section class="svc" id="services" aria-labelledby="svc-title">
+    <div class="svc__head">
+      <h2 class="h2" id="svc-title" data-split>Виды уборки</h2>
+      <p class="svc__count" aria-hidden="true"><span id="svcNum">01</span> / <span id="svcTotal">06</span></p>
+    </div>
+    <div class="svc__body">
+      <ul class="svc__list" id="svcList" role="tablist" aria-label="Виды уборки" aria-orientation="vertical"></ul>
+      <div class="svc__stage" id="svcStage" aria-hidden="true"></div>
+      <div class="svc__info" id="svcInfo" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ЧТО ВХОДИТ -->
+  <section class="incl" id="included" aria-labelledby="incl-title">
+    <div class="incl__head">
+      <h2 class="h2" id="incl-title" data-split>Что входит</h2>
+      <div class="seg" role="radiogroup" aria-label="Вид уборки для чек-листа">
+        <label><input type="radio" name="inclKind" value="support" checked><span>Поддерживающая</span></label>
+        <label><input type="radio" name="inclKind" value="general"><span>Генеральная</span></label>
+      </div>
+    </div>
+    <div class="incl__tabs" role="tablist" aria-label="Помещение" id="roomTabs">
+      <button type="button" role="tab" id="r-kitchen" aria-controls="roomPanel" aria-selected="true">Кухня</button>
+      <button type="button" role="tab" id="r-rooms" aria-controls="roomPanel" aria-selected="false">Комнаты</button>
+      <button type="button" role="tab" id="r-bath" aria-controls="roomPanel" aria-selected="false">Санузел</button>
+      <button type="button" role="tab" id="r-hall" aria-controls="roomPanel" aria-selected="false">Прихожая</button>
+    </div>
+    <div class="incl__panel" id="roomPanel" role="tabpanel"></div>
+    <p class="note">Не входит: мойка окон снаружи выше 1 этажа, вывоз строительного мусора, мытьё стен целиком, уборка после животных с биологическими загрязнениями — считаем отдельно.</p>
+  </section>
+
+  <!-- ОБОРУДОВАНИЕ -->
+  <section class="gear" aria-labelledby="gear-title">
+    <h2 class="h2" id="gear-title" data-split>Привозим всё сами</h2>
+    <p class="lead">Профессиональная техника и&nbsp;гипоаллергенные средства с&nbsp;сертификатами. Для детских комнат и&nbsp;аллергиков — отдельный набор без отдушек.</p>
+    <div class="gear__grid" data-stagger="80">
+      <figure data-reveal><img src="img/vac.webp" width="900" height="599" alt="Щётка профессионального пылесоса на ковролине" loading="lazy"><figcaption><b>Пылесос с HEPA-фильтром</b><span>не возвращает пыль в воздух</span></figcaption></figure>
+      <figure data-reveal><img src="img/mop.webp" width="1024" height="682" alt="Швабра с микрофиброй и ведро" loading="lazy"><figcaption><b>Микрофибра по цветам</b><span>отдельные салфетки для кухни и санузла</span></figcaption></figure>
+      <figure data-reveal><img src="img/brush.webp" width="1024" height="682" alt="Деревянная щётка с натуральным ворсом" loading="lazy"><figcaption><b>Щётки для деликатных поверхностей</b><span>не царапают фасады и стекло</span></figcaption></figure>
+      <figure data-reveal><img src="img/spray.webp" width="1024" height="682" alt="Жёлтый распылитель и губки" loading="lazy"><figcaption><b>Средства без хлора</b><span>эко-линейка, безопасно для детей и животных</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ГАРАНТИЯ -->
+  <section class="promise" aria-labelledby="promise-title">
+    <img src="img/kitchen.webp" width="960" height="640" alt="Чистая кухня с окнами и раковиной" loading="lazy" data-parallax>
+    <div class="promise__card" data-reveal>
+      <h2 id="promise-title">Не понравилось — переделаем бесплатно</h2>
+      <p>Проверьте работу при бригаде или в течение 24&nbsp;часов пришлите фото. Приедем и&nbsp;исправим без доплат. Разбили или испортили — компенсируем, ответственность застрахована на&nbsp;500&nbsp;000&nbsp;₽.</p>
+      <ul role="list">
+        <li><b>2&nbsp;400+</b> уборок в&nbsp;год</li>
+        <li><b>4,9</b> на&nbsp;Яндекс Картах</li>
+        <li><b>100%</b> клинеров в&nbsp;штате</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- РЕГУЛЯРНО -->
+  <section class="regular" id="regular" aria-labelledby="reg-title">
+    <h2 class="h2" id="reg-title" data-split>Регулярная уборка</h2>
+    <p class="lead">Одна и&nbsp;та&nbsp;же бригада, удобный день недели, оплата после каждого визита. Пропустить или перенести — в&nbsp;один клик в&nbsp;Telegram.</p>
+    <div class="plans" id="plans"></div>
+  </section>
+
+  <!-- РАЙОНЫ -->
+  <section class="zones" id="zones" aria-labelledby="zones-title">
+    <div>
+      <h2 class="h2" id="zones-title" data-split>Куда выезжаем</h2>
+      <form class="zone-check" id="zoneForm"><label class="sr-only" for="zoneQ">Ваш район или город</label><input id="zoneQ" placeholder="Например: Академгородок" autocomplete="off" list="zoneList"><datalist id="zoneList"></datalist><button class="btn btn--dark" type="submit">Проверить</button></form>
+      <p class="zone-out" id="zoneOut" aria-live="polite"></p>
+    </div>
+    <ul class="zones__list" id="zonesList" role="list"></ul>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" id="reviews" aria-labelledby="rv-title">
+    <h2 class="h2" id="rv-title" data-split>Отзывы</h2>
+    <div class="rv-grid">
+      <blockquote class="rv" data-reveal><p>«Генеральная после зимы: трёшка 78 м², духовка, холодильник и балкон. Бригада из двух человек, 6 часов. Цена совпала с калькулятором до рубля».</p><footer>Ирина · квартира 78 м² · генеральная · апрель 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«После ремонта всё было в строительной пыли. Отмыли плитку от затирки и окна от монтажной пены. Переделали один подоконник по моему фото — без вопросов».</p><footer>Андрей · новостройка 54 м² · после ремонта · июнь 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Раз в неделю убирают офис на 120 м² вечером в пятницу. Удобно, что счёт и акт приходят сами».</p><footer>Студия «Контур» · офис 120 м² · регулярно · с 2025 года</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Заказываю поддерживающую раз в две недели. Приходит одна и та же Наталья, знает, где что лежит. Кот её обожает».</p><footer>Марина · квартира 42 м² · поддерживающая · август 2026</footer></blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <h2 class="h2" id="faq-title" data-split>Вопросы</h2>
+    <div class="faq__list">
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f1">Нужно ли быть дома во время уборки?<span aria-hidden="true"></span></button></h3><div id="f1" class="faq__a"><p>Не обязательно. Можно оставить ключи консьержу или в ячейке — бригада пришлёт фото до и после. Договор ответственности подписываем заранее.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f2">Цена точно не изменится?<span aria-hidden="true"></span></button></h3><div id="f2" class="faq__a"><p>Цена из калькулятора фиксированная, если площадь и состав работ совпадают. Если на месте окажется больше работы — бригадир согласует доплату с вами до начала.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f3">Как перенести или отменить?<span aria-hidden="true"></span></button></h3><div id="f3" class="faq__a"><p>Бесплатно — не позже чем за 12 часов. Позже — 500 ₽ за выезд бригады. Напишите номер заказа в Telegram.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f4">Как оплатить?<span aria-hidden="true"></span></button></h3><div id="f4" class="faq__a"><p>Картой или СБП после уборки, либо онлайн заранее. Для юрлиц — по счёту с закрывающими документами.</p></div></div>
+    </div>
+  </section>
+
+  <!-- СТАТУС И ОЦЕНКА -->
+  <section class="status" id="status" aria-labelledby="st-title">
+    <h2 class="h3" id="st-title">Мой заказ</h2>
+    <form class="zone-check" id="stForm"><label class="sr-only" for="stId">Номер заказа</label><input id="stId" name="orderId" placeholder="SV-1001" autocomplete="off" required><button class="btn btn--dark" type="submit">Проверить</button></form>
+    <div id="stOut" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <p class="logo">свежо<span>.</span></p>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p><p class="muted">Ежедневно 8:00–22:00</p></div>
+    <div><h2 class="footer__h">Офис</h2><p>Новосибирск, ул. Кирова, 44, офис 5</p><p class="muted">ООО «Свежо», ИНН 5406000000 (демо)</p></div>
+    <div><h2 class="footer__h">Документы</h2><p><a href="../_shared/privacy.html?site=Свежо" target="_blank" rel="noopener">Политика конфиденциальности</a></p><p><a href="#status">Статус заказа</a></p><p class="muted">© <span data-year></span></p></div>
+  </div>
+</footer>
+
+<div class="mobile-cta"><button class="btn btn--accent btn--wide" type="button" data-open="order">Заказать уборку</button></div>
+
+<!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
+<div class="fb-modal" id="order" role="dialog" aria-modal="true" aria-labelledby="oTitle" style="--modal-w:1080px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog omodal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div class="order">
+      <form class="order__form" id="orderForm">
+        <h2 class="order__title" id="oTitle">Заказ уборки</h2>
+        <ol class="ostep-nav" role="list" id="oSteps"><li class="is-on">Объект</li><li>Допуслуги</li><li>Адрес и время</li><li>Контакты</li></ol>
+        <p class="repeat" id="repeatBox" hidden></p>
+
+        <fieldset class="ostep" data-o="0">
+          <legend class="sr-only">Объект</legend>
+          <div class="field"><span class="field__label">Тип объекта</span>
+            <div class="pills" role="radiogroup" aria-label="Тип объекта">
+              <label><input type="radio" name="type" value="flat" checked><span>Квартира</span></label>
+              <label><input type="radio" name="type" value="house"><span>Дом</span></label>
+              <label><input type="radio" name="type" value="office"><span>Офис</span></label>
+              <label><input type="radio" name="type" value="commercial"><span>Коммерческое</span></label>
+            </div></div>
+          <div class="field" id="roomsField"><span class="field__label">Комнат</span>
+            <div class="pills" role="radiogroup" aria-label="Комнат">
+              <label><input type="radio" name="rooms" value="1"><span>1</span></label><label><input type="radio" name="rooms" value="2" checked><span>2</span></label><label><input type="radio" name="rooms" value="3"><span>3</span></label><label><input type="radio" name="rooms" value="4"><span>4+</span></label><label><input type="radio" name="rooms" value="0"><span>Студия</span></label>
+            </div></div>
+          <label class="q-area"><span>Площадь <output id="oAreaOut">50 м²</output></span><input type="range" name="area" id="oArea" min="20" max="300" step="5" value="50"></label>
+          <div class="field"><span class="field__label">Вид уборки</span>
+            <div class="kinds" role="radiogroup" aria-label="Вид уборки">
+              <label><input type="radio" name="kind" value="support" checked><span><b>Поддерживающая</b>Пыль, полы, кухня и санузел снаружи</span></label>
+              <label><input type="radio" name="kind" value="general"><span><b>Генеральная</b>Всё, включая шкафы снаружи, двери, батареи, плитку</span></label>
+              <label><input type="radio" name="kind" value="repair"><span><b>После ремонта</b>Строительная пыль, затирка, остатки краски и пены</span></label>
+            </div></div>
+          <div class="field"><span class="field__label">Как часто</span>
+            <div class="pills" role="radiogroup" aria-label="Периодичность">
+              <label><input type="radio" name="freq" value="once" checked><span>Разово</span></label>
+              <label><input type="radio" name="freq" value="week"><span>Раз в неделю −15%</span></label>
+              <label><input type="radio" name="freq" value="2weeks"><span>Раз в 2 недели −10%</span></label>
+              <label><input type="radio" name="freq" value="month"><span>Раз в месяц −5%</span></label>
+            </div></div>
+        </fieldset>
+
+        <fieldset class="ostep" data-o="1" hidden>
+          <legend class="sr-only">Дополнительные услуги</legend>
+          <div class="extras" id="extras"></div>
+          <div class="field"><span class="field__label">Фото объекта <span class="opt">необязательно — поможет взять нужные средства</span></span>
+            <label class="upload" data-drop><input type="file" id="oFiles" multiple accept="image/*"><span>+ Добавить фото</span></label>
+            <ul class="fb-files" id="oFileList" role="list"></ul></div>
+        </fieldset>
+
+        <fieldset class="ostep" data-o="2" hidden>
+          <legend class="sr-only">Адрес и время</legend>
+          <div class="grid2">
+            <div class="field" data-field><label for="oZone">Район</label><select id="oZone" name="zone" data-validate="required" data-msg="Выберите район"></select><span class="hint" id="oZoneInfo"></span></div>
+            <div class="field" data-field><label for="oAddr">Улица, дом, квартира</label><input id="oAddr" name="address" autocomplete="street-address" data-validate="required min:5" data-msg="Укажите адрес"></div>
+            <div class="field" data-field><label for="oFloor">Этаж</label><input id="oFloor" name="floor" inputmode="numeric" placeholder="7"></div>
+            <div class="field"><span class="field__label">Лифт</span><div class="pills" role="radiogroup" aria-label="Лифт"><label><input type="radio" name="lift" value="есть" checked><span>Есть</span></label><label><input type="radio" name="lift" value="нет"><span>Нет</span></label></div></div>
+          </div>
+          <div class="field"><span class="field__label">Дата</span><div class="days" id="oDays" role="radiogroup" aria-label="Дата"></div></div>
+          <div class="field"><span class="field__label">Время начала</span><div class="slots" id="oSlots" role="radiogroup" aria-label="Время"></div></div>
+          <div class="field" data-field><label for="oAccess">Как попасть <span class="opt">необязательно</span></label><input id="oAccess" name="access" placeholder="Домофон 45К, ключи у консьержа"></div>
+        </fieldset>
+
+        <fieldset class="ostep" data-o="3" hidden>
+          <legend class="sr-only">Контакты</legend>
+          <div class="grid2">
+            <div class="field" data-field><label for="oName">Имя</label><input id="oName" name="name" autocomplete="given-name" data-validate="required name"></div>
+            <div class="field" data-field><label for="oPhone">Телефон</label><input id="oPhone" name="phone" type="tel" data-validate="required phone"></div>
+          </div>
+          <div class="field"><span class="field__label">Оплата</span><div class="pills" role="radiogroup" aria-label="Оплата">
+            <label><input type="radio" name="pay" value="after" checked><span>После уборки</span></label><label><input type="radio" name="pay" value="online"><span>Онлайн заранее</span></label><label><input type="radio" name="pay" value="invoice"><span>Счёт для юрлица</span></label></div></div>
+          <div class="field" data-field><label for="oComment">Комментарий <span class="opt">необязательно</span></label><textarea id="oComment" name="comment" rows="2" placeholder="Есть кот, не выпускать на балкон"></textarea></div>
+          <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласен(на) на&nbsp;<a href="../_shared/privacy.html?site=Свежо" target="_blank" rel="noopener">обработку данных</a> и&nbsp;условия переноса</span></label>
+        </fieldset>
+
+        <p class="form__error" data-form-error role="alert"></p>
+        <div class="order__nav">
+          <button class="btn btn--line" type="button" id="oBack" hidden>← Назад</button>
+          <button class="btn btn--dark" type="button" id="oNext">Дальше →</button>
+          <button class="btn btn--accent" type="submit" id="oSubmit" hidden>Подтвердить заказ</button>
+        </div>
+      </form>
+      <aside class="order__sum" id="oSum" aria-live="polite"></aside>
+      <div class="order__done" id="oDone" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'cleaning', prefix: 'SV', name: 'Свежо — клининг', phone: '+7 (383) 211-47-00', telegram: 'svezho_nsk' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

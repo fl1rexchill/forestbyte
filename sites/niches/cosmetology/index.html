@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Этюд — клиника косметологии и лазера в Краснодаре</title>
+  <meta name="theme-color" content="#0b1d21">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%230b1d21'/%3E%3Ctext x='32' y='43' font-size='34' text-anchor='middle' fill='%23e9d3b6' font-family='Georgia'%3EЭ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top">Этюд<small>клиника косметологии</small></a>
+    <nav class="nav" id="nav" aria-label="Основное">
+      <a href="#procedures">Процедуры</a>
+      <a href="#match">Подбор</a>
+      <a href="#prices">Цены</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#faq">Вопросы</a>
+      <button type="button" data-open="course" class="nav__course">Мой курс</button>
+    </nav>
+    <button class="btn btn--sand btn--sm" type="button" data-book="">Записаться</button>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__media"><img src="img/hero.webp" width="960" height="540" alt="Косметолог делает массаж лица пациентке, лежащей на кушетке" fetchpriority="high"></div>
+    <div class="hero__content">
+      <p class="eyebrow" data-reveal>Краснодар · ул. Красная, 154 · лицензия на медицинскую деятельность</p>
+      <h1 class="hero__title" data-split id="hero-title">Кожа, <em>которой вы&nbsp;доверяете</em></h1>
+      <p class="hero__lead" data-reveal style="--reveal-delay:.3s">Врачи-дерматокосметологи с&nbsp;медицинским образованием. Сначала консультация и&nbsp;план, потом процедуры — без навязанных курсов.</p>
+      <div class="hero__btns" data-reveal style="--reveal-delay:.45s">
+        <button class="btn btn--sand" type="button" data-book="consult">Записаться на консультацию</button>
+        <a class="btn btn--ghost" href="#match">Подобрать процедуру</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАТЕГОРИИ (как «Retreats / 78+ countries») -->
+  <section class="cats" aria-label="Направления">
+    <div class="cats__row" id="cats"></div>
+  </section>
+
+  <!-- О КЛИНИКЕ + ЦИФРЫ -->
+  <section class="about" aria-labelledby="about-title">
+    <p class="eyebrow">О клинике</p>
+    <h2 class="about__title" id="about-title" data-split>Не просто процедуры — <em>план ухода, который работает</em></h2>
+    <div class="about__grid">
+      <div class="about__num" data-reveal><b><span data-count="12">12</span></b><span>лет работы клиники</span></div>
+      <p class="about__text" data-reveal>«Этюд» — медицинская клиника: врачи с&nbsp;дипломами дерматовенерологов, сертифицированное оборудование и&nbsp;препараты, зарегистрированные в&nbsp;РФ. Мы&nbsp;не&nbsp;обещаем чудес: честно скажем, что даст процедура именно вам, и&nbsp;когда лучше ничего не&nbsp;делать.</p>
+      <div class="about__num" data-reveal><b><span data-count="18000" data-suffix="+">18 000+</span></b><span>процедур с&nbsp;2014 года</span></div>
+    </div>
+  </section>
+
+  <!-- ПРОЦЕДУРЫ -->
+  <section class="procs" id="procedures" aria-labelledby="procs-title">
+    <div class="sec-head">
+      <div><p class="eyebrow">Процедуры</p><h2 class="h2" id="procs-title" data-split>Популярные <em>направления</em></h2></div>
+      <div class="tabs" role="tablist" aria-label="Зона" id="procTabs">
+        <button type="button" role="tab" id="z-all" aria-controls="procGrid" aria-selected="true">Все</button>
+        <button type="button" role="tab" id="z-face" aria-controls="procGrid" aria-selected="false">Лицо</button>
+        <button type="button" role="tab" id="z-body" aria-controls="procGrid" aria-selected="false">Тело</button>
+        <button type="button" role="tab" id="z-laser" aria-controls="procGrid" aria-selected="false">Лазер</button>
+      </div>
+    </div>
+    <div class="pgrid" id="procGrid" role="tabpanel"></div>
+  </section>
+
+  <!-- ПУТЬ ПАЦИЕНТА (как «Combine Retreat + Stay + Transfers») -->
+  <section class="path" aria-labelledby="path-title">
+    <h2 class="path__title" id="path-title">Консультация <em>+ план</em> <em>+ процедура</em> <em>+ контроль</em></h2>
+    <p class="path__lead">Один маршрут вместо набора случайных процедур. Врач ведёт вас от первой встречи до контрольного осмотра.</p>
+    <ol class="path__steps" role="list" data-stagger="100">
+      <li data-reveal><b>01</b><span>Шаг</span><h3>Консультация</h3><p>Осмотр, дерматоскопия, разговор о&nbsp;задачах. 40 минут, 1&nbsp;500&nbsp;₽ — засчитываются в&nbsp;процедуру.</p></li>
+      <li data-reveal><b>02</b><span>Шаг</span><h3>План</h3><p>Письменный план с&nbsp;ценами и&nbsp;сроками. Можно взять время подумать.</p></li>
+      <li data-reveal><b>03</b><span>Шаг</span><h3>Процедура</h3><p>Памятка по&nbsp;подготовке за&nbsp;3&nbsp;дня, напоминание за&nbsp;сутки.</p></li>
+      <li data-reveal><b>04</b><span>Шаг</span><h3>Контроль</h3><p>Осмотр через 2–4 недели бесплатно. Корректируем план, если нужно.</p></li>
+    </ol>
+  </section>
+
+  <!-- ПОДБОР -->
+  <section class="match" id="match" aria-labelledby="match-title">
+    <div class="match__media" data-reveal><img src="img/touch.webp" width="512" height="640" alt="Девушка касается кожи лица и улыбается" loading="lazy"></div>
+    <div class="match__body">
+      <p class="eyebrow">Подбор за минуту</p>
+      <h2 class="h2" id="match-title" data-split>Расскажите <em>о задаче</em></h2>
+      <form class="mform" id="matchForm">
+        <div class="field"><span class="field__label" id="mzLbl">Зона</span><div class="chips" role="radiogroup" aria-labelledby="mzLbl" id="mZone"></div></div>
+        <div class="field"><span class="field__label" id="mgLbl">Что беспокоит</span><div class="chips" role="radiogroup" aria-labelledby="mgLbl" id="mGoal"></div></div>
+        <div class="field"><span class="field__label" id="mdLbl">Сколько дней можете «не выходить в люди»</span><div class="chips" role="radiogroup" aria-labelledby="mdLbl" id="mDown">
+          <label><input type="radio" name="down" value="0" checked><span>Нисколько</span></label><label><input type="radio" name="down" value="3"><span>1–3 дня</span></label><label><input type="radio" name="down" value="7"><span>До недели</span></label></div></div>
+        <button class="btn btn--sand" type="submit">Показать подходящие</button>
+      </form>
+      <div class="match__out" id="matchOut" aria-live="polite"></div>
+      <p class="fine">Подбор — ориентир, а&nbsp;не&nbsp;диагноз. Окончательное решение принимает врач на&nbsp;консультации с&nbsp;учётом противопоказаний.</p>
+    </div>
+  </section>
+
+  <!-- ЦЕНЫ -->
+  <section class="prices" id="prices" aria-labelledby="prices-title">
+    <p class="eyebrow">Прайс</p>
+    <h2 class="h2" id="prices-title" data-split>Цены и <em>курсы</em></h2>
+    <p class="lead">Курс из&nbsp;4–6 процедур дешевле на&nbsp;10–15%. Оплата каждого визита отдельно или пакетом — как удобнее.</p>
+    <div class="ptable-wrap"><table class="ptable" id="ptable"><caption class="sr-only">Цены на процедуры</caption></table></div>
+  </section>
+
+  <!-- ВРАЧИ -->
+  <section class="doctors" id="doctors" aria-labelledby="doc-title">
+    <p class="eyebrow">Специалисты</p>
+    <h2 class="h2" id="doc-title" data-split>Врачи, <em>а не операторы аппаратов</em></h2>
+    <div class="dgrid">
+      <article class="doc" data-reveal>
+        <img src="img/doc1.webp" width="960" height="1200" alt="Врач-дерматокосметолог Елена Викторовна Соколова" loading="lazy">
+        <div class="doc__b"><h3>Елена Соколова</h3><p class="doc__role">Главный врач · дерматовенеролог, косметолог</p><p>Стаж 19 лет. КубГМУ, ординатура по дерматовенерологии, повышение квалификации по лазерной медицине.</p>
+          <ul class="docs" role="list"><li>Диплом КубГМУ, 2005</li><li>Сертификат «Косметология», 2024</li><li>Член Ассоциации дерматовенерологов</li></ul>
+          <button class="btn btn--line btn--sm" type="button" data-book="consult" data-doc="Соколова">Записаться к врачу</button></div>
+      </article>
+      <article class="doc" data-reveal>
+        <img src="img/doc2.webp" width="512" height="640" alt="Врач-косметолог Анна Сергеевна Белова" loading="lazy">
+        <div class="doc__b"><h3>Анна Белова</h3><p class="doc__role">Врач-косметолог · уходовые и аппаратные процедуры</p><p>Стаж 8 лет. Пилинги, биоревитализация, чистки, программы для чувствительной кожи.</p>
+          <ul class="docs" role="list"><li>Диплом КубГМУ, 2016</li><li>Сертификат «Косметология», 2023</li><li>Обучение: химические пилинги, 2025</li></ul>
+          <button class="btn btn--line btn--sm" type="button" data-book="consult" data-doc="Белова">Записаться к врачу</button></div>
+      </article>
+      <aside class="license" data-reveal>
+        <h3>Документы клиники</h3>
+        <p>Лицензия на медицинскую деятельность № Л041-01126-23/00000000 (демо) от 12.03.2021, выдана Министерством здравоохранения Краснодарского края.</p>
+        <p>Оборудование: диодный лазер 808 нм, аппарат RF-лифтинга, дерматоскоп — регистрационные удостоверения Росздравнадзора.</p>
+        <img src="img/room.webp" width="1024" height="682" alt="Процедурный кабинет с кушеткой и столиком" loading="lazy">
+      </aside>
+    </div>
+  </section>
+
+  <!-- ДО/ПОСЛЕ: честно -->
+  <section class="ba" aria-labelledby="ba-title">
+    <div>
+      <h2 class="h2" id="ba-title" data-split>Про фото <em>«до и после»</em></h2>
+      <p class="lead">Мы не&nbsp;публикуем чужие лица на&nbsp;сайте без отдельного письменного согласия и&nbsp;не&nbsp;обрабатываем фото фильтрами. Реальные результаты пациентов покажет врач на&nbsp;консультации — с&nbsp;датами, условиями и&nbsp;числом процедур. Результат индивидуален и&nbsp;не&nbsp;гарантируется.</p>
+    </div>
+    <img src="img/smile.webp" width="960" height="640" alt="Улыбающаяся девушка с чистой кожей" loading="lazy">
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" aria-labelledby="rv-title">
+    <p class="eyebrow">Отзывы</p>
+    <h2 class="h2" id="rv-title" data-split>Пишут <em>пациенты</em></h2>
+    <div class="rv-row" data-lenis-prevent-horizontal>
+      <blockquote class="rv" data-reveal><p>«Пришла за пилингом, а врач сказала, что сейчас не время — сначала вылечить воспаление. Через месяц сделали курс. Спасибо за честность».</p><footer>Дарья, 29 лет · пилинг · март 2026 · ПроДокторов</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Лазерная эпиляция, 6 процедур. Неприятно, но терпимо, врач каждый раз подбирала параметры. Напоминания о визитах приходили сами».</p><footer>Ольга, 34 года · лазер · август 2026 · Яндекс Карты</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Удобно, что в личном кабинете видно, сколько процедур осталось в курсе, и можно сразу записаться на следующую».</p><footer>Марина, 41 год · биоревитализация · июнь 2026 · 2ГИС</footer></blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="faq__head">
+      <h2 class="h2" id="faq-title" data-split>Частые <em>вопросы</em></h2>
+      <button class="btn btn--sand" type="button" data-open="ask">Задать вопрос врачу</button>
+    </div>
+    <div class="faq__list">
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q1">Больно ли?<span aria-hidden="true">+</span></button></h3><div id="q1" class="faq__a"><p>Большинство процедур проходят с&nbsp;аппликационной анестезией. Врач заранее расскажет об&nbsp;ощущениях и&nbsp;остановится по&nbsp;вашей просьбе.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q2">Какие противопоказания?<span aria-hidden="true">+</span></button></h3><div id="q2" class="faq__a"><p>Общие: беременность и&nbsp;лактация (для большинства процедур), острые воспаления и&nbsp;инфекции кожи, онкологические заболевания, приём изотретиноина. Полный список — в&nbsp;карточке каждой процедуры; решение принимает врач после осмотра.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q3">Как подготовиться?<span aria-hidden="true">+</span></button></h3><div id="q3" class="faq__a"><p>Памятку по&nbsp;подготовке пришлём после записи. Обычно: без загара за&nbsp;2&nbsp;недели, без ретинола за&nbsp;5&nbsp;дней, без алкоголя за&nbsp;сутки.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q4">Можно перенести?<span aria-hidden="true">+</span></button></h3><div id="q4" class="faq__a"><p>Да, бесплатно — не&nbsp;позже чем за&nbsp;24&nbsp;часа. Позже — сгорает предоплата 1&nbsp;000&nbsp;₽ за&nbsp;процедуры с&nbsp;заказанным препаратом.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q5">Выдаёте документы для налогового вычета?<span aria-hidden="true">+</span></button></h3><div id="q5" class="faq__a"><p>Да, справку об&nbsp;оплате медицинских услуг и&nbsp;копию лицензии — по&nbsp;запросу в&nbsp;течение 5&nbsp;рабочих дней.</p></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <p class="logo">Этюд<small>клиника косметологии</small></p>
+    <div><h2 class="footer__h">Адрес</h2><p>Краснодар, ул. Красная, 154, 1 этаж</p><p>Пн–сб 9:00–21:00, вс 10:00–18:00</p></div>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p></div>
+    <div><h2 class="footer__h">Документы</h2><p><a href="../_shared/privacy.html?site=Этюд" target="_blank" rel="noopener">Политика обработки персональных данных</a></p><p class="muted">ООО «Этюд», лицензия № Л041-01126-23/00000000 (демо)</p><p class="muted">Имеются противопоказания. Необходима консультация специалиста. © <span data-year></span></p></div>
+  </div>
+</footer>
+
+<!-- Карточка процедуры -->
+<div class="fb-modal" id="proc" role="dialog" aria-modal="true" aria-labelledby="prTitle" style="--modal-w:920px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal modal--wide"><button class="modal__close" type="button" data-close aria-label="Закрыть">×</button><div id="prBody"></div></div>
+</div>
+
+<!-- Запись -->
+<div class="fb-modal" id="book" role="dialog" aria-modal="true" aria-labelledby="bkTitle" style="--modal-w:720px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <form id="bookForm" class="bform">
+      <p class="eyebrow">Запись</p>
+      <h2 class="modal__title" id="bkTitle">Консультация</h2>
+      <ol class="bsteps" role="list" id="bSteps"><li class="on">Время</li><li>Анкета</li><li>Контакты</li></ol>
+      <fieldset class="bstep" data-b="0">
+        <legend class="sr-only">Процедура и время</legend>
+        <div class="grid2">
+          <div class="field" data-field><label for="bProc">Процедура</label><select id="bProc" name="proc"></select></div>
+          <div class="field" data-field><label for="bDoc">Врач</label><select id="bDoc" name="doctor"><option value="">Любой свободный</option><option>Соколова</option><option>Белова</option></select></div>
+        </div>
+        <label class="check"><input type="checkbox" name="pack" id="bPack" value="yes"><span>Оформить курс со скидкой — <b id="bPackInfo"></b></span></label>
+        <div class="field"><span class="field__label">Дата</span><div class="days" id="bDays" role="radiogroup" aria-label="Дата"></div></div>
+        <div class="field"><span class="field__label">Время</span><div class="slots" id="bSlots" role="radiogroup" aria-label="Время"></div></div>
+      </fieldset>
+      <fieldset class="bstep" data-b="1" hidden>
+        <legend class="sr-only">Анкета перед визитом</legend>
+        <p class="fine">Анкета нужна врачу, чтобы заранее исключить противопоказания. Её видит только врач.</p>
+        <div class="checks" role="group" aria-label="Состояния">
+          <label><input type="checkbox" name="q" value="Беременность или кормление"><span>Беременность или кормление грудью</span></label>
+          <label><input type="checkbox" name="q" value="Аллергия на препараты"><span>Аллергия на лекарства или анестетики</span></label>
+          <label><input type="checkbox" name="q" value="Приём изотретиноина или антикоагулянтов"><span>Принимаю изотретиноин / антикоагулянты</span></label>
+          <label><input type="checkbox" name="q" value="Герпес в анамнезе"><span>Бывает герпес</span></label>
+          <label><input type="checkbox" name="q" value="Загар последние 2 недели"><span>Загорал(а) последние 2 недели</span></label>
+          <label><input type="checkbox" name="q" value="Хронические заболевания кожи"><span>Хронические заболевания кожи</span></label>
+        </div>
+        <div class="field" data-field><label for="bNote">Что ещё важно знать врачу <span class="opt">необязательно</span></label><textarea id="bNote" name="comment" rows="2"></textarea></div>
+        <label class="check"><input type="checkbox" name="photoConsent" id="bPhotoOk" value="yes"><span>Хочу приложить фото зоны и даю согласие на обработку специальных категорий данных (фото хранится в медкарте, не публикуется)</span></label>
+        <div id="photoBox" hidden><label class="upload" data-drop><input type="file" id="bFiles" multiple accept="image/*"><span>+ Добавить фото</span></label><ul class="fb-files" id="bFileList" role="list"></ul></div>
+      </fieldset>
+      <fieldset class="bstep" data-b="2" hidden>
+        <legend class="sr-only">Контакты</legend>
+        <div class="grid2">
+          <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" autocomplete="name" data-validate="required name"></div>
+          <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <div class="field"><span class="field__label">Как напоминать</span><div class="chips" role="radiogroup" aria-label="Канал напоминаний"><label><input type="radio" name="channel" value="Telegram" checked><span>Telegram</span></label><label><input type="radio" name="channel" value="SMS"><span>SMS</span></label><label><input type="radio" name="channel" value="Звонок"><span>Звонок</span></label></div></div>
+        <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на&nbsp;<a href="../_shared/privacy.html?site=Этюд" target="_blank" rel="noopener">обработку персональных данных</a></span></label>
+        <label class="check"><input type="checkbox" name="comms" value="yes"><span>Согласие на напоминания о подготовке и следующих визитах</span></label>
+        <div class="bsum" id="bSum"></div>
+      </fieldset>
+      <p class="form__error" data-form-error role="alert"></p>
+      <div class="bnav"><button class="btn btn--line" type="button" id="bBack" hidden>← Назад</button><button class="btn btn--sand" type="button" id="bNext">Дальше →</button><button class="btn btn--sand" type="submit" id="bSubmit" hidden>Записаться</button></div>
+    </form>
+    <div id="bDone" hidden></div>
+  </div>
+</div>
+
+<!-- Мой курс -->
+<div class="fb-modal" id="course" role="dialog" aria-modal="true" aria-labelledby="cTitle" style="--modal-w:640px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal"><button class="modal__close" type="button" data-close aria-label="Закрыть">×</button><p class="eyebrow">Личный кабинет</p><h2 class="modal__title" id="cTitle">Мой курс</h2><div id="cBody"></div></div>
+</div>
+
+<!-- Вопрос врачу -->
+<div class="fb-modal" id="ask" role="dialog" aria-modal="true" aria-labelledby="aTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="aTitle">Вопрос врачу</h2>
+    <p class="fine">Ответит врач клиники в рабочее время. Онлайн мы не ставим диагнозы и не назначаем лечение — при необходимости пригласим на очный осмотр.</p>
+    <form id="askForm" class="bform">
+      <div class="field" data-field><label for="aQ">Ваш вопрос</label><textarea id="aQ" name="comment" rows="4" data-validate="required min:10" data-msg="Опишите вопрос подробнее"></textarea></div>
+      <div class="grid2">
+        <div class="field" data-field><label for="aName">Имя</label><input id="aName" name="name" data-validate="required name"></div>
+        <div class="field" data-field><label for="aContact">Телефон или @Telegram</label><input id="aContact" name="contact" data-validate="required contact"></div>
+      </div>
+      <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Этюд" target="_blank" rel="noopener">обработку данных</a></span></label>
+      <p class="form__error" data-form-error role="alert"></p>
+      <button class="btn btn--sand btn--wide" type="submit">Отправить вопрос</button>
+    </form>
+  </div>
+</div>
+
+<div class="mobile-cta"><button class="btn btn--sand btn--wide" type="button" data-book="consult">Записаться на консультацию</button></div>
+
+<script>
+  window.SITE = { site: 'cosmetology', prefix: 'ET', name: 'Этюд — косметология', phone: '+7 (861) 290-30-40', telegram: 'etud_krd' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

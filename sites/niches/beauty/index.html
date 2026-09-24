@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Пудра — салон красоты в Ростове-на-Дону, запись онлайн</title>
+  <meta name="theme-color" content="#f5efe8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%239e2a2f'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23efd2c4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top" aria-label="Пудра — наверх">пудра<i aria-hidden="true"></i></a>
+    <nav class="nav" id="nav" aria-label="Основное">
+      <a href="#services">Услуги и цены</a>
+      <a href="#works">Работы</a>
+      <a href="#masters">Мастера</a>
+      <a href="#offers">Акции</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contacts">Контакты</a>
+      <button class="nav__cab" type="button" data-open="cabinet">Мои записи</button>
+    </nav>
+    <div class="branch-sw" role="radiogroup" aria-label="Филиал">
+      <button type="button" role="radio" data-branch="push" aria-checked="true">Пушкинская</button>
+      <button type="button" role="radio" data-branch="west" aria-checked="false">Западный</button>
+    </div>
+    <button class="btn btn--cherry btn--sm header__cta" type="button" data-book>Записаться</button>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__text">
+      <p class="eyebrow" data-reveal>Ростов-на-Дону · два салона · каждый день 10:00–21:00</p>
+      <h1 class="hero__title" id="hero-title" data-split>Стрижка, цвет и&nbsp;ногти <em>в центре и на Западном</em></h1>
+      <p class="hero__lead" data-reveal>Выберите услуги, мастера и свободное время — запись займёт минуту. Подтверждение и напоминания придут в Telegram или по SMS.</p>
+      <div class="hero__btns" data-reveal>
+        <button class="btn btn--cherry" type="button" data-book>Выбрать услугу и время</button>
+        <a class="btn btn--line" data-tg="Здравствуйте! Хочу записаться в «Пудру»" href="#">Написать в Telegram</a>
+      </div>
+      <dl class="hero__facts" data-reveal>
+        <div><dt><span data-count="4.9" >4,9</span></dt><dd>средняя оценка на Яндекс Картах</dd></div>
+        <div><dt><span data-count="1450" data-suffix="+">1450+</span></dt><dd>отзывов о мастерах</dd></div>
+        <div><dt><span data-count="10">10</span></dt><dd>мастеров в двух салонах</dd></div>
+      </dl>
+    </div>
+    <div class="hero__media">
+      <div class="arch arch--big" data-parallax="0.06"><img src="img/hero.webp" alt="Мастер делает стрижку клиентке" width="546" height="683" fetchpriority="high"></div>
+      <div class="arch arch--small" data-parallax="-0.08"><img src="img/nails3.webp" alt="Маникюр с красным покрытием" width="683" height="683" loading="lazy"></div>
+      <button class="window-card" type="button" id="heroWindow" aria-live="polite">
+        <span class="window-card__dot" aria-hidden="true"></span>
+        <span class="window-card__txt"><small>Ближайшее окно</small><b>ищем свободное время…</b></span>
+        <span class="window-card__arr" aria-hidden="true">→</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker__row">
+    <span>стрижки</span><i></i><span>окрашивание</span><i></i><span>маникюр</span><i></i><span>педикюр</span><i></i><span>брови и ресницы</span><i></i><span>макияж</span><i></i><span>барбер</span><i></i>
+    <span>стрижки</span><i></i><span>окрашивание</span><i></i><span>маникюр</span><i></i><span>педикюр</span><i></i><span>брови и ресницы</span><i></i><span>макияж</span><i></i><span>барбер</span><i></i>
+  </div></div>
+
+  <!-- УСЛУГИ -->
+  <section class="services" id="services" aria-labelledby="svc-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Услуги и цены</p>
+        <h2 class="h2" id="svc-title" data-split>Соберите визит <em>из&nbsp;нескольких услуг</em></h2>
+      </div>
+      <p class="sec-head__note">Цена «от» — у мастера. У топ-мастеров и арт-директора дороже на 20–45%. Точная сумма считается при выборе мастера.</p>
+    </div>
+
+    <div class="catalog">
+      <div class="catalog__bar">
+        <div class="chips" role="tablist" aria-label="Категории" id="svcCats"></div>
+        <div class="catalog__tools">
+          <label class="search"><span class="sr-only">Поиск услуги</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="svcSearch" type="search" placeholder="Например, балаяж" autocomplete="off">
+          </label>
+          <label class="select"><span class="sr-only">Длительность</span>
+            <select id="svcDur">
+              <option value="0">Любая длительность</option>
+              <option value="60">До часа</option>
+              <option value="120">До 2 часов</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div id="svcPanel" role="tabpanel" aria-labelledby="svcCats">
+        <ul class="svc-list" id="svcList" role="list"></ul>
+        <p class="empty" id="svcEmpty" hidden>Ничего не нашли. Попробуйте другое слово или <button class="link" type="button" data-reset-svc>сбросьте фильтры</button>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- РАБОТЫ -->
+  <section class="works" id="works" aria-labelledby="works-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Портфолио</p>
+        <h2 class="h2" id="works-title" data-split>Работы мастеров <em>без фильтров</em></h2>
+      </div>
+      <div class="chips chips--sm" id="workCats" role="group" aria-label="Фильтр работ"></div>
+    </div>
+    <div class="works__grid" id="workGrid"></div>
+    <p class="fine works__note">Нажмите на работу — можно записаться на такую же услугу к этому мастеру.</p>
+  </section>
+
+  <!-- МАСТЕРА -->
+  <section class="masters" id="masters" aria-labelledby="m-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Мастера · <span data-branch-name>Пушкинская</span></p>
+        <h2 class="h2" id="m-title" data-split>У кого <em>есть время</em></h2>
+      </div>
+      <p class="sec-head__note">Ближайшее окно считается по живому расписанию. Отзывы — с Яндекс Карт и 2ГИС.</p>
+    </div>
+    <div class="m-grid" id="mGrid"></div>
+  </section>
+
+  <!-- КАК ЗАПИСАТЬСЯ -->
+  <section class="how" aria-labelledby="how-title">
+    <div class="how__media"><div class="arch"><img src="img/salon.webp" alt="Кресла в зале салона у окна" width="678" height="847" loading="lazy"></div></div>
+    <div class="how__body">
+      <p class="eyebrow">Как проходит запись</p>
+      <h2 class="h2" id="how-title" data-split>Четыре шага, <em>без звонков</em></h2>
+      <ol class="how__steps" data-stagger="90">
+        <li data-reveal><b>01</b><div><h3>Услуги</h3><p>Добавьте в визит всё, что хотите сделать за один раз: например, стрижку и маникюр.</p></div></li>
+        <li data-reveal><b>02</b><div><h3>Мастер</h3><p>Выберите конкретного мастера или «любого свободного» — так быстрее найдётся время.</p></div></li>
+        <li data-reveal><b>03</b><div><h3>Время</h3><p>Показываем только реально свободные окна. Услуги встанут подряд, без ожидания между ними.</p></div></li>
+        <li data-reveal><b>04</b><div><h3>Подтверждение</h3><p>Администратор подтвердит в Telegram или SMS, напомним за сутки и за 2 часа.</p></div></li>
+      </ol>
+      <button class="btn btn--cherry" type="button" data-book>Записаться онлайн</button>
+    </div>
+  </section>
+
+  <!-- АКЦИИ -->
+  <section class="offers" id="offers" aria-labelledby="off-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Акции, абонементы, сертификаты</p>
+        <h2 class="h2" id="off-title" data-split>Выгоднее, <em>когда возвращаетесь</em></h2>
+      </div>
+    </div>
+    <div class="off-grid" data-stagger="80">
+      <article class="off off--cherry" data-reveal>
+        <p class="off__tag">Первый визит</p>
+        <h3>−15% на все услуги</h3>
+        <p>Отметьте «я у вас впервые» при записи — скидка посчитается сразу.</p>
+        <button class="btn btn--light btn--sm" type="button" data-book data-first>Записаться со скидкой</button>
+      </article>
+      <article class="off" data-reveal>
+        <p class="off__tag">Повторная запись</p>
+        <h3>−10% в течение 5 недель</h3>
+        <p>Запишитесь снова в «Моих записях» — скидка применится, если с прошлого визита прошло меньше 35 дней.</p>
+        <button class="btn btn--line btn--sm" type="button" data-open="cabinet">Мои записи</button>
+      </article>
+      <article class="off" data-reveal>
+        <p class="off__tag">Кешбэк баллами</p>
+        <h3>5% с каждого визита</h3>
+        <p>Баллами можно оплатить до 30% следующей услуги. Баланс виден в личном кабинете.</p>
+        <button class="btn btn--line btn--sm" type="button" data-open="cabinet">Мои баллы</button>
+      </article>
+    </div>
+
+    <h3 class="sub-h">Абонементы <span>действуют 4 месяца в обоих салонах</span></h3>
+    <div class="subs" id="subs"></div>
+
+    <div class="cert">
+      <div class="cert__preview" id="certPreview" aria-hidden="true">
+        <span class="cert__logo">пудра</span>
+        <span class="cert__sum">5 000 ₽</span>
+        <span class="cert__to">Анне · от Димы</span>
+      </div>
+      <div class="cert__body">
+        <p class="eyebrow">Подарочный сертификат</p>
+        <h3 class="h3">Подарок, который не&nbsp;пылится</h3>
+        <p>На любую сумму или конкретную услугу. Электронный — придёт на почту в нужный день, бумажный — заберёте в салоне в конверте.</p>
+        <button class="btn btn--cherry" type="button" data-open="certificate">Оформить сертификат</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" id="reviews" aria-labelledby="rev-title">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Отзывы</p>
+        <h2 class="h2" id="rev-title" data-split>Что пишут <em>после визита</em></h2>
+      </div>
+      <div class="rev-nav">
+        <button class="round" type="button" data-rev="-1" aria-label="Предыдущие отзывы">←</button>
+        <button class="round" type="button" data-rev="1" aria-label="Следующие отзывы">→</button>
+      </div>
+    </div>
+    <div class="rev-track" id="revTrack" tabindex="0" aria-label="Отзывы, листаются стрелками"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="faq__head">
+      <p class="eyebrow">Вопросы</p>
+      <h2 class="h2" id="faq-title" data-split>Коротко <em>о&nbsp;важном</em></h2>
+      <p class="muted">Не нашли ответ? <a data-tg="Здравствуйте! У меня вопрос" href="#">Спросите в Telegram</a> — отвечаем с 9:00 до 21:30.</p>
+      <button class="btn btn--line btn--sm" type="button" data-open="policy">Правила отмены и переноса</button>
+    </div>
+    <div class="faq__list">
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f1">Что будет, если я опоздаю?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f1"><p>Предупредите нас — ждём до 15 минут. Если опоздание больше, мастер сделает услугу в оставшееся время или предложит перенести визит, чтобы не задерживать следующего гостя.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f2">Как отменить или перенести запись?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f2"><p>В «Моих записях» на сайте, по ссылке из подтверждения или в Telegram. Бесплатно — не позже чем за 12 часов. Позже — удерживаем предоплату, а при привязанной карте списываем 50% стоимости первой услуги.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f3">У меня аллергия. Что делать?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f3"><p>Напишите о ней в комментарии к записи. Перед первым окрашиванием и ламинированием делаем бесплатный тест на чувствительность за 48 часов — мастер согласует время.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f4">Зачем предоплата?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f4"><p>Только для визитов от 6 000 ₽ и сложных услуг: окрашивание, наращивание, свадебный образ. Мастер резервирует под вас 3–5 часов и закупает материалы. Вместо предоплаты можно привязать карту — деньги не спишутся, если вы придёте или отмените вовремя.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f5">Где парковаться?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f5"><p>На Пушкинской — платная городская парковка на ул. Чехова, 2 минуты пешком. На Западном — бесплатная парковка у торгового центра прямо у входа.</p></div></div>
+      <div class="acc" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f6">Можно прийти с ребёнком?<i aria-hidden="true"></i></button></h3>
+        <div class="acc__p" id="f6"><p>Да. Детские стрижки до 12 лет — у барберов в обоих салонах. Для маленьких гостей есть мультики и раскраски.</p></div></div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="contacts" id="contacts" aria-labelledby="c-title">
+    <div class="contacts__card">
+      <p class="eyebrow">Контакты</p>
+      <h2 class="h2" id="c-title">Два салона, <em>одни правила</em></h2>
+      <div class="chips chips--sm" role="tablist" aria-label="Салон" id="cTabs">
+        <button role="tab" type="button" id="ct-push" aria-controls="cPanel" aria-selected="true" data-cb="push">Пушкинская</button>
+        <button role="tab" type="button" id="ct-west" aria-controls="cPanel" aria-selected="false" data-cb="west">Западный</button>
+      </div>
+      <div id="cPanel" role="tabpanel" class="c-panel"></div>
+    </div>
+    <div class="map" id="map" aria-hidden="true">
+      <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice">
+        <rect width="600" height="460" fill="var(--paper)"/>
+        <path d="M-10 330 C 120 300, 220 360, 330 320 S 520 260, 620 300 L 620 470 L -10 470 Z" fill="var(--river)"/>
+        <g stroke="var(--road)" stroke-width="14" fill="none" stroke-linecap="round">
+          <path d="M40 60 L 560 90"/><path d="M20 180 L 580 210"/><path d="M150 0 L 120 300"/><path d="M380 0 L 400 290"/><path d="M60 250 L 540 120"/>
+        </g>
+        <g stroke="var(--road)" stroke-width="5" fill="none"><path d="M260 0 L 250 300"/><path d="M0 120 L 600 140"/><path d="M480 40 L 500 280"/></g>
+      </svg>
+      <span class="pin" id="mapPin"><b></b></span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer__word" aria-hidden="true">пудра</p>
+    <div class="footer__row">
+      <p>Салон красоты «Пудра», Ростов-на-Дону.<br>ИП Соколова А. В., ОГРНИП 322619600000000</p>
+      <p><a data-phone href="#"></a><br><a data-tg href="#">Telegram</a></p>
+      <p><button class="link" type="button" data-open="policy">Правила отмены</button><br><a href="../_shared/privacy.html?site=Пудра" target="_blank" rel="noopener">Политика обработки данных</a></p>
+      <p>© <span data-year></span></p>
+    </div>
+  </footer>
+</main>
+
+<!-- Корзина визита -->
+<div class="visit-bar" id="visitBar" hidden>
+  <div class="visit-bar__in">
+    <div class="visit-bar__info"><b id="vbCount"></b><span id="vbMeta"></span></div>
+    <button class="link visit-bar__clear" type="button" id="vbClear">Очистить</button>
+    <button class="btn btn--cherry" type="button" data-book>Выбрать <span>мастера и </span>время →</button>
+  </div>
+</div>
+
+<div class="mobile-cta" id="mobileCta"><button class="btn btn--cherry btn--wide" type="button" data-book>Выбрать услугу и время</button></div>
+
+<!-- Карточка услуги -->
+<div class="fb-modal" id="service" role="dialog" aria-modal="true" aria-labelledby="sTitle" style="--modal-w:640px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal"><button class="modal__close" type="button" data-close aria-label="Закрыть">×</button><div id="sBody"></div></div>
+</div>
+
+<!-- Работа (лайтбокс) -->
+<div class="fb-modal lb" id="work" role="dialog" aria-modal="true" aria-label="Работа мастера" style="--modal-w:980px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog lb__dialog">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <figure class="lb__fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button class="round lb__prev" type="button" data-lb="-1" aria-label="Предыдущая работа">←</button>
+    <button class="round lb__next" type="button" data-lb="1" aria-label="Следующая работа">→</button>
+  </div>
+</div>
+
+<!-- Запись -->
+<div class="fb-modal" id="book" role="dialog" aria-modal="true" aria-labelledby="bTitle" style="--modal-w:760px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal modal--book">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div id="bFlow">
+      <p class="eyebrow" id="bMode">Онлайн-запись</p>
+      <h2 class="modal__title" id="bTitle">Запись в «Пудру»</h2>
+      <ol class="steps" id="bSteps" aria-label="Шаги записи">
+        <li data-s="1">Услуги</li><li data-s="2">Мастер</li><li data-s="3">Время</li><li data-s="4">Контакты</li>
+      </ol>
+      <form id="bookForm" class="bform">
+        <!-- 1 -->
+        <fieldset class="step" data-step="1">
+          <legend class="sr-only">Услуги и салон</legend>
+          <div class="field">
+            <span class="label">Салон</span>
+            <div class="seg" id="bBranch">
+              <label><input type="radio" name="branch" value="push" checked><span>Пушкинская, 118</span></label>
+              <label><input type="radio" name="branch" value="west"><span>Западный, Еременко 58</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label">Услуги в визите</span>
+            <ul class="b-items" id="bItems" role="list"></ul>
+            <label class="select select--full"><span class="sr-only">Добавить услугу</span><select id="bAdd"></select></label>
+          </div>
+          <label class="check"><input type="checkbox" id="bFirst" name="firstVisit" value="yes"><span>Я у вас впервые — скидка 15%</span></label>
+          <p class="form__error" id="e1" role="alert"></p>
+          <div class="step__nav"><span></span><button class="btn btn--cherry" type="button" data-next>Дальше: мастер</button></div>
+        </fieldset>
+        <!-- 2 -->
+        <fieldset class="step" data-step="2" hidden>
+          <legend class="sr-only">Мастер</legend>
+          <div id="bMasters"></div>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--cherry" type="button" data-next>Дальше: время</button></div>
+        </fieldset>
+        <!-- 3 -->
+        <fieldset class="step" data-step="3" hidden>
+          <legend class="sr-only">Дата и время</legend>
+          <div class="days" id="bDays" role="radiogroup" aria-label="Дата"></div>
+          <div class="slots" id="bSlots" role="radiogroup" aria-label="Время начала"></div>
+          <div class="plan" id="bPlan" aria-live="polite"></div>
+          <details class="wait" id="bWait">
+            <summary>Нет подходящего времени? Встать в лист ожидания</summary>
+            <p class="fine">Если кто-то отменит запись, мы сразу напишем вам. Обычно окно освобождается за 1–3 дня.</p>
+            <div class="grid2">
+              <div class="field"><label for="wWhen">Когда удобно</label>
+                <select id="wWhen"><option>В любой день</option><option>В будни</option><option>В выходные</option><option>В выбранный день</option></select></div>
+              <div class="field"><label for="wPart">Время суток</label>
+                <select id="wPart"><option>Любое</option><option>Утро, до 13:00</option><option>День, 13:00–17:00</option><option>Вечер, после 17:00</option></select></div>
+            </div>
+            <div class="grid2">
+              <div class="field" data-field><label for="wName">Имя</label><input id="wName" autocomplete="given-name"></div>
+              <div class="field" data-field><label for="wContact">Телефон или @Telegram</label><input id="wContact" autocomplete="tel"></div>
+            </div>
+            <button class="btn btn--line btn--sm" type="button" id="wSend">Встать в очередь</button>
+          </details>
+          <p class="form__error" id="e3" role="alert"></p>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--cherry" type="button" data-next>Дальше: контакты</button></div>
+        </fieldset>
+        <!-- 4 -->
+        <fieldset class="step" data-step="4" hidden>
+          <legend class="sr-only">Контакты и подтверждение</legend>
+          <div class="grid2">
+            <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" autocomplete="given-name" data-validate="required name"></div>
+            <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" data-validate="required phone"></div>
+          </div>
+          <div class="field" data-field>
+            <span class="label">Куда прислать подтверждение и напоминания</span>
+            <div class="seg">
+              <label><input type="radio" name="notify" value="telegram" checked data-validate="required"><span>Telegram</span></label>
+              <label><input type="radio" name="notify" value="sms"><span>SMS</span></label>
+              <label><input type="radio" name="notify" value="email"><span>Почта</span></label>
+            </div>
+          </div>
+          <div class="field" data-field id="bTgField"><label for="bTg">Ник в Telegram <span class="opt">необязательно — иначе найдём по номеру</span></label><input id="bTg" name="telegram" placeholder="@username" autocomplete="off"></div>
+          <div class="field" data-field id="bEmailField" hidden><label for="bEmail">Почта</label><input id="bEmail" name="email" type="email" autocomplete="email" data-validate="required email"></div>
+          <div class="field drop" data-drop id="bRefField" hidden>
+            <span class="label">Референсы <span class="opt">фото желаемого результата и текущих волос/ногтей, до 5 штук</span></span>
+            <label class="drop__zone"><input type="file" id="bRef" name="refs" accept="image/*" multiple class="sr-only"><span>Перетащите фото сюда или <u>выберите файлы</u></span></label>
+            <ul class="fb-files" id="bRefList"></ul>
+          </div>
+          <div class="field" data-field><label for="bComment">Комментарий <span class="opt">аллергии, пожелания</span></label><textarea id="bComment" name="comment" rows="2"></textarea></div>
+          <div class="field" data-field id="bPay">
+            <span class="label">Гарантия визита</span>
+            <div class="pay" id="bPayOpts"></div>
+            <p class="fine" id="bPayNote"></p>
+          </div>
+          <div class="sum" id="bSum"></div>
+          <label class="check" data-field><input type="checkbox" name="policy" value="yes" data-validate="required" data-msg="Подтвердите, что знакомы с правилами отмены"><span>Знаю <button class="link" type="button" data-open-policy>правила отмены и переноса</button>: бесплатно — за 12 часов до визита</span></label>
+          <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Пудра" target="_blank" rel="noopener">обработку персональных данных</a></span></label>
+          <p class="form__error" data-form-error role="alert"></p>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--cherry" type="submit">Записаться</button></div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="bDone" hidden></div>
+  </div>
+</div>
+
+<!-- Мои записи -->
+<div class="fb-modal" id="cabinet" role="dialog" aria-modal="true" aria-labelledby="cabTitle" style="--modal-w:680px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <p class="eyebrow">Личный кабинет</p>
+    <h2 class="modal__title" id="cabTitle">Мои записи</h2>
+    <div id="cabBody"></div>
+    <form class="lookup" id="lookup">
+      <label for="lkId">Записывались с другого устройства? Найдите запись по номеру</label>
+      <div class="lookup__row"><input id="lkId" placeholder="PD-1001" autocomplete="off"><button class="btn btn--line btn--sm" type="submit">Найти</button></div>
+      <p class="fine" id="lkOut" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Сертификат -->
+<div class="fb-modal" id="certificate" role="dialog" aria-modal="true" aria-labelledby="certTitle" style="--modal-w:720px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="certTitle">Подарочный сертификат</h2>
+    <form id="certForm" class="bform">
+      <div class="cert-live" id="certLive" aria-hidden="true"><span class="cert__logo">пудра</span><span class="cert__sum" id="clSum">5 000 ₽</span><span class="cert__to" id="clTo">подарок</span><span class="cert__msg" id="clMsg"></span></div>
+      <div class="field" data-field>
+        <span class="label">Номинал</span>
+        <div class="seg seg--wrap" id="certAmounts">
+          <label><input type="radio" name="amount" value="3000"><span>3 000 ₽</span></label>
+          <label><input type="radio" name="amount" value="5000" checked><span>5 000 ₽</span></label>
+          <label><input type="radio" name="amount" value="10000"><span>10 000 ₽</span></label>
+          <label><input type="radio" name="amount" value="custom"><span>Своя сумма</span></label>
+          <label><input type="radio" name="amount" value="service"><span>На услугу</span></label>
+        </div>
+      </div>
+      <div class="field" data-field id="certCustom" hidden><label for="certSum">Сумма, ₽ <span class="opt">от 1 000 до 50 000</span></label><input id="certSum" name="customSum" type="number" min="1000" max="50000" step="500" inputmode="numeric"></div>
+      <div class="field" data-field id="certSvc" hidden><label for="certService">Услуга</label><select id="certService" name="service"></select></div>
+      <div class="field" data-field>
+        <span class="label">Оформление</span>
+        <div class="seg" id="certDesign">
+          <label><input type="radio" name="design" value="cherry" checked><span><i class="sw sw--cherry"></i>Вишня</span></label>
+          <label><input type="radio" name="design" value="blush"><span><i class="sw sw--blush"></i>Пудра</span></label>
+          <label><input type="radio" name="design" value="ink"><span><i class="sw sw--ink"></i>Графит</span></label>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field" data-field><label for="certTo">Кому</label><input id="certTo" name="recipient" placeholder="Анне" maxlength="30"></div>
+        <div class="field" data-field><label for="certFrom">От кого</label><input id="certFrom" name="from" placeholder="от Димы" maxlength="30"></div>
+      </div>
+      <div class="field" data-field><label for="certMsg">Пожелание <span class="opt">до 120 символов</span></label><textarea id="certMsg" name="message" rows="2" maxlength="120"></textarea></div>
+      <div class="field" data-field>
+        <span class="label">Как вручить</span>
+        <div class="seg">
+          <label><input type="radio" name="delivery" value="email" checked><span>На почту в нужный день</span></label>
+          <label><input type="radio" name="delivery" value="salon"><span>Заберу в салоне</span></label>
+        </div>
+      </div>
+      <div class="grid2" id="certMailRow">
+        <div class="field" data-field><label for="certEmail">Почта получателя</label><input id="certEmail" name="recipientEmail" type="email" data-validate="required email"></div>
+        <div class="field" data-field><label for="certDate">Дата отправки</label><input id="certDate" name="sendDate" type="date" data-validate="required"></div>
+      </div>
+      <div class="grid2">
+        <div class="field" data-field><label for="certName">Ваше имя</label><input id="certName" name="name" data-validate="required name" autocomplete="given-name"></div>
+        <div class="field" data-field><label for="certPhone">Ваш телефон</label><input id="certPhone" name="phone" type="tel" data-validate="required phone" autocomplete="tel"></div>
+      </div>
+      <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Пудра" target="_blank" rel="noopener">обработку данных</a></span></label>
+      <p class="fine">Срок действия — 1 год. Ссылку на оплату пришлём по SMS после подтверждения администратором.</p>
+      <p class="form__error" data-form-error role="alert"></p>
+      <button class="btn btn--cherry btn--wide" type="submit">Оформить сертификат</button>
+    </form>
+  </div>
+</div>
+
+<!-- Абонемент -->
+<div class="fb-modal" id="subscription" role="dialog" aria-modal="true" aria-labelledby="subTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <p class="eyebrow">Абонемент</p>
+    <h2 class="modal__title" id="subTitle"></h2>
+    <p class="muted" id="subInfo"></p>
+    <form id="subForm" class="bform">
+      <input type="hidden" name="plan" id="subPlan">
+      <div class="grid2">
+        <div class="field" data-field><label for="subName">Имя</label><input id="subName" name="name" data-validate="required name" autocomplete="given-name"></div>
+        <div class="field" data-field><label for="subPhone">Телефон</label><input id="subPhone" name="phone" type="tel" data-validate="required phone" autocomplete="tel"></div>
+      </div>
+      <label class="check" data-field><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласие на <a href="../_shared/privacy.html?site=Пудра" target="_blank" rel="noopener">обработку данных</a></span></label>
+      <p class="form__error" data-form-error role="alert"></p>
+      <button class="btn btn--cherry btn--wide" type="submit">Оформить абонемент</button>
+    </form>
+  </div>
+</div>
+
+<!-- Правила отмены -->
+<div class="fb-modal" id="policy" role="dialog" aria-modal="true" aria-labelledby="polTitle" style="--modal-w:620px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="polTitle">Правила отмены и переноса</h2>
+    <ol class="policy">
+      <li><b>Бесплатно — за 12 часов.</b> Отменить или перенести запись можно в «Моих записях», по ссылке из подтверждения или в Telegram.</li>
+      <li><b>Позже 12 часов или неявка.</b> Предоплата не возвращается. Если карта привязана — спишем 50% стоимости первой услуги визита.</li>
+      <li><b>Опоздание.</b> Ждём 15 минут. Дальше мастер выполнит услугу в оставшееся время или предложит перенос.</li>
+      <li><b>Болезнь мастера.</b> Предупредим заранее, предложим другого мастера того же уровня или перенос — предоплата сохраняется.</li>
+      <li><b>Переделка.</b> Если что-то не понравилось — напишите в течение 7 дней, исправим бесплатно.</li>
+    </ol>
+    <button class="btn btn--cherry" type="button" data-close>Понятно</button>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'beauty', prefix: 'PD', name: 'Пудра — салон красоты', phone: '+7 (863) 310-44-20', telegram: 'pudra_rnd' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

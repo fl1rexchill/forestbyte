@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Починим — мастер на час в Казани</title>
+  <meta name="theme-color" content="#10231c">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2310231c'/%3E%3Crect x='36' y='36' width='16' height='16' fill='%23c8202f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<!-- Прелоадер (≤ 1 с, как у референса) -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__logo"><span>ПО</span><span>ЧИ</span><span>НИМ<i></i></span></div>
+  <div class="loader__count" id="loaderCount">000</div>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Починим — наверх"><span>ПОЧИ</span><span>НИМ<i></i></span></a>
+  <div class="topbar__right">
+    <a class="topbar__phone" data-phone href="#"></a>
+    <a class="btn btn--red" href="#request">Описать проблему <span aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<aside class="rail" aria-label="Навигация по разделам">
+  <nav>
+    <ol class="rail__nav" role="list">
+      <li><a href="#tasks" data-spy>01_ Задачи</a></li>
+      <li><a href="#prices" data-spy>02_ Цены</a></li>
+      <li><a href="#process" data-spy>03_ Как работаем</a></li>
+      <li><a href="#masters" data-spy>04_ Мастера</a></li>
+      <li><a href="#guarantee" data-spy>05_ Гарантия</a></li>
+      <li><a href="#request" data-spy>06_ Заявка</a></li>
+    </ol>
+  </nav>
+  <ul class="rail__links" role="list">
+    <li><a data-tg href="#">Telegram ↗</a></li>
+    <li><a href="#status">Статус заявки</a></li>
+    <li><span class="rail__sep"></span></li>
+    <li><a href="../_shared/privacy.html?site=Починим" target="_blank" rel="noopener">Политика</a></li>
+  </ul>
+</aside>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__bg"><img src="img/hero.webp" width="1024" height="576" alt="" fetchpriority="high"></div>
+    <div class="wrap hero__wrap">
+      <p class="kicker" data-reveal>Казань · все районы · с 8:00 до 22:00</p>
+      <h1 class="hero__title" id="hero-title" data-split>Сломалось — починим сегодня.</h1>
+      <p class="hero__lead" data-reveal style="--reveal-delay:.3s">Сантехника, электрика, сборка мебели и&nbsp;мелкий ремонт. Пришлите фото — оценим за&nbsp;15&nbsp;минут, мастер приедет в&nbsp;удобное окно. Цена фиксируется до&nbsp;начала работ.</p>
+      <div class="hero__cta" data-reveal style="--reveal-delay:.45s">
+        <a class="btn btn--red btn--lg" href="#request">Описать проблему <span aria-hidden="true">→</span></a>
+        <a class="btn btn--line btn--lg" data-phone href="#"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЦИФРЫ -->
+  <section class="block block--green" aria-labelledby="why-title">
+    <div class="wrap">
+      <h2 class="h2" id="why-title" data-split>Вам не&nbsp;нужен мастер. Вам нужно, чтобы кран не&nbsp;тёк.</h2>
+      <p class="lead" data-reveal>Никто не хочет тратить вечер на поиски, звонки и&nbsp;торг. Вы пишете, что случилось, — дальше наша забота: оценка, мастер, материалы, гарантия.</p>
+      <ul class="stats" role="list" data-stagger="100">
+        <li data-reveal><b><span data-count="15">15</span> мин</b><span>оценка по&nbsp;фото в&nbsp;рабочее время</span></li>
+        <li data-reveal><b><span data-count="2">2</span> ч</b><span>средний выезд при срочной заявке</span></li>
+        <li data-reveal><b><span data-count="1">1</span> год</b><span>гарантия на&nbsp;выполненные работы</span></li>
+        <li data-reveal><b><span data-count="4.9">4,9</span></b><span>рейтинг на&nbsp;Яндекс Картах, 812&nbsp;отзывов</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ЗАДАЧИ -->
+  <section class="block" id="tasks" aria-labelledby="tasks-title">
+    <div class="wrap">
+      <p class="kicker kicker--dark">01_ Что чиним</p>
+      <h2 class="h2" id="tasks-title" data-split>Выберите, что случилось.</h2>
+      <p class="lead lead--dark" data-reveal>Нажмите на&nbsp;задачу — сразу откроем заявку с&nbsp;нужной категорией.</p>
+      <div class="tiles" id="tiles" data-stagger="70"></div>
+    </div>
+  </section>
+
+  <!-- ЦЕНЫ + СМЕТА -->
+  <section class="block block--paper" id="prices" aria-labelledby="prices-title">
+    <div class="wrap">
+      <p class="kicker kicker--dark">02_ Цены</p>
+      <h2 class="h2" id="prices-title" data-split>Посчитайте сами — до&nbsp;звонка.</h2>
+      <p class="lead lead--dark" data-reveal>Цены за&nbsp;работу без материалов. Точную сумму мастер называет до&nbsp;начала и&nbsp;не&nbsp;меняет без вашего согласия.</p>
+      <div class="pricing">
+        <div class="pricing__list">
+          <div class="pricing__tools">
+            <label class="search"><span class="sr-only">Поиск по прайсу</span>
+              <input type="search" id="priceSearch" placeholder="Найти работу: смеситель, розетка, шкаф…" autocomplete="off">
+            </label>
+            <div class="seg" role="group" aria-label="Категория" id="priceCats"></div>
+          </div>
+          <div class="table-wrap" data-lenis-prevent>
+            <table class="ptable">
+              <caption class="sr-only">Прайс на работы</caption>
+              <thead><tr><th scope="col">Работа</th><th scope="col">Время</th><th scope="col">Цена</th><th scope="col"><span class="sr-only">Добавить</span></th></tr></thead>
+              <tbody id="priceBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <aside class="estimate" aria-labelledby="est-title">
+          <h3 id="est-title">Ваша смета</h3>
+          <ul class="estimate__items" id="estItems" role="list"></ul>
+          <div class="estimate__row"><span>Выезд</span><span id="estTrip">бесплатно от 1 500 ₽</span></div>
+          <div class="estimate__total">
+            <span>Ориентир за работу</span>
+            <strong id="estTotal">0 ₽</strong>
+            <small id="estTime"></small>
+          </div>
+          <button class="btn btn--red btn--wide" type="button" id="estToRequest" disabled>Оформить заявку со сметой →</button>
+          <p class="fineprint">Минимальный заказ — 1 000 ₽. При заказе от 1 500 ₽ выезд бесплатный, иначе 400 ₽.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК РАБОТАЕМ (липкие шаги) -->
+  <section class="block block--green" id="process" aria-labelledby="process-title">
+    <div class="wrap process">
+      <div class="process__sticky">
+        <p class="kicker">03_ Как работаем</p>
+        <h2 class="h2" id="process-title">Фото&nbsp;→ оценка&nbsp;→ визит&nbsp;→ гарантия.</h2>
+        <div class="process__meter" aria-hidden="true"><span id="processBar"></span></div>
+      </div>
+      <ol class="process__steps" role="list">
+        <li data-step-i="0"><span class="process__n">01</span><h3>Вы присылаете фото или видео</h3><p>Через форму на&nbsp;сайте или в&nbsp;Telegram. Можно надиктовать голосом — удобно, когда руки заняты.</p></li>
+        <li data-step-i="1"><span class="process__n">02</span><h3>Мы оцениваем за 15 минут</h3><p>Диспетчер-мастер уточнит детали и&nbsp;назовёт вилку цены. Нужны материалы — скажем какие или купим сами по&nbsp;чеку.</p></li>
+        <li data-step-i="2"><span class="process__n">03</span><h3>Мастер приезжает в ваше окно</h3><p>Окна по&nbsp;3&nbsp;часа, за&nbsp;30&nbsp;минут до&nbsp;приезда мастер позвонит. Фиксирует цену до&nbsp;начала и&nbsp;работает в&nbsp;бахилах.</p></li>
+        <li data-step-i="3"><span class="process__n">04</span><h3>Оплата после работы и год гарантии</h3><p>Картой, наличными или по&nbsp;СБП. Акт с&nbsp;гарантией на&nbsp;1&nbsp;год приходит в&nbsp;мессенджер вместе с&nbsp;фото результата.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- МАСТЕРА -->
+  <section class="block" id="masters" aria-labelledby="masters-title">
+    <div class="wrap">
+      <p class="kicker kicker--dark">04_ Мастера</p>
+      <h2 class="h2" id="masters-title" data-split>Те, кто к&nbsp;вам приедет.</h2>
+      <p class="lead lead--dark" data-reveal>В&nbsp;штате 14&nbsp;мастеров. Каждый прошёл проверку документов, пробный заказ и&nbsp;инструктаж по&nbsp;аккуратности.</p>
+      <div class="masters" data-stagger="100">
+        <article class="master" data-reveal>
+          <img src="img/m1.webp" width="512" height="640" alt="Мастер Руслан Хабибуллин" loading="lazy">
+          <div class="master__body"><h3>Руслан Хабибуллин</h3><p class="master__role">Сантехника · отопление</p><p>11&nbsp;лет стажа. Разводка труб, смесители, инсталляции, стиральные машины.</p>
+            <dl class="master__stats"><div><dt>Заказов</dt><dd>1 240</dd></div><div><dt>Рейтинг</dt><dd>4,9</dd></div><div><dt>Районы</dt><dd>Вахитовский, Советский</dd></div></dl></div>
+        </article>
+        <article class="master" data-reveal>
+          <img src="img/m2.webp" width="512" height="640" alt="Мастер Андрей Кудрявцев" loading="lazy">
+          <div class="master__body"><h3>Андрей Кудрявцев</h3><p class="master__role">Электрика · допуск III гр.</p><p>9&nbsp;лет стажа. Розетки, автоматы, светильники, замена проводки в&nbsp;квартире.</p>
+            <dl class="master__stats"><div><dt>Заказов</dt><dd>980</dd></div><div><dt>Рейтинг</dt><dd>5,0</dd></div><div><dt>Районы</dt><dd>Ново-Савиновский, Московский</dd></div></dl></div>
+        </article>
+        <article class="master" data-reveal>
+          <img src="img/m3.webp" width="512" height="640" alt="Мастер Олег Сафин" loading="lazy">
+          <div class="master__body"><h3>Олег Сафин</h3><p class="master__role">Сборка мебели · двери</p><p>7&nbsp;лет стажа. Кухни, шкафы-купе, врезка замков, регулировка дверей и&nbsp;окон.</p>
+            <dl class="master__stats"><div><dt>Заказов</dt><dd>1 530</dd></div><div><dt>Рейтинг</dt><dd>4,9</dd></div><div><dt>Районы</dt><dd>Приволжский, Кировский</dd></div></dl></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- РАБОТЫ -->
+  <section class="block block--paper" aria-labelledby="works-title">
+    <div class="wrap">
+      <h2 class="h2" id="works-title" data-split>Недавние заказы — с&nbsp;ценой.</h2>
+      <div class="works">
+        <figure class="work" data-reveal><img src="img/faucet.webp" width="864" height="576" alt="Новый смеситель на раковине в ванной" loading="lazy"><figcaption><b>Замена смесителя в ванной</b><span>Советский р-н · 45 минут · 1 900 ₽ + смеситель клиента</span></figcaption></figure>
+        <figure class="work" data-reveal><img src="img/panel.webp" width="960" height="1200" alt="Мастер подключает автоматы в электрощите" loading="lazy"><figcaption><b>Замена автоматов в щитке</b><span>Ново-Савиновский р-н · 1,5 часа · 3 400 ₽</span></figcaption></figure>
+        <figure class="work" data-reveal><img src="img/kitchen.webp" width="1024" height="682" alt="Светлая кухня с островом после сборки" loading="lazy"><figcaption><b>Сборка кухни 3,2 м</b><span>Приволжский р-н · 1 день · 14 500 ₽</span></figcaption></figure>
+        <figure class="work" data-reveal><img src="img/bath.webp" width="960" height="1200" alt="Ванная с подвесным унитазом и зеркалом с подсветкой" loading="lazy"><figcaption><b>Зеркало с подсветкой и инсталляция</b><span>Вахитовский р-н · 4 часа · 7 800 ₽</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАРАНТИЯ -->
+  <section class="block" id="guarantee" aria-labelledby="g-title">
+    <div class="wrap guarantee">
+      <div class="stamp" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#circ">ГАРАНТИЯ · ГАРАНТИЯ · ГАРАНТИЯ · ГАРАНТИЯ · </textPath></text></svg><b>1 ГОД</b></div>
+      <div>
+        <p class="kicker kicker--dark">05_ Гарантия</p>
+        <h2 class="h3" id="g-title">Если что-то сломается по&nbsp;нашей вине в&nbsp;течение года — приедем и&nbsp;переделаем бесплатно.</h2>
+        <p class="lead lead--dark">Опоздали больше чем на&nbsp;30&nbsp;минут от&nbsp;окна без предупреждения — скидка 20% на&nbsp;работу. Это не&nbsp;маркетинг, а&nbsp;пункт в&nbsp;акте, который вы получаете.</p>
+        <button class="linkish" type="button" data-open="guaranteeModal">Прочитать условия гарантии →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="block block--paper" aria-labelledby="rev-title">
+    <div class="wrap">
+      <h2 class="h2" id="rev-title" data-split>Что пишут после&nbsp;визита.</h2>
+      <div class="seg seg--dark" role="group" aria-label="Фильтр отзывов" id="revFilter">
+        <button type="button" aria-pressed="true" data-cat="">Все</button>
+        <button type="button" aria-pressed="false" data-cat="plumb">Сантехника</button>
+        <button type="button" aria-pressed="false" data-cat="elec">Электрика</button>
+        <button type="button" aria-pressed="false" data-cat="furn">Мебель</button>
+        <button type="button" aria-pressed="false" data-cat="small">Мелкий ремонт</button>
+      </div>
+      <div class="reviews" id="reviews" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block block--green" aria-labelledby="faq-title">
+    <div class="wrap faq">
+      <p class="kicker">Прямые ответы</p>
+      <h2 class="h2" id="faq-title" data-split>Вопросы, которые вы всё равно зададите.</h2>
+      <div class="faq__list">
+        <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f1">Сколько стоит выезд?<span aria-hidden="true"></span></button></h3><div id="f1" class="faq__a"><p>Бесплатно, если сумма работ от&nbsp;1&nbsp;500&nbsp;₽. Если меньше — 400&nbsp;₽. Если мастер приехал, а&nbsp;работу делать не&nbsp;стали, — только выезд.</p></div></div>
+        <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f2">Кто покупает материалы?<span aria-hidden="true"></span></button></h3><div id="f2" class="faq__a"><p>Как удобнее вам. Можем прислать список и&nbsp;ссылки или купить сами — по&nbsp;чеку, без наценки. Расходники (дюбели, герметик, изолента) мастер привозит с&nbsp;собой.</p></div></div>
+        <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f3">А если в процессе нашлось что-то ещё?<span aria-hidden="true"></span></button></h3><div id="f3" class="faq__a"><p>Мастер остановится, покажет проблему и&nbsp;назовёт цену. Дополнительные работы — только после вашего «да» в&nbsp;мессенджере, чтобы всё было зафиксировано.</p></div></div>
+        <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f4">Можно перенести или отменить?<span aria-hidden="true"></span></button></h3><div id="f4" class="faq__a"><p>Да, бесплатно — не&nbsp;позже чем за&nbsp;2&nbsp;часа до&nbsp;окна. Напишите номер заявки в&nbsp;Telegram или позвоните.</p></div></div>
+        <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="f5">Работаете с юрлицами?<span aria-hidden="true"></span></button></h3><div id="f5" class="faq__a"><p>Да, по&nbsp;договору с&nbsp;безналичной оплатой и&nbsp;закрывающими документами. Для офисов есть абонентское обслуживание.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗАЯВКА: мастер-шаги -->
+  <section class="block" id="request" aria-labelledby="req-title">
+    <div class="wrap">
+      <p class="kicker kicker--dark">06_ Заявка</p>
+      <h2 class="h2" id="req-title" data-split>Расскажите, что случилось.</h2>
+      <div class="wizard">
+        <ol class="wizard__steps" role="list" id="wizSteps">
+          <li class="is-active"><span>1</span>Проблема</li>
+          <li><span>2</span>Фото</li>
+          <li><span>3</span>Адрес</li>
+          <li><span>4</span>Время</li>
+          <li><span>5</span>Контакты</li>
+        </ol>
+        <form class="wizard__form" id="reqForm">
+          <!-- 1 -->
+          <fieldset class="wstep" data-wstep="0">
+            <legend class="wstep__title">Что нужно сделать?</legend>
+            <div class="field" data-field>
+              <div class="chips" role="radiogroup" aria-label="Категория" id="catChips"></div>
+            </div>
+            <div class="field" data-field>
+              <label for="rDesc">Опишите задачу</label>
+              <textarea id="rDesc" name="comment" rows="4" data-validate="required min:10" data-msg="Опишите задачу хотя бы парой предложений" placeholder="Например: течёт смеситель на кухне, капает даже закрытый. Смеситель Grohe, лет 5."></textarea>
+            </div>
+            <div class="voice" id="voice">
+              <button class="btn btn--line-dark btn--sm" type="button" id="voiceBtn"><span class="rec-dot" aria-hidden="true"></span> <span id="voiceLabel">Надиктовать голосом</span></button>
+              <span class="voice__time" id="voiceTime" aria-live="polite"></span>
+              <audio id="voicePlayer" controls hidden></audio>
+              <button class="linkish linkish--dark" type="button" id="voiceDel" hidden>Удалить запись</button>
+            </div>
+            <div class="est-note" id="estNote" hidden></div>
+          </fieldset>
+          <!-- 2 -->
+          <fieldset class="wstep" data-wstep="1" hidden>
+            <legend class="wstep__title">Покажите проблему</legend>
+            <p class="hint">Фото или короткое видео помогут оценить точнее и&nbsp;взять нужные детали. Можно пропустить.</p>
+            <div class="drop" data-drop>
+              <input type="file" id="rFiles" accept="image/*,video/mp4,video/quicktime,video/webm" multiple class="drop__input">
+              <label for="rFiles" class="drop__label"><b>Перетащите фото или видео сюда</b><span>или нажмите, чтобы выбрать · до 5 файлов, до 10 МБ</span></label>
+            </div>
+            <ul class="fb-files" id="rFileList" role="list"></ul>
+          </fieldset>
+          <!-- 3 -->
+          <fieldset class="wstep" data-wstep="2" hidden>
+            <legend class="wstep__title">Куда приехать?</legend>
+            <div class="grid2">
+              <div class="field" data-field><label for="rDistrict">Район</label>
+                <select id="rDistrict" name="district" data-validate="required" data-msg="Выберите район"><option value="">Выберите район</option></select>
+                <span class="hint" id="districtInfo"></span></div>
+              <div class="field" data-field><label for="rStreet">Улица и дом</label><input id="rStreet" name="street" autocomplete="street-address" data-validate="required min:3" data-msg="Укажите улицу и дом" placeholder="ул. Баумана, 12"></div>
+            </div>
+            <div class="grid3">
+              <div class="field" data-field><label for="rFlat">Квартира / офис</label><input id="rFlat" name="flat" inputmode="numeric"></div>
+              <div class="field" data-field><label for="rFloor">Этаж</label><input id="rFloor" name="floor" inputmode="numeric"></div>
+              <div class="field" data-field><span class="field__label">Лифт</span>
+                <div class="toggle" role="radiogroup" aria-label="Лифт"><label><input type="radio" name="lift" value="есть" checked><span>Есть</span></label><label><input type="radio" name="lift" value="нет"><span>Нет</span></label></div></div>
+            </div>
+            <div class="field" data-field><label for="rAccess">Доступ <span class="opt">необязательно</span></label><input id="rAccess" name="access" placeholder="Код домофона, шлагбаум, ключи у соседки"></div>
+          </fieldset>
+          <!-- 4 -->
+          <fieldset class="wstep" data-wstep="3" hidden>
+            <legend class="wstep__title">Когда удобно?</legend>
+            <label class="urgent"><input type="checkbox" name="urgent" value="yes" id="rUrgent"><span><b>Срочно — в течение 2 часов</b> +500 ₽ к заказу, если есть свободный мастер рядом</span></label>
+            <div id="slotPick">
+              <div class="dates" id="rDates" role="radiogroup" aria-label="Дата"></div>
+              <div class="windows" id="rWindows" role="radiogroup" aria-label="Окно приезда"></div>
+              <p class="hint">Окно — 3 часа. Мастер позвонит за 30 минут до приезда.</p>
+            </div>
+          </fieldset>
+          <!-- 5 -->
+          <fieldset class="wstep" data-wstep="4" hidden>
+            <legend class="wstep__title">Как с вами связаться?</legend>
+            <div class="grid2">
+              <div class="field" data-field><label for="rName">Имя</label><input id="rName" name="name" autocomplete="given-name" data-validate="required name"></div>
+              <div class="field" data-field><label for="rPhone">Телефон</label><input id="rPhone" name="phone" type="tel" data-validate="required phone"></div>
+            </div>
+            <div class="field" data-field><span class="field__label">Удобнее</span>
+              <div class="toggle toggle--3" role="radiogroup" aria-label="Способ связи">
+                <label><input type="radio" name="channel" value="Звонок" checked><span>Звонок</span></label>
+                <label><input type="radio" name="channel" value="Telegram"><span>Telegram</span></label>
+                <label><input type="radio" name="channel" value="WhatsApp"><span>WhatsApp</span></label>
+              </div></div>
+            <div class="summary" id="summary"></div>
+            <div class="field" data-field><label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласен(на) на&nbsp;обработку персональных данных по&nbsp;<a href="../_shared/privacy.html?site=Починим" target="_blank" rel="noopener">политике</a></span></label></div>
+          </fieldset>
+          <p class="form__error" data-form-error role="alert"></p>
+          <div class="wizard__nav">
+            <button class="btn btn--line-dark" type="button" id="wizBack" hidden>← Назад</button>
+            <button class="btn btn--red" type="button" id="wizNext">Дальше →</button>
+            <button class="btn btn--red" type="submit" id="wizSubmit" hidden>Отправить заявку</button>
+          </div>
+        </form>
+        <div class="wizard__done" id="reqDone" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАТУС -->
+  <section class="block block--paper" id="status" aria-labelledby="st-title">
+    <div class="wrap status">
+      <div>
+        <h2 class="h3" id="st-title">Статус заявки</h2>
+        <p class="lead lead--dark">Введите номер из&nbsp;SMS или с&nbsp;экрана «Заявка принята».</p>
+        <form class="status__form" id="statusForm">
+          <label class="sr-only" for="stId">Номер заявки</label>
+          <input id="stId" name="orderId" placeholder="PN-1001" autocomplete="off" required>
+          <button class="btn btn--dark" type="submit">Проверить</button>
+        </form>
+        <div id="myOrders"></div>
+      </div>
+      <div class="status__result" id="statusResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div><p class="brand brand--foot"><span>ПОЧИ</span><span>НИМ<i></i></span></p><p class="muted">Мастер на&nbsp;час в&nbsp;Казани с&nbsp;2019 года</p></div>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p><p class="muted">Ежедневно 8:00–22:00</p></div>
+    <div><h2 class="footer__h">Офис</h2><p>Казань, ул. Спартаковская, 2, офис 214</p><p class="muted">Приём заявок онлайн — круглосуточно</p></div>
+    <div><h2 class="footer__h">Документы</h2><p><a href="../_shared/privacy.html?site=Починим" target="_blank" rel="noopener">Политика конфиденциальности</a></p><p><button class="linkish" type="button" data-open="guaranteeModal">Условия гарантии</button></p></div>
+  </div>
+  <p class="wrap footer__legal">© <span data-year></span> ООО «Починим», ИНН 1650000000 (демо). Цены на сайте не являются публичной офертой.</p>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn--red btn--wide" href="#request">Описать проблему →</a></div>
+
+<div class="fb-modal" id="guaranteeModal" role="dialog" aria-modal="true" aria-labelledby="gmTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="h3" id="gmTitle">Условия гарантии</h2>
+    <ul class="modal__list">
+      <li>Гарантия 12&nbsp;месяцев на&nbsp;работы и&nbsp;6&nbsp;месяцев на&nbsp;материалы, купленные нами.</li>
+      <li>Гарантийный выезд — бесплатно, в&nbsp;течение 24&nbsp;часов после обращения.</li>
+      <li>Не&nbsp;покрывает: механические повреждения, вмешательство третьих лиц, материалы клиента.</li>
+      <li>Опоздание больше 30&nbsp;минут от&nbsp;окна без предупреждения — скидка 20% на&nbsp;работу.</li>
+      <li>Для обращения нужен только номер заявки.</li>
+    </ul>
+    <a class="btn btn--red" href="#request" data-close>Оставить заявку</a>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'handyman', prefix: 'PN', name: 'Починим — мастер на час', phone: '+7 (843) 210-33-44', telegram: 'pochinim_kzn' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

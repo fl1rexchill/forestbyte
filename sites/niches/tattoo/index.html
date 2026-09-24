@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ИГЛА — тату и пирсинг в Нижнем Новгороде</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Cpath d='M22 52 L42 12' stroke='%23c9f25d' stroke-width='7' stroke-linecap='square'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+<div class="intro" id="intro" aria-hidden="true"><span class="intro__slash"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="header">
+  <a class="logo" href="#top">ИГЛА<span>/</span></a>
+  <nav class="nav" id="nav" aria-label="Основное">
+    <a href="#work">Работы</a>
+    <a href="#masters">Мастера</a>
+    <a href="#prices">Цены</a>
+    <a href="#piercing">Пирсинг</a>
+    <a href="#care">Уход</a>
+    <a href="#status" class="nav__m">Статус эскиза</a>
+  </nav>
+  <a class="btn btn--lime btn--sm header__cta" href="#brief">Обсудить идею</a>
+  <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__bg"><img src="img/hero.webp" width="960" height="540" alt="" fetchpriority="high"></div>
+    <h1 class="hero__title" id="hero-title"><span class="sr-only">ИГЛА — тату-студия и пирсинг.</span><span class="hero__word" aria-hidden="true">ИГЛА</span></h1>
+    <div class="hero__row">
+      <p class="hero__lead" data-reveal>Тату и&nbsp;пирсинг в&nbsp;Нижнем Новгороде. Три мастера, свои эскизы, одноразовая стерильная игла на&nbsp;каждый сеанс.</p>
+      <div class="hero__cta" data-reveal style="--reveal-delay:.2s">
+        <a class="btn btn--lime" href="#brief">Обсудить идею →</a>
+        <a class="btn btn--line" href="#work">Смотреть работы</a>
+      </div>
+      <p class="hero__meta" data-reveal style="--reveal-delay:.35s">ул. Рождественская, 21 · ежедневно 12:00–21:00</p>
+    </div>
+  </section>
+
+  <!-- СТИЛИ: нумерованный список с превью за курсором -->
+  <section class="styles" aria-labelledby="styles-title">
+    <h2 class="kicker" id="styles-title">Стили, в которых работаем</h2>
+    <ol class="stylelist" id="styleList" role="list"></ol>
+    <div class="cursor-preview" id="cursorPreview" aria-hidden="true"><img alt=""></div>
+  </section>
+
+  <!-- ПОРТФОЛИО -->
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="sec-head">
+      <h2 class="h2" id="work-title" data-split>Работы</h2>
+      <p class="muted">Все фото — с&nbsp;разрешения клиентов. Нажмите на&nbsp;работу, чтобы открыть.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Фильтры портфолио">
+      <div class="chips" id="fStyle"></div>
+      <label class="sel"><span class="sr-only">Мастер</span><select id="fMaster"><option value="">Все мастера</option></select></label>
+      <label class="sel"><span class="sr-only">Размер</span><select id="fSize"><option value="">Любой размер</option><option value="s">Мини (до 7 см)</option><option value="m">Средняя (7–15 см)</option><option value="l">Крупная (от 15 см)</option></select></label>
+    </div>
+    <div class="gallery" id="gallery" aria-live="polite"></div>
+  </section>
+
+  <!-- МАСТЕРА -->
+  <section class="masters" id="masters" aria-labelledby="masters-title">
+    <h2 class="h2" id="masters-title" data-split>Мастера</h2>
+    <div class="mgrid" id="mgrid"></div>
+  </section>
+
+  <!-- КАК ПРОХОДИТ -->
+  <section class="flow" aria-labelledby="flow-title">
+    <h2 class="kicker" id="flow-title">Как проходит запись</h2>
+    <ol class="flow__list" role="list" data-stagger="90">
+      <li data-reveal><b>01</b><span>Заявка</span><p>Идея, место, размер и&nbsp;референсы — через бриф ниже.</p></li>
+      <li data-reveal><b>02</b><span>Уточнение</span><p>Мастер пишет в&nbsp;течение дня, при необходимости — бесплатная консультация 15&nbsp;минут.</p></li>
+      <li data-reveal><b>03</b><span>Эскиз</span><p>3–7 дней. Правки — бесплатно, пока эскиз не&nbsp;станет «вашим».</p></li>
+      <li data-reveal><b>04</b><span>Согласование</span><p>Утверждаете эскиз и&nbsp;дату, вносите предоплату 3&nbsp;000&nbsp;₽ — она входит в&nbsp;стоимость.</p></li>
+      <li data-reveal><b>05</b><span>Сеанс</span><p>Напомним за&nbsp;день, что съесть и&nbsp;как одеться. После — памятка по&nbsp;уходу.</p></li>
+    </ol>
+  </section>
+
+  <!-- ЦЕНЫ + КАЛЬКУЛЯТОР -->
+  <section class="prices" id="prices" aria-labelledby="prices-title">
+    <div class="prices__text">
+      <h2 class="h2" id="prices-title" data-split>Сколько стоит</h2>
+      <ul class="plist" role="list">
+        <li><span>Мини, до 5 см</span><b>от 4 000 ₽</b></li>
+        <li><span>Средняя, 7–15 см</span><b>9 000–18 000 ₽</b></li>
+        <li><span>Крупная, сеанс до 6 часов</span><b>22 000 ₽</b></li>
+        <li><span>Рукав / спина</span><b>от 60 000 ₽</b></li>
+        <li><span>Перекрытие старой работы</span><b>+30%</b></li>
+      </ul>
+      <p class="muted">Цену меняют размер, детализация, цвет и&nbsp;место: рёбра и&nbsp;стопы дольше заживают и&nbsp;сложнее в&nbsp;работе.</p>
+    </div>
+    <form class="calc" id="calc" aria-labelledby="calc-title">
+      <h3 id="calc-title">Посчитать примерно</h3>
+      <label class="range"><span>Размер: <output id="cSizeOut">10 см</output></span><input type="range" id="cSize" min="3" max="40" value="10" step="1"></label>
+      <label class="sel"><span>Место</span><select id="cZone">
+        <option value="1">Предплечье</option><option value="1">Плечо</option><option value="1.1">Голень</option><option value="1.2">Бедро</option>
+        <option value="1.3">Спина</option><option value="1.35">Рёбра</option><option value="1.3">Шея</option><option value="1.4">Кисть / стопа</option></select></label>
+      <div class="seg" role="radiogroup" aria-label="Цвет">
+        <label><input type="radio" name="cColor" value="1" checked><span>Чёрно-белая</span></label>
+        <label><input type="radio" name="cColor" value="1.2"><span>Цветная</span></label>
+      </div>
+      <div class="seg" role="radiogroup" aria-label="Детализация">
+        <label><input type="radio" name="cDet" value="0.85"><span>Контур</span></label>
+        <label><input type="radio" name="cDet" value="1" checked><span>Средняя</span></label>
+        <label><input type="radio" name="cDet" value="1.3"><span>Реализм</span></label>
+      </div>
+      <div class="calc__out"><strong id="cOut">—</strong><span id="cSess"></span></div>
+      <a class="btn btn--lime btn--wide" href="#brief" id="cToBrief">Отправить идею с этим расчётом</a>
+    </form>
+  </section>
+
+  <!-- ЭСКИЗЫ -->
+  <section class="flash" aria-labelledby="flash-title">
+    <img src="img/flash.webp" width="1024" height="682" alt="Лист готовых эскизов: ласточки, бабочки, роза, крест" loading="lazy" data-reveal="scale">
+    <div>
+      <h2 class="h2" id="flash-title" data-split>Флэш-день</h2>
+      <p class="lead">Каждую последнюю субботу месяца — готовые эскизы мастеров со&nbsp;скидкой 20%. Каждый эскиз бьётся один раз.</p>
+      <button class="btn btn--line" type="button" id="flashBtn">Хочу на флэш-день</button>
+    </div>
+  </section>
+
+  <!-- ПИРСИНГ -->
+  <section class="piercing" id="piercing" aria-labelledby="pier-title">
+    <div class="pier__media"><img src="img/pierce1.webp" width="512" height="640" alt="Прокол уха, чёрно-белое фото" loading="lazy"><img src="img/pierce2.webp" width="512" height="640" alt="Улыбающаяся девушка с пирсингом в носу" loading="lazy"></div>
+    <div>
+      <h2 class="h2" id="pier-title" data-split>Пирсинг</h2>
+      <p class="lead">Проколы канюлей, титан ASTM F136 в&nbsp;стоимости. Замена украшения через 2&nbsp;месяца — бесплатно.</p>
+      <form class="pier-form" id="pierForm">
+        <div class="pier-list" role="radiogroup" aria-label="Прокол" id="pierList"></div>
+        <div class="days" id="pDays" role="radiogroup" aria-label="Дата"></div>
+        <div class="slots" id="pSlots" role="radiogroup" aria-label="Время"></div>
+        <div class="grid2">
+          <div class="field" data-field><label for="pName">Имя</label><input id="pName" name="name" autocomplete="given-name" data-validate="required name"></div>
+          <div class="field" data-field><label for="pPhone">Телефон</label><input id="pPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <label class="check"><input type="checkbox" name="adult" value="yes" data-validate="required" data-msg="Проколы до 18 лет — только с родителем, напишите нам"><span>Мне есть 18 лет</span></label>
+        <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласен(на) на&nbsp;<a href="../_shared/privacy.html?site=ИГЛА" target="_blank" rel="noopener">обработку данных</a></span></label>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--lime btn--wide" type="submit" id="pSubmit">Записаться на прокол</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- БРИФ -->
+  <section class="brief" id="brief" aria-labelledby="brief-title">
+    <h2 class="h2" id="brief-title" data-split>Обсудить идею</h2>
+    <p class="lead">Чем подробнее бриф, тем точнее эскиз и&nbsp;цена. Заполнение — около 3&nbsp;минут.</p>
+    <form class="bform" id="briefForm">
+      <div class="bcol">
+        <div class="field" data-field><span class="field__label" id="bsLbl">Стиль</span><div class="chips" role="radiogroup" aria-labelledby="bsLbl" id="bStyle"></div></div>
+        <div class="field" data-field><label for="bIdea">Идея</label><textarea id="bIdea" name="comment" rows="4" data-validate="required min:15" data-msg="Опишите идею хотя бы в паре предложений" placeholder="Ветка сакуры с птицей, тонкие линии, без заливки. Хочу, чтобы уходила на ключицу."></textarea></div>
+        <div class="grid2">
+          <div class="field" data-field><label for="bZone">Место на теле</label><select id="bZone" name="zone" data-validate="required" data-msg="Выберите место"><option value="">Выберите</option><option>Предплечье</option><option>Плечо</option><option>Ключица</option><option>Спина</option><option>Рёбра</option><option>Бедро</option><option>Голень</option><option>Шея</option><option>Кисть</option><option>Стопа</option><option>Другое</option></select></div>
+          <div class="field" data-field><label for="bSize">Размер: <output id="bSizeOut">10 см</output></label><input id="bSize" name="size" type="range" min="3" max="40" value="10"></div>
+        </div>
+        <div class="seg" role="radiogroup" aria-label="Цвет"><label><input type="radio" name="color" value="Чёрно-белая" checked><span>Чёрно-белая</span></label><label><input type="radio" name="color" value="Цветная"><span>Цветная</span></label><label><input type="radio" name="color" value="Не знаю"><span>Посоветуйте</span></label></div>
+        <label class="upload" data-drop><input type="file" id="bFiles" multiple accept="image/*"><span><b>Референсы</b> — перетащите или выберите, до 6 фото</span></label>
+        <ul class="fb-files" id="bFileList" role="list"></ul>
+      </div>
+      <div class="bcol">
+        <div class="grid2">
+          <div class="field" data-field><label for="bMaster">Мастер</label><select id="bMaster" name="master"><option value="">Подберите мастера</option></select></div>
+          <div class="field" data-field><label for="bWhen">Когда хочется</label><select id="bWhen" name="when"></select></div>
+          <div class="field" data-field><label for="bBudget">Бюджет</label><select id="bBudget" name="budget"><option>до 10 000 ₽</option><option selected>10–20 000 ₽</option><option>20–40 000 ₽</option><option>от 40 000 ₽</option><option>Нет ограничений</option></select></div>
+          <div class="field" data-field><label for="bCover">Перекрытие?</label><select id="bCover" name="cover"><option>Нет, чистая кожа</option><option>Да, перекрыть старую</option><option>Коррекция своей работы</option></select></div>
+        </div>
+        <label class="check"><input type="checkbox" id="bConsult" name="consult" value="yes"><span>Хочу бесплатную консультацию 15 минут (в студии или по видео)</span></label>
+        <div id="consultPick" hidden>
+          <div class="days" id="cDays" role="radiogroup" aria-label="Дата консультации"></div>
+          <div class="slots" id="cSlots" role="radiogroup" aria-label="Время консультации"></div>
+        </div>
+        <div class="grid2">
+          <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" autocomplete="given-name" data-validate="required name"></div>
+          <div class="field" data-field><label for="bContact">Телефон или @ник в Telegram</label><input id="bContact" name="contact" data-validate="required contact" placeholder="+7… или @nick"></div>
+        </div>
+        <label class="check"><input type="checkbox" name="photo" value="yes"><span>Разрешаю опубликовать фото готовой работы в портфолио (без лица)</span></label>
+        <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Мне есть 18 лет, согласен(на) на&nbsp;<a href="../_shared/privacy.html?site=ИГЛА" target="_blank" rel="noopener">обработку данных</a></span></label>
+        <div class="calc__out calc__out--small"><span>Ориентир</span><strong id="bEst">—</strong></div>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--lime btn--wide" type="submit">Отправить бриф</button>
+      </div>
+    </form>
+    <div class="bdone" id="briefDone" hidden></div>
+  </section>
+
+  <!-- СТАТУС -->
+  <section class="status" id="status" aria-labelledby="st-title">
+    <div>
+      <h2 class="h2" id="st-title" data-split>Статус эскиза</h2>
+      <form class="st-form" id="stForm"><label class="sr-only" for="stId">Номер заявки</label><input id="stId" name="orderId" placeholder="IG-1001" autocomplete="off" required><button class="btn btn--lime" type="submit">Проверить</button></form>
+    </div>
+    <div class="st-out" id="stOut" aria-live="polite"></div>
+  </section>
+
+  <!-- УХОД -->
+  <section class="care" id="care" aria-labelledby="care-title">
+    <h2 class="h2" id="care-title" data-split>Уход после сеанса</h2>
+    <div class="acc">
+      <div class="acc__item" data-acc><h3><button type="button" aria-expanded="true" aria-controls="c1">День 1–3<span aria-hidden="true">+</span></button></h3><div id="c1" class="acc__a"><p>Плёнку снять через 24&nbsp;часа (или по&nbsp;указанию мастера). Промыть тёплой водой с&nbsp;мылом без отдушек, промокнуть бумажным полотенцем, тонкий слой заживляющего крема 2–3&nbsp;раза в&nbsp;день.</p></div></div>
+      <div class="acc__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="c2">День 4–14<span aria-hidden="true">+</span></button></h3><div id="c2" class="acc__a"><p>Появится корочка и&nbsp;зуд — не&nbsp;чешите и&nbsp;не&nbsp;сдирайте. Никаких бань, бассейнов, моря и&nbsp;солярия. Свободная одежда из&nbsp;хлопка.</p></div></div>
+      <div class="acc__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="c3">Через месяц<span aria-hidden="true">+</span></button></h3><div id="c3" class="acc__a"><p>Кожа восстановилась — можно на&nbsp;солнце с&nbsp;SPF&nbsp;50. Бесплатная коррекция в&nbsp;течение 2&nbsp;месяцев, если что-то зажило неровно.</p></div></div>
+      <div class="acc__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="c4">Пирсинг<span aria-hidden="true">+</span></button></h3><div id="c4" class="acc__a"><p>Промывать физраствором 2&nbsp;раза в&nbsp;день, не&nbsp;крутить украшение, не&nbsp;спать на&nbsp;проколе. Хрящ заживает 3–6&nbsp;месяцев, мочка — 6–8&nbsp;недель.</p></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="footer__word" aria-hidden="true">ИГЛА/</p>
+  <div class="footer__grid">
+    <div><h2 class="footer__h">Студия</h2><p>Нижний Новгород, ул. Рождественская, 21, 2 этаж</p><p>Ежедневно 12:00–21:00</p></div>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p></div>
+    <div><h2 class="footer__h">Стерильность</h2><p>Одноразовые иглы и&nbsp;колпачки, автоклав класса&nbsp;B, медицинская лицензия на&nbsp;пирсинг.</p></div>
+    <div><h2 class="footer__h">Документы</h2><p><a href="../_shared/privacy.html?site=ИГЛА" target="_blank" rel="noopener">Политика конфиденциальности</a></p><p class="muted">© <span data-year></span> ИП Корнилов Д. С. (демо)</p></div>
+  </div>
+</footer>
+
+<!-- Лайтбокс -->
+<div class="fb-modal lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр работы">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog lb">
+    <button class="lb__close" type="button" data-close aria-label="Закрыть">×</button>
+    <button class="lb__nav lb__prev" type="button" id="lbPrev" aria-label="Предыдущая работа">←</button>
+    <figure class="lb__fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button class="lb__nav lb__next" type="button" id="lbNext" aria-label="Следующая работа">→</button>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'tattoo', prefix: 'IG', name: 'ИГЛА — тату-студия', phone: '+7 (831) 280-90-10', telegram: 'igla_nn' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

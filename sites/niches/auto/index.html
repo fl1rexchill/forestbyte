@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ТОРК — автосервис и шиномонтаж в Екатеринбурге</title>
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23ffd60a' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+
+<div class="promo-strip">Сезон шин открыт: переобувка от&nbsp;1&nbsp;800&nbsp;₽ и&nbsp;хранение за&nbsp;3&nbsp;500&nbsp;₽ · <a href="#tires">Посчитать</a></div>
+
+<header class="subnav" id="top">
+  <div class="subnav__in">
+    <a class="subnav__brand" href="#top">ТОРК<span>.</span></a>
+    <div class="jump">
+      <button class="jump__btn" type="button" aria-expanded="false" aria-controls="jumpList" id="jumpBtn"><span id="jumpLabel">Разделы</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg></button>
+      <ul class="jump__list" id="jumpList" role="list" hidden>
+        <li><a href="#features">Почему ТОРК</a></li>
+        <li><a href="#visit">Как проходит визит</a></li>
+        <li><a href="#services">Услуги и цены</a></li>
+        <li><a href="#tires">Шиномонтаж</a></li>
+        <li><a href="#booking">Запись</a></li>
+        <li><a href="#specs">Оборудование</a></li>
+        <li><a href="#faq">Вопросы</a></li>
+      </ul>
+    </div>
+    <nav class="subnav__links" aria-label="Основное">
+      <a href="#services">Цены</a>
+      <a href="#tires">Шины</a>
+      <button type="button" data-open="garage">Мой гараж</button>
+      <a href="#status">Статус авто</a>
+    </nav>
+    <a class="btn btn--yellow btn--sm" href="#booking">Записаться</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__text">
+      <p class="hero__eyebrow" data-reveal>ТОРК · Екатеринбург, ул. Шефская, 2Г · 8:00–21:00</p>
+      <h1 id="hero-title" class="hero__title" data-split>Сервис, который не&nbsp;удивляет счётом.</h1>
+      <p class="hero__lead" data-reveal style="--reveal-delay:.3s">ТО, ходовая, тормоза и&nbsp;шиномонтаж для любых марок. Цена фиксируется до&nbsp;начала работ, всё лишнее — только после вашего «да» в&nbsp;Telegram.</p>
+      <div class="hero__btns" data-reveal style="--reveal-delay:.45s">
+        <a class="btn btn--white" href="#booking">Записаться в сервис</a>
+        <a class="btn btn--ghost" href="#services">Рассчитать стоимость ▸</a>
+      </div>
+    </div>
+    <div class="hero__media" data-reveal="fade">
+      <img src="img/hero.webp" width="1024" height="576" alt="Кроссовер с включёнными фарами в тёмном боксе" fetchpriority="high">
+      <div class="hero__slot" id="heroSlot" aria-live="polite">Ближайшее свободное окно: <b>ищем…</b></div>
+    </div>
+  </section>
+
+  <!-- BENTO -->
+  <section class="bento-sec" id="features" aria-labelledby="bento-title">
+    <h2 class="h2 center" id="bento-title" data-split>Почему к нам <span class="y">возвращаются</span></h2>
+    <div class="bento">
+      <article class="tile tile--a" data-reveal><img src="img/caliper.webp" width="711" height="474" alt="Колесо с жёлтым тормозным суппортом" loading="lazy"><div class="tile__t"><h3>Тормоза под&nbsp;ключ</h3><p>Колодки, диски, жидкость — за&nbsp;один визит</p></div></article>
+      <article class="tile tile--b" data-reveal><div class="tile__big"><span data-count="30">30</span><small>мин</small></div><h3>Компьютерная диагностика</h3><p>Отчёт с&nbsp;ошибками и&nbsp;фото — в&nbsp;мессенджер</p></article>
+      <article class="tile tile--c" data-reveal><img src="img/hood.webp" width="683" height="853" alt="Красный спорткар с открытым капотом в боксе" loading="lazy"><div class="tile__t"><h3>Видео с поста</h3><p>Показываем, что сломалось, до&nbsp;ремонта</p></div></article>
+      <article class="tile tile--d" data-reveal><div class="tile__big tile__big--y">12<small>мес</small></div><h3>Гарантия на работы</h3><p>или 20&nbsp;000&nbsp;км — что наступит раньше</p></article>
+      <article class="tile tile--e" data-reveal><img src="img/engine.webp" width="1024" height="682" alt="Двигатель под пластиковой крышкой" loading="lazy"><div class="tile__t"><h3>Оригинал или аналог</h3><p>Две сметы — выбираете вы</p></div></article>
+      <article class="tile tile--f" data-reveal><img src="img/parking.webp" width="1024" height="576" alt="Подземный паркинг с ровным светом" loading="lazy"><div class="tile__t"><h3>Хранение шин</h3><p>Мойка, упаковка, стеллаж — 3&nbsp;500&nbsp;₽ за&nbsp;сезон</p></div></article>
+      <article class="tile tile--g" data-reveal><div class="tile__big"><span data-count="4.9">4,9</span><small>★</small></div><h3>1 260 отзывов</h3><p>на&nbsp;Яндекс Картах и&nbsp;2ГИС</p></article>
+    </div>
+  </section>
+
+  <!-- ВИЗИТ: закреплённая сцена -->
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="visit__stage">
+      <div class="visit__media" aria-hidden="true">
+        <img src="img/service.webp" width="960" height="640" alt="" class="is-on" data-scene="0">
+        <img src="img/brakes.webp" width="1024" height="682" alt="" data-scene="1">
+        <img src="img/spark.webp" width="1024" height="682" alt="" data-scene="2">
+        <img src="img/wheeloff.webp" width="683" height="853" alt="" data-scene="3">
+        <img src="img/garage.webp" width="1024" height="576" alt="" data-scene="4">
+      </div>
+      <div class="visit__copy">
+        <h2 class="h2" id="visit-title">Как проходит визит</h2>
+        <ol class="visit__steps" role="list">
+          <li data-scene-i="0"><b>01 · Запись</b>Выбираете услугу и&nbsp;время — пост закрепляется за&nbsp;вами.</li>
+          <li data-scene-i="1"><b>02 · Диагностика</b>Мастер проверяет авто, фото и&nbsp;видео приходят в&nbsp;Telegram.</li>
+          <li data-scene-i="2"><b>03 · Согласование</b>Цена фиксируется. Нашли ещё что-то — пишем и&nbsp;ждём вашего решения.</li>
+          <li data-scene-i="3"><b>04 · Работа</b>Статус видно онлайн: «на&nbsp;подъёмнике», «ждём запчасть», «готово».</li>
+          <li data-scene-i="4"><b>05 · Выдача</b>Старые запчасти — в&nbsp;багажнике, заказ-наряд и&nbsp;гарантия — в&nbsp;мессенджере.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ И ЦЕНЫ -->
+  <section class="services" id="services" aria-labelledby="svc-title">
+    <div class="sec-head">
+      <h2 class="h2" id="svc-title" data-split>Цены под <span class="y">вашу машину</span></h2>
+      <p class="lead">Выберите марку — цены пересчитаются под класс авто. Отметьте работы — сформируем заявку.</p>
+    </div>
+    <div class="carpick" role="group" aria-label="Ваш автомобиль">
+      <label class="sel"><span>Марка</span><select id="carBrand"></select></label>
+      <label class="sel"><span>Модель</span><input id="carModel" list="modelList" placeholder="Например, Octavia" autocomplete="off"><datalist id="modelList"></datalist></label>
+      <label class="sel"><span>Год</span><select id="carYear"></select></label>
+      <div class="carpick__class" id="carClass" aria-live="polite">Класс: —</div>
+    </div>
+    <div class="svc-tabs" role="tablist" aria-label="Категории услуг" id="svcTabs"></div>
+    <div class="svc-panel" id="svcPanel" role="tabpanel"></div>
+    <div class="cart" id="cart" aria-live="polite">
+      <div><b id="cartCount">0 работ</b> · <span id="cartTime">—</span></div>
+      <div class="cart__sum" id="cartSum">0 ₽</div>
+      <a class="btn btn--yellow" href="#booking" id="cartGo">Записаться с этими работами</a>
+    </div>
+  </section>
+
+  <!-- ШИНОМОНТАЖ -->
+  <section class="tires" id="tires" aria-labelledby="tires-title">
+    <div class="tires__media"><img src="img/tread.webp" width="640" height="640" alt="Протектор зимней шины крупным планом" loading="lazy"></div>
+    <div class="tires__calc">
+      <h2 class="h2" id="tires-title" data-split>Шиномонтаж <span class="y">за&nbsp;40&nbsp;минут</span></h2>
+      <form id="tireForm" class="tire-form" onsubmit="return false">
+        <div class="field"><span class="field__label" id="rLbl">Радиус</span><div class="pills" role="radiogroup" aria-labelledby="rLbl" id="radii"></div></div>
+        <div class="field"><span class="field__label" id="tLbl">Тип авто</span>
+          <div class="pills" role="radiogroup" aria-labelledby="tLbl">
+            <label><input type="radio" name="ttype" value="car" checked><span>Легковой</span></label>
+            <label><input type="radio" name="ttype" value="suv"><span>Кроссовер</span></label>
+            <label><input type="radio" name="ttype" value="jeep"><span>Внедорожник</span></label>
+          </div></div>
+        <div class="field"><span class="field__label">Дополнительно</span>
+          <div class="checks">
+            <label><input type="checkbox" name="topt" value="wash" checked><span>Мойка колёс</span><em>+400 ₽</em></label>
+            <label><input type="checkbox" name="topt" value="bags"><span>Пакеты для шин</span><em>+200 ₽</em></label>
+            <label><input type="checkbox" name="topt" value="runflat"><span>RunFlat / низкий профиль</span><em>+30%</em></label>
+            <label><input type="checkbox" name="topt" value="storage"><span>Хранение до весны</span><em>+3 500 ₽</em></label>
+          </div></div>
+        <div class="tire-total"><span>Комплект из 4 колёс</span><strong id="tireTotal">—</strong><small id="tireTime"></small></div>
+        <button class="btn btn--yellow btn--wide" type="button" id="tireBook">Записаться на шиномонтаж</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ЗАПИСЬ -->
+  <section class="booking" id="booking" aria-labelledby="bk-title">
+    <div class="sec-head">
+      <h2 class="h2" id="bk-title" data-split>Запись <span class="y">на свободный пост</span></h2>
+      <p class="lead">Покажем только реально свободное время. Подтверждение придёт в&nbsp;течение 10&nbsp;минут.</p>
+    </div>
+    <form class="bk" id="bkForm">
+      <div class="bk__col">
+        <h3 class="bk__h">1. Автомобиль</h3>
+        <div class="grid2">
+          <div class="field" data-field><label for="bBrand">Марка</label><select id="bBrand" name="brand" data-validate="required" data-msg="Выберите марку"></select></div>
+          <div class="field" data-field><label for="bModel">Модель</label><input id="bModel" name="model" list="modelList" data-validate="required" data-msg="Укажите модель" autocomplete="off"></div>
+          <div class="field" data-field><label for="bYear">Год</label><select id="bYear" name="year"></select></div>
+          <div class="field" data-field><label for="bMileage">Пробег, км</label><input id="bMileage" name="mileage" inputmode="numeric" placeholder="85 000"></div>
+        </div>
+        <div class="field" data-field><label for="bPlate">Госномер или VIN <span class="opt">для подбора запчастей</span></label><input id="bPlate" name="plate" placeholder="А123ВС 196" autocomplete="off"></div>
+        <h3 class="bk__h">2. Что сделать</h3>
+        <div class="bk__services" id="bkServices"></div>
+        <div class="field" data-field><label for="bProblem">Опишите симптомы <span class="opt">необязательно</span></label><textarea id="bProblem" name="comment" rows="3" placeholder="Стучит спереди справа на кочках, после 60 км/ч вибрирует руль"></textarea></div>
+        <div class="field"><span class="field__label">Фото, видео или документы</span>
+          <label class="upload" data-drop><input type="file" id="bFiles" multiple accept="image/*,video/mp4,video/quicktime,application/pdf"><span>+ Прикрепить файлы</span></label>
+          <ul class="fb-files" id="bFileList" role="list"></ul></div>
+      </div>
+      <div class="bk__col">
+        <h3 class="bk__h">3. Когда</h3>
+        <div class="field" data-field><span class="field__label">Пост</span>
+          <div class="pills" role="radiogroup" aria-label="Пост" id="bBox">
+            <label><input type="radio" name="box" value="Пост 1 · слесарный" checked><span>Слесарный</span></label>
+            <label><input type="radio" name="box" value="Пост 2 · диагностика"><span>Диагностика</span></label>
+            <label><input type="radio" name="box" value="Пост 3 · шиномонтаж"><span>Шиномонтаж</span></label>
+          </div></div>
+        <div class="days" id="bDays" role="radiogroup" aria-label="Дата"></div>
+        <div class="slots" id="bSlots" role="radiogroup" aria-label="Время"></div>
+        <h3 class="bk__h">4. Контакты</h3>
+        <div class="grid2">
+          <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" autocomplete="given-name" data-validate="required name"></div>
+          <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
+        </div>
+        <label class="check"><input type="checkbox" name="wait" value="yes"><span>Подожду в&nbsp;зоне отдыха (кофе, Wi-Fi)</span></label>
+        <label class="check"><input type="checkbox" name="consent" value="yes" data-validate="required"><span>Согласен(на) на&nbsp;<a href="../_shared/privacy.html?site=ТОРК" target="_blank" rel="noopener">обработку данных</a></span></label>
+        <div class="bk__total"><span>Предварительно</span><strong id="bkTotal">по результатам диагностики</strong></div>
+        <p class="form__error" data-form-error role="alert"></p>
+        <button class="btn btn--yellow btn--wide btn--lg" type="submit">Записаться</button>
+      </div>
+    </form>
+    <div class="bk-done" id="bkDone" hidden></div>
+  </section>
+
+  <!-- СТАТУС -->
+  <section class="status" id="status" aria-labelledby="st-title">
+    <div class="status__in">
+      <div>
+        <h2 class="h2" id="st-title">Статус <span class="y">автомобиля</span></h2>
+        <p class="lead">Номер заказ-наряда придёт в&nbsp;SMS после записи.</p>
+        <form class="status__form" id="stForm"><label class="sr-only" for="stId">Номер</label><input id="stId" name="orderId" placeholder="TK-1001" autocomplete="off" required><button class="btn btn--white" type="submit">Проверить</button></form>
+      </div>
+      <div class="status__out" id="stOut" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ОБОРУДОВАНИЕ -->
+  <section class="specs" id="specs" aria-labelledby="specs-title">
+    <h2 class="h2" id="specs-title">Оборудование</h2>
+    <dl class="spec-list">
+      <div><dt>Подъёмники</dt><dd>4 двухстоечных, 1 ножничный для развала</dd></div>
+      <div><dt>Развал-схождение</dt><dd>3D-стенд Hunter Hawkeye Elite, протокол до/после</dd></div>
+      <div><dt>Диагностика</dt><dd>Launch X-431 PRO, дилерские сканеры VAG, Toyota, Hyundai/Kia</dd></div>
+      <div><dt>Шиномонтаж</dt><dd>Станок для RunFlat и низкого профиля до R22, балансировка с лазерным указателем</dd></div>
+      <div><dt>Кондиционеры</dt><dd>Автоматическая станция заправки, проверка на утечки ультрафиолетом</dd></div>
+      <div><dt>Зона ожидания</dt><dd>Окно в бокс, кофе, Wi-Fi, рабочее место с розеткой</dd></div>
+    </dl>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" aria-labelledby="rv-title">
+    <h2 class="h2 center" id="rv-title" data-split>Отзывы <span class="y">с маркой и работой</span></h2>
+    <div class="rv-track" data-lenis-prevent-horizontal>
+      <blockquote class="rv" data-reveal><p>«Приехал на замену колодок, нашли течь ШРУСа. Прислали видео, согласовал — сделали за тот же визит. Счёт как в смете».</p><footer><b>Kia Rio 2019</b> · тормоза, ШРУС · Антон · август 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Переобувка R18 за 35 минут, шины забрали на хранение, помыли и упаковали. Весной напомнили сами».</p><footer><b>Toyota RAV4 2021</b> · шиномонтаж, хранение · Ольга · апрель 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Диагностика подвески с отчётом и фото. Сказали, что можно ещё поездить, — не стали навязывать. Это редкость».</p><footer><b>Skoda Octavia 2017</b> · диагностика · Ильдар · июль 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«ТО по регламенту с оригинальными запчастями, дали две сметы. Выбрал аналоги — сэкономил 6 тысяч».</p><footer><b>Hyundai Creta 2020</b> · ТО-60 · Сергей · июнь 2026</footer></blockquote>
+      <blockquote class="rv" data-reveal><p>«Заправили кондиционер и нашли утечку в трубке. Всё показали на ультрафиолете. Холодит отлично».</p><footer><b>Volkswagen Polo 2018</b> · кондиционер · Марина · май 2026</footer></blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <h2 class="h2" id="faq-title">Вопросы</h2>
+    <div class="faq__list">
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q1">Можно со своими запчастями?<span aria-hidden="true">+</span></button></h3><div class="faq__a" id="q1"><p>Да. Гарантия на работу сохраняется, на саму запчасть — нет. Если деталь не подойдёт, предложим аналог из наличия.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q2">Сохранится ли гарантия дилера?<span aria-hidden="true">+</span></button></h3><div class="faq__a" id="q2"><p>Да: работаем по регламенту производителя, используем допущенные масла и ставим отметку в сервисную книжку. Это позволяет закон о защите конкуренции.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q3">Сколько ждать запчасти?<span aria-hidden="true">+</span></button></h3><div class="faq__a" id="q3"><p>Расходники и популярные позиции — на складе. Остальное — 1–2 дня, оригинал под заказ — до 7 дней. Срок пишем в смете.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q4">Что если нашли дополнительные неисправности?<span aria-hidden="true">+</span></button></h3><div class="faq__a" id="q4"><p>Присылаем фото и цену в Telegram, в разделе «Статус автомобиля» можно согласовать или отказаться. Без вашего решения ничего не делаем.</p></div></div>
+      <div class="faq__item" data-acc><h3><button type="button" aria-expanded="false" aria-controls="q5">Как работает хранение шин?<span aria-hidden="true">+</span></button></h3><div class="faq__a" id="q5"><p>Моем, сушим, упаковываем и маркируем. Хранение в отапливаемом складе до конца сезона — 3 500 ₽ за комплект. Выдаём по записи за 1 день.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <div><p class="subnav__brand">ТОРК<span>.</span></p><p class="muted">Автосервис и шиномонтаж с 2016 года</p></div>
+    <div><h2 class="footer__h">Адрес</h2><p>Екатеринбург, ул. Шефская, 2Г</p><a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%A8%D0%B5%D1%84%D1%81%D0%BA%D0%B0%D1%8F%2C%202%D0%93" target="_blank" rel="noopener">Схема проезда ↗</a></div>
+    <div><h2 class="footer__h">Часы</h2><p>Ежедневно 8:00–21:00</p><p class="muted">Шиномонтаж в сезон — до 23:00</p></div>
+    <div><h2 class="footer__h">Связь</h2><p><a data-phone href="#"></a></p><p><a data-tg href="#">Telegram</a></p></div>
+  </div>
+  <p class="footer__legal">© <span data-year></span> ООО «Торк Сервис», ИНН 6670000000 (демо) · <a href="../_shared/privacy.html?site=ТОРК" target="_blank" rel="noopener">Политика конфиденциальности</a></p>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn--yellow btn--wide" href="#booking">Записаться</a></div>
+
+<!-- Мой гараж -->
+<div class="fb-modal" id="garage" role="dialog" aria-modal="true" aria-labelledby="gTitle" style="--modal-w:680px">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog modal">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <h2 class="modal__title" id="gTitle">Мой гараж</h2>
+    <div id="gBody"></div>
+  </div>
+</div>
+
+<script>
+  window.SITE = { site: 'auto', prefix: 'TK', name: 'ТОРК — автосервис', phone: '+7 (343) 300-40-50', telegram: 'tork_ekb' };
+</script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Десять ниш — сайты forestbyte</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141414'/%3E%3Ctext x='32' y='44' font-size='30' text-anchor='middle' fill='%23f1ede4' font-family='Arial' font-weight='700'%3E10%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #f1ede4; --ink: #141414; --mute: #6f6a60; --line: rgba(20,20,20,.14); --card: #fbf9f4; --pad: clamp(16px, 4vw, 56px); --ease: cubic-bezier(.2,.8,.2,1); }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 "Inter", system-ui, sans-serif; overflow-x: clip; }
+    a { color: inherit; }
+    h1, h2, p, ul { margin: 0; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 0 var(--pad); }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .top b { font: 700 17px/1 "Unbounded", sans-serif; letter-spacing: -.02em; }
+    .top nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); text-decoration: none; font-size: 14px; font-weight: 500; background: var(--card); transition: transform .25s var(--ease), background .2s, color .2s; }
+    .pill:hover { transform: translateY(-2px); background: var(--ink); color: var(--bg); }
+    .pill:active { transform: translateY(1px) scale(.97); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #bbb; }
+    .dot.on { background: #2f9e5b; box-shadow: 0 0 0 4px rgba(47,158,91,.18); }
+    .dot.off { background: #d08a1e; }
+    .intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px 60px; align-items: end; padding: clamp(50px, 8vw, 110px) 0 clamp(36px, 5vw, 60px); }
+    .intro > * { min-width: 0; }
+    h1 { font: 700 clamp(44px, 8vw, 128px)/.92 "Unbounded", sans-serif; letter-spacing: -.05em; }
+    .intro p { color: var(--mute); max-width: 52ch; }
+    .intro p + p { margin-top: 12px; }
+    .intro code { font-size: 14px; background: var(--card); padding: 2px 6px; border-radius: 6px; color: var(--ink); }
+    .list { list-style: none; padding: 0; border-top: 1px solid var(--ink); }
+    .row { position: relative; display: grid; grid-template-columns: 60px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); transition: padding .4s var(--ease); }
+    .row::before { content: ""; position: absolute; inset: 0 calc(var(--pad) * -1); background: var(--c, #ddd); opacity: 0; transition: opacity .35s; z-index: -1; }
+    .row:hover { padding-left: 14px; }
+    .row:hover::before { opacity: .16; }
+    .row__n { font: 500 14px/1 "Unbounded", sans-serif; color: var(--mute); }
+    .row__name { font: 700 clamp(22px, 2.4vw, 34px)/1.05 "Unbounded", sans-serif; letter-spacing: -.03em; text-decoration: none; }
+    .row__name small { display: block; font: 500 14px/1.4 "Inter", sans-serif; letter-spacing: 0; color: var(--mute); margin-top: 6px; }
+    .row__ref { font-size: 14px; color: var(--mute); }
+    .row__ref a { color: var(--ink); text-underline-offset: 3px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chips span { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+    .row__go { display: flex; gap: 8px; }
+    .go { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); text-decoration: none; font-size: 20px; transition: transform .3s var(--ease); }
+    .row:hover .go { transform: rotate(-45deg); }
+    .peek { position: fixed; left: 0; top: 0; width: 300px; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; pointer-events: none; z-index: 5; opacity: 0; transform: translate3d(-50%, -50%, 0) scale(.85); transition: opacity .25s, transform .35s var(--ease); box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+    .peek.is-on { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1); }
+    .peek img { width: 100%; height: 100%; object-fit: cover; }
+    .foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding: 50px 0 70px; color: var(--mute); font-size: 14px; }
+    .foot b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+    @media (max-width: 980px) {
+      .intro { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "n name go" "n ref ref" "n chips chips"; row-gap: 10px; }
+      .row__n { grid-area: n; align-self: start; padding-top: 8px; }
+      .row__name { grid-area: name; }
+      .row__ref { grid-area: ref; }
+      .chips { grid-area: chips; }
+      .row__go { grid-area: go; }
+      .peek { display: none; }
+      .foot { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <b>forestbyte · ниши</b>
+      <nav aria-label="Служебное">
+        <span class="pill" id="mode" title="Куда уходят заявки"><span class="dot" id="modeDot"></span><span id="modeText">проверяем сервер…</span></span>
+        <a class="pill" href="crm/">CRM-панель →</a>
+      </nav>
+    </header>
+
+    <section class="intro">
+      <h1>Десять ниш — десять сайтов</h1>
+      <div>
+        <p>Каждый сайт собран по мотивам одного референса и спецификации своей ниши. Всё работает: запись, калькуляторы, личные кабинеты, заявки уходят на сервер, в Telegram и CRM.</p>
+        <p>Без сервера сайты работают в демо-режиме — заявки сохраняются в браузере. Запуск: <code>node server/server.mjs</code></p>
+      </div>
+    </section>
+
+    <ol class="list" id="list"></ol>
+
+    <footer class="foot">
+      <p><b>Как смотреть</b>Откройте сайт, пройдите запись или заказ до конца, затем проверьте заявку в CRM-панели.</p>
+      <p><b>Общее ядро</b>_shared/core.js: плавный скролл, модалки, формы с проверкой, антиспам, загрузка файлов, заявки.</p>
+      <p><b>Ошибки ИИ</b>Список того, чего избегали при сборке, — в AI_MISTAKES.md рядом с этой страницей.</p>
+    </footer>
+  </div>
+  <div class="peek" id="peek" aria-hidden="true"><img id="peekImg" alt=""></div>
+
+  <script>
+    (function () {
+      var SITES = [
+        ['fitness', 'Линия', 'Студия барре и пилатеса, Москва', '#b98b5e', 'hero', 'thestudiobyjuliegranger.com', 'https://thestudiobyjuliegranger.com', ['расписание', 'запись и лист ожидания', 'абонементы и промокоды', 'кабинет с заморозкой']],
+        ['handyman', 'Починим', 'Мастер на час, Казань', '#2f7d4f', 'hero', 'ownthepatch.co.uk', 'https://ownthepatch.co.uk', ['прайс с поиском', 'мастер-заявка в 5 шагов', 'голосовое и фото', 'статус и оценка']],
+        ['auto', 'ТОРК', 'Автосервис и шиномонтаж, Екатеринбург', '#f2c230', 'hero', 'insta360 — Luna Ultra', 'https://www.insta360.com', ['цены по классу авто', 'шинный калькулятор', 'запись на пост', 'согласование доп. работ']],
+        ['clothing', 'Кройка', 'Одежда: в наличии, под заказ, пошив, Санкт-Петербург', '#e8703a', 'flatlay', 'coffee-tech.com/catalog', 'https://coffee-tech.com/catalog', ['каталог с фильтрами', 'подбор размера', 'корзина и промокоды', 'пошив по меркам']],
+        ['tattoo', 'ИГЛА', 'Тату и пирсинг, Нижний Новгород', '#c6f24e', 'hero', 'makethecut.studio/work', 'https://makethecut.studio/work', ['портфолио с лайтбоксом', 'бриф и референсы', 'калькулятор цены', 'согласование эскиза']],
+        ['cleaning', 'Свежо', 'Клининг, Новосибирск', '#1f8f78', 'hero', 'Duten — навигация по продуктам (Awwwards)', 'https://www.awwwards.com', ['калькулятор в первом экране', 'проверка зоны', 'заказ в 4 шага', 'повтор последнего заказа']],
+        ['cosmetology', 'Этюд', 'Косметология и лазер, Краснодар', '#0f3a40', 'hero', 'vita-travel.webflow.io', 'https://vita-travel.webflow.io', ['подбор процедуры', 'анкета противопоказаний', 'курсы и кабинет', 'вопрос врачу']],
+        ['catering', 'Стол накрыт', 'Кейтеринг и банкеты, Самара', '#b5d334', 'hero', 'tabella-phenomenon.netlify.app', 'https://tabella-phenomenon.netlify.app', ['конструктор рассадки', 'меню с аллергенами', 'смета в 4 шага', 'печать КП']],
+        ['beauty', 'Пудра', 'Салон красоты, Ростов-на-Дону', '#9e2a2f', 'hero', 'гибрид: Julie Granger + coffee-tech', 'https://thestudiobyjuliegranger.com', ['визит из нескольких услуг', 'живое расписание мастеров', 'перенос и отмена по правилам', 'сертификаты и баллы']],
+        ['vet', 'Хвост', 'Ветклиника, Пермь', '#ffc53d', 'puppy', 'гибрид: Tabella + Own the Patch', 'https://tabella-phenomenon.netlify.app', ['плановое и срочное раздельно', 'профиль и несколько питомцев', 'календарь прививок', 'готовность анализов']]
+      ];
+      var list = document.getElementById('list');
+      list.innerHTML = SITES.map(function (s, i) {
+        return '<li class="row" style="--c:' + s[3] + '" data-img="' + s[0] + '/img/' + s[4] + '.webp">' +
+          '<span class="row__n">' + (i < 9 ? '0' : '') + (i + 1) + '</span>' +
+          '<a class="row__name" href="' + s[0] + '/">' + s[1] + '<small>' + s[2] + '</small></a>' +
+          '<p class="row__ref">Референс: <a href="' + s[6] + '" target="_blank" rel="noopener">' + s[5] + '</a></p>' +
+          '<div class="chips">' + s[7].map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' +
+          '<div class="row__go"><a class="go" href="' + s[0] + '/" aria-label="Открыть сайт ' + s[1] + '">→</a></div></li>';
+      }).join('');
+
+      // превью сайта за курсором
+      var peek = document.getElementById('peek'), img = document.getElementById('peekImg'), x = 0, y = 0, cx = 0, cy = 0, raf = null;
+      var fine = matchMedia('(hover: hover) and (pointer: fine)').matches, calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function loop() { cx += (x - cx) * (calm ? 1 : .18); cy += (y - cy) * (calm ? 1 : .18); peek.style.left = cx + 'px'; peek.style.top = cy + 'px'; raf = requestAnimationFrame(loop); }
+      if (fine) {
+        list.addEventListener('mousemove', function (e) { x = e.clientX + 170; y = e.clientY; });
+        list.addEventListener('mouseover', function (e) {
+          var r = e.target.closest('.row');
+          if (!r) return;
+          if (img.getAttribute('src') !== r.dataset.img) img.src = r.dataset.img;
+          if (!peek.classList.contains('is-on')) { cx = x; cy = y; }
+          peek.classList.add('is-on');
+          if (!raf) loop();
+        });
+        list.addEventListener('mouseleave', function () { peek.classList.remove('is-on'); cancelAnimationFrame(raf); raf = null; });
+      }
+
+      // режим: есть ли сервер с API
+      var dot = document.getElementById('modeDot'), txt = document.getElementById('modeText');
+      if (!/^https?:$/.test(location.protocol)) { dot.className = 'dot off'; txt.textContent = 'демо: открыто как файл'; return; }
+      fetch('api/busy?site=demo&resource=x&date=2000-01-01').then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function () { dot.className = 'dot on'; txt.textContent = 'сервер работает — заявки в CRM'; })
+        .catch(function () { dot.className = 'dot off'; txt.textContent = 'демо: заявки в браузере'; });
+    })();
+  </script>
+</body>
+</html>

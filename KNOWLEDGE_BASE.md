@@ -180,6 +180,9 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 Шорткоды: `[fb_lead_form]`, `[fb_stories]`, `[fb_video_circles]`, `[fb_social_feed]`,
 `[fb_testimonials]`, `[fb_faq]`, `[fb_counter]`, `[fb_cookie_consent]`, `[fb_reveal]`, `[fb_modal]`.
 
+### Сайты под 10 ниш — `sites/niches/` 🟢
+10 готовых функциональных сайтов (фитнес, мастер на час, автосервис, одежда, тату, клининг, косметология, кейтеринг, салон красоты, ветклиника) на общем ядре `_shared/core.js` + сервер заявок без зависимостей `server/server.mjs` (Telegram, CRM-адаптеры, занятость слотов, публичный статус) + CRM-панель `crm/` + оглавление `index.html`. Запуск: `node sites/niches/server/server.mjs`. Подробно — `sites/niches/README.md`, типичные ошибки ИИ — `sites/niches/AI_MISTAKES.md`.
+
 ### В работе 🟡
 | Раздел | Расположение | Статус |
 |--------|-------------|--------|

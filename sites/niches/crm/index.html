@@ -186,8 +186,14 @@
     var ST = { new: 'Новая', qualified: 'Квалифицирована', confirmed: 'Подтверждена', in_work: 'В работе', shipped: 'Отправлено', done: 'Выполнена', repeat: 'Повторная продажа', canceled: 'Отменена' };
     var TYPES = { booking: 'Запись', reschedule: 'Перенос', cancel: 'Отмена', waitlist: 'Лист ожидания', certificate: 'Сертификат', subscription: 'Абонемент', emergency: 'Срочно', documents: 'Документы', reminders: 'Напоминания',
       lead: 'Заявка', order: 'Заказ', quote: 'Смета', trial: 'Пробное', buy: 'Покупка', preorder: 'Предзаказ', tailoring: 'Пошив', brief: 'Бриф', consult: 'Консультация', question: 'Вопрос', callback: 'Звонок' };
-    var LBL = { name: 'Имя', phone: 'Телефон', contact: 'Контакт', email: 'E-mail', service: 'Услуга', services: 'Услуги', resource: 'Ресурс', master: 'Мастер', date: 'Дата', time: 'Время', address: 'Адрес', total: 'Сумма',
-      comment: 'Комментарий', pet: 'Питомец', car: 'Автомобиль', guests: 'Гостей', format: 'Формат', branch: 'Филиал', consent: 'Согласие' };
+    var LBL = { name: 'Имя', phone: 'Телефон', contact: 'Контакт', email: 'E-mail', service: 'Услуга', services: 'Услуги', master: 'Мастер', date: 'Дата', time: 'Время', address: 'Адрес', total: 'Сумма',
+      comment: 'Комментарий', pet: 'Питомец', car: 'Автомобиль', guests: 'Гостей', format: 'Формат', branch: 'Филиал' };
+    // подписи для дополнительных полей заявки; служебные поля (дубли и коды) не показываем
+    var DL = { payment: 'Оплата', prepayAmount: 'Предоплата', notify: 'Подтверждение', telegram: 'Telegram', duration: 'Длительность, мин', discount: 'Скидка', firstVisit: 'Первый визит',
+      repeat: 'Повторная запись', repeatOf: 'Повтор визита', oldId: 'Перенос записи', orderId: 'Номер записи', late: 'Поздняя отмена', segments: 'План визита', when: 'Когда удобно', part: 'Время суток',
+      amount: 'Номинал', recipient: 'Кому', from: 'От кого', message: 'Пожелание', delivery: 'Вручение', recipientEmail: 'Почта получателя', sendDate: 'Дата отправки', plan: 'Абонемент / план',
+      design: 'Оформление', doctor: 'Врач', fasting: 'Подготовка', eta: 'Приедут через', policy: 'С правилами отмены' };
+    var HIDE = { pay: 1, branchId: 1, consent: 1 };
     var $ = function (s) { return document.querySelector(s); };
     var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
     var money = function (n) { return new Intl.NumberFormat('ru-RU').format(Math.round(n)) + ' ₽'; };
@@ -273,7 +279,7 @@
       var base = leads.filter(function (l) { return match(l, true); });
       var cnt = { active: 0, all: base.length };
       base.forEach(function (l) { cnt[l.status] = (cnt[l.status] || 0) + 1; if (l.status !== 'canceled' && l.status !== 'done' && l.status !== 'repeat') cnt.active++; });
-      $('#fStatus').innerHTML = [['active', 'В работе'], ['all', 'Все']].concat(Object.keys(ST).map(function (k) { return [k, ST[k]]; })).map(function (s) {
+      $('#fStatus').innerHTML = [['active', 'Открытые'], ['all', 'Все']].concat(Object.keys(ST).map(function (k) { return [k, ST[k]]; })).map(function (s) {
         return '<button class="chip" type="button" data-st="' + s[0] + '" aria-pressed="' + (filter.status === s[0]) + '">' + s[1] + ' <i>' + (cnt[s[0]] || 0) + '</i></button>';
       }).join('');
     }
@@ -295,7 +301,7 @@
       var today = new Date().toISOString().slice(0, 10);
       var fresh = leads.filter(function (l) { return l.status === 'new'; }).length;
       var todayN = leads.filter(function (l) { return (l.createdAt || '').slice(0, 10) === today; }).length;
-      var sum = leads.filter(function (l) { return l.status !== 'canceled' && l.total; }).reduce(function (a, l) { return a + (+String(l.total).replace(/[^\d.]/g, '') || 0); }, 0);
+      var sum = leads.filter(function (l) { return l.status !== 'canceled' && l.total; }).reduce(function (a, l) { var m = String(l.total).replace(/[\s ]/g, '').match(/\d+(\.\d+)?/); return a + (m ? +m[0] : 0); }, 0);
       var due = leads.filter(function (l) { return l.nextContact && l.nextContact <= today && l.status !== 'canceled' && l.status !== 'done'; }).length;
       $('#stats').innerHTML = [[leads.length, 'всего заявок'], [fresh, 'новых — ответить'], [todayN, 'сегодня'], [due ? due : money(sum), due ? 'пора связаться' : 'в работе на сумму']]
         .map(function (s) { return '<div class="stat"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>'; }).join('');
@@ -324,14 +330,14 @@
       if (!keep) lastFocus = document.activeElement;
       var fields = Object.keys(LBL).filter(function (k) { return l[k] != null && l[k] !== '' && typeof l[k] !== 'object'; });
       var det = l.details && typeof l.details === 'object' ? l.details : {};
-      var extra = Object.keys(det);
+      var extra = Object.keys(det).filter(function (k) { return !HIDE[k]; });
       var ph = String(l.phone || '').replace(/[^\d+]/g, '');
       var tg = /^@?[A-Za-z0-9_]{4,32}$/.test(det.telegram || l.contact || '') ? String(det.telegram || l.contact).replace('@', '') : '';
       $('#dPanel').innerHTML =
         '<div class="dh"><div><p class="sub">' + esc(SITES[l.site] || l.site) + ' · ' + esc(TYPES[l.type] || l.type || 'заявка') + '</p><h2 id="dTitle">' + esc(l.id) + ' · ' + esc(l.name || 'без имени') + '</h2></div><button class="btn" type="button" data-close aria-label="Закрыть">✕</button></div>' +
         '<div class="acts">' + (ph ? '<a class="btn btn--green" href="tel:' + esc(ph) + '">Позвонить</a><button class="btn" type="button" data-copy="' + esc(l.phone) + '">Скопировать телефон</button>' : '') + (tg ? '<a class="btn" href="https://t.me/' + esc(tg) + '" target="_blank" rel="noopener">Telegram</a>' : '') + '</div>' +
         '<div class="box"><h3>Данные</h3><dl class="kv">' + fields.map(function (k) { return '<dt>' + LBL[k] + '</dt><dd>' + esc(k === 'date' ? fmtDate(l[k]) : k === 'total' ? money(l[k]) : l[k]) + '</dd>'; }).join('') +
-          extra.map(function (k) { var v = det[k]; return '<dt>' + esc(k) + '</dt><dd>' + esc(Array.isArray(v) ? v.map(function (x) { return x && typeof x === 'object' ? Object.values(x).map(function (y) { return Array.isArray(y) ? y.join(', ') : y; }).join(' · ') : x; }).join('; ') : v && typeof v === 'object' ? JSON.stringify(v) : v) + '</dd>'; }).join('') +
+          extra.map(function (k) { var v = det[k]; return '<dt>' + esc(DL[k] || k) + '</dt><dd>' + esc(Array.isArray(v) ? v.map(function (x) { return x && typeof x === 'object' ? Object.values(x).map(function (y) { return Array.isArray(y) ? y.join(', ') : y; }).join(' · ') : x; }).join('; ') : v && typeof v === 'object' ? JSON.stringify(v) : v) + '</dd>'; }).join('') +
           (Array.isArray(l.reminders) ? '<dt>Напоминания</dt><dd>' + esc(l.reminders.join('; ')) + '</dd>' : '') +
           (l.utm && (l.utm.utm_source || l.utm.referrer) ? '<dt>Источник</dt><dd>' + esc([l.utm.utm_source, l.utm.utm_campaign, l.utm.referrer].filter(Boolean).join(' · ')) + '</dd>' : '') + '</dl></div>' +
         (l.files && l.files.length ? '<div class="box"><h3>Файлы</h3><div class="files">' + l.files.map(function (f) { return mode === 'demo' ? '<span class="sub">' + esc(f.name) + ' — в демо-режиме файлы не сохраняются</span>' : '<button class="btn" type="button" data-file="' + esc(f.name) + '">⬇ ' + esc(f.name) + '</button>'; }).join('') + '</div></div>' : '') +

@@ -1,0 +1,49 @@
+# WAVE — настройки для Apache (обычный хостинг с PHP). Для nginx см. README.md.
+AddDefaultCharset UTF-8
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS и домен без www
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://waverus.ru%{REQUEST_URI} [L,R=301]
+
+  # старый WordPress: служебные адреса отдают 410, чтобы поисковики быстрее их забыли
+  RewriteRule ^(wp-admin|wp-login\.php|wp-json|xmlrpc\.php|feed|comments/feed)(/.*)?$ - [G,L]
+
+  # /mebel → /mebel/ (канонический слэш на конце)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+[^/])$ /$1/ [L,R=301]
+
+  # index.html в адресе → чистый адрес
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  <FilesMatch "\.(woff2|svg|webp|jpg|jpeg|png|avif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/xml application/xml image/svg+xml application/manifest+json text/plain
+</IfModule>
+
+AddType application/manifest+json .webmanifest
+AddType font/woff2 .woff2

@@ -183,6 +183,9 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 ### Сайты под 10 ниш — `sites/niches/` 🟢
 10 готовых функциональных сайтов (фитнес, мастер на час, автосервис, одежда, тату, клининг, косметология, кейтеринг, салон красоты, ветклиника) на общем ядре `_shared/core.js` + сервер заявок без зависимостей `server/server.mjs` (Telegram, CRM-адаптеры, занятость слотов, публичный статус) + CRM-панель `crm/` + оглавление `index.html`. Запуск: `node sites/niches/server/server.mjs`. Подробно — `sites/niches/README.md`, типичные ошибки ИИ — `sites/niches/AI_MISTAKES.md`.
 
+### Клиентский сайт WAVE — `sites/wave/` 🟢
+Сайт бренда мебели для ванной WAVE (waverus.ru) на основе шаблона «Этюд» (`sites/niches/cosmetology`), светлая палитра. Статический генератор без зависимостей (`_src/build.mjs` → `public/`): главная, коллекция, 4 карточки товаров, контакты, документы по 152-ФЗ. Полное SEO (title/description, canonical, Open Graph, schema.org Organization/FurnitureStore/Product/FAQPage/BreadcrumbList, sitemap.xml, robots.txt с Clean-param), шрифты локально, Яндекс Метрика только после согласия, приём заявок `public/api/lead.php`. Подробно — `sites/wave/README.md`.
+
 ### В работе 🟡
 | Раздел | Расположение | Статус |
 |--------|-------------|--------|
@@ -242,3 +245,4 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | Политика конфиденциальности 152-ФЗ | `sites/legal/privacy-policy-152fz.md` |
 | Согласие на обработку ПД (форма) | `sites/legal/consent-personal-data.md` |
 | Перекрасить виджеты под бренд | `sites/components/shared/tokens.css` (`--fb-*`) |
+| Статический сайт-каталог с SEO и 152-ФЗ «под ключ» | `sites/wave/` (генератор `_src/build.mjs`) |

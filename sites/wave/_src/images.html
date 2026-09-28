@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Шаблон растровых картинок (OG-превью, логотип). Рендерится скриптом _src/render-images.mjs через Chromium. -->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../public/assets/css/style.css">
+<style>
+  html, body { margin: 0; background: #f6f3ee; }
+  .og { position: relative; width: 1200px; height: 630px; overflow: hidden; display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: center; padding: 0 80px; box-sizing: border-box; }
+  .og__waves { position: absolute; left: 0; right: 0; bottom: 60px; height: 180px; color: #9fcfca; }
+  .og__waves svg { width: 100%; height: 100%; }
+  .og__t { font: 400 76px/1 var(--serif); letter-spacing: -.02em; margin: 26px 0 22px; }
+  .og__t em { color: var(--teal); display: block; }
+  .og p { font: 500 22px/1.45 var(--sans); color: var(--ink-2); }
+  .og .arch { width: 360px; position: relative; }
+  .logo-sq { width: 512px; height: 512px; display: grid; place-items: center; align-content: center; gap: 22px; color: var(--teal); }
+  .logo-sq svg { width: 220px; height: 132px; }
+  .logo-sq span { font: 500 96px/1 var(--serif); letter-spacing: .22em; margin-right: -.22em; color: var(--ink); }
+  .icon { display: grid; place-items: center; background: #15524f; }
+  .icon svg { width: 72%; }
+</style>
+</head>
+<body>
+<div id="og" class="og">
+  <div class="og__waves"><svg viewBox="0 0 1400 200" preserveAspectRatio="none" id="w"></svg></div>
+  <div style="position:relative">
+    <span class="logo"><svg class="logo__mark" viewBox="0 0 40 24"><path d="M2 14c5-9 9-9 13 0s8 9 12 0 8-9 11-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="logo__word">WAVE</span></span>
+    <h1 class="og__t">Мебель для ванной <em>из влагостойкого PVC</em></h1>
+    <p>Омск · официальный дилер «Практик» · доставка по&nbsp;России</p>
+  </div>
+  <div class="arch"><img src="../public/assets/img/products/black-groove.svg" alt=""></div>
+</div>
+
+<div id="logo" class="logo-sq">
+  <svg viewBox="0 0 40 24"><path d="M2 14c5-9 9-9 13 0s8 9 12 0 8-9 11-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  <span>WAVE</span>
+</div>
+
+<div id="icon" class="icon" style="width:512px;height:512px">
+  <svg viewBox="0 0 64 64"><path d="M12 36c6-11 11-11 16 0s10 11 15 0 9-10 10-4" fill="none" stroke="#f6f3ee" stroke-width="4.5" stroke-linecap="round"/></svg>
+</div>
+
+<script>
+  var s = '';
+  for (var i = 0; i < 7; i++) { var y = 40 + i * 22; s += '<path d="M-200 ' + y + ' C 0 ' + (y - 26) + ', 200 ' + (y + 26) + ', 400 ' + y + ' S 800 ' + (y - 26) + ', 1000 ' + y + ' S 1400 ' + (y + 26) + ', 1600 ' + y + '" fill="none" stroke="currentColor" stroke-width="1.2" opacity="' + (0.55 - i * 0.06).toFixed(2) + '"/>'; }
+  document.getElementById('w').innerHTML = s;
+</script>
+</body>
+</html>

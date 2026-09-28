@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Иллюстрация: Тумба Black Groove 600 мм и круглое зеркало с подсветкой">
+  <defs><linearGradient id="m-black-groove" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f6f5"/><stop offset=".55" stop-color="#dfe6e6"/><stop offset="1" stop-color="#cfd9da"/>
+    </linearGradient>
+    <linearGradient id="w-black-groove" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ece6dd"/><stop offset="1" stop-color="#e6dfd4"/></linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#w-black-groove)"/>
+  <rect y="880" width="800" height="120" fill="#ddd5c8"/>
+  <path d="M0 880 H800" stroke="#cfc6b8" stroke-width="2"/>
+  
+      <circle cx="400" cy="300" r="176" fill="#fffbef" opacity=".55"/>
+      <circle cx="400" cy="300" r="160" fill="none" stroke="#fff6dc" stroke-width="10" opacity=".9"/>
+      <circle cx="400" cy="300" r="152" fill="url(#m-black-groove)"/>
+      <path d="M300 260 l90 -90 M318 312 l130 -130" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".45"/>
+  
+    <ellipse cx="400" cy="822" rx="230" ry="16" fill="#000" opacity=".06"/>
+    <rect x="190" y="556" width="420" height="196" rx="10" fill="#232527"/>
+    <rect x="200" y="580" width="400" height="160" rx="6" fill="#1b1c1e"/><rect x="212" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="225" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="238" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="251" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="264" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="277" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="290" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="303" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="316" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="329" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="342" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="355" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="368" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="381" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="394" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="407" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="420" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="433" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="446" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="459" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="472" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="485" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="498" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="511" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="524" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="537" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="550" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="563" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="576" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/><rect x="589" y="582" width="6" height="156" rx="3" fill="#44474a" opacity=".55"/>
+    <rect x="182" y="538" width="436" height="24" rx="8" fill="#ecebe8"/>
+    <path d="M300 538 q0 -14 14 -14 h152 q14 0 14 14 z" fill="#ecebe8" opacity=".9"/>
+    <rect x="314" y="530" width="152" height="6" rx="3" fill="#000" opacity=".07"/>
+    <path d="M400 524 v-44 q0 -12 12 -12 h26" fill="none" stroke="#b9bdbf" stroke-width="9" stroke-linecap="round"/>
+    <rect x="386" y="518" width="28" height="12" rx="4" fill="#c9cccd"/>
+</svg>

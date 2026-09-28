@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /api/
+Disallow: /*?utm_
+Disallow: /*?yclid=
+Disallow: /*?gclid=
+Allow: /
+
+User-agent: Yandex
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&etext&from /
+
+Sitemap: https://waverus.ru/sitemap.xml

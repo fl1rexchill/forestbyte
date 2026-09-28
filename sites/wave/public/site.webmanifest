@@ -1,0 +1,21 @@
+{
+  "name": "WAVE — мебель для ванной",
+  "short_name": "WAVE",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6f3ee",
+  "theme_color": "#f6f3ee",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

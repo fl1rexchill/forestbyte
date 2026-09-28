@@ -25,6 +25,7 @@ sites/
 ├── legal/                # ⚖️ шаблоны документов по 152-ФЗ
 ├── integrations/crm/     # 🔌 коннекторы CRM (Bitrix24, amoCRM) + туториалы
 ├── wordpress/            # 🟦 плагин (админка+шорткоды+форма→CRM) + тема + TUTORIAL.md
+├── wave/                 # 🌊 клиентский сайт WAVE (waverus.ru): статика + SEO + 152-ФЗ
 └── templates/            # 📄 полные шаблоны: vanilla/ и nextjs/ (🟡)
 ```
 

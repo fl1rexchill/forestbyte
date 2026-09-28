@@ -166,7 +166,8 @@ ${site.yandexVerification ? `<meta name="yandex-verification" content="${esc(sit
 <link rel="preload" href="/assets/fonts/cormorant-garamond-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 ${preload ? `<link rel="preload" href="${preload}" as="image">\n` : ''}<link rel="stylesheet" href="/assets/css/style.css?v=${VERSION}">
-<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');</script>
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');
+if(location.protocol==='file:')addEventListener('DOMContentLoaded',function(){document.body.innerHTML='<div style="max-width:560px;margin:15vh auto;padding:0 20px;font:17px/1.6 system-ui,sans-serif;color:#1f2b2a"><h1 style="font:500 30px/1.2 Georgia,serif">Сайт нужно открыть через локальный сервер</h1><p>Файл открыт напрямую с диска, поэтому стили и картинки не подключились.</p><p><b>Windows:</b> дважды щёлкните <code>start.bat</code> в папке <code>sites/wave</code>.</p><p><b>Вручную:</b> в папке <code>sites/wave/public</code> выполните <code>npx serve -l 8080 .</code> и откройте <a href="http://localhost:8080">http://localhost:8080</a>.</p></div>'});</script>
 ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
 </head>
 <body>`;

@@ -9,3 +9,6 @@
 *.ico binary
 *.pdf binary
 *.sqlite3 binary
+
+# Скрипты Windows — с CRLF, иначе cmd может спотыкаться
+*.bat text eol=crlf

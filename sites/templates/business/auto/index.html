@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Автосервис — шаблон</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#111111">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Crect x='14' y='14' width='36' height='36' fill='none' stroke='%23ffd400' stroke-width='7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../_shared/fonts/robotocondensed.css">
+  <link rel="stylesheet" href="../_shared/fonts/golostext.css">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+<noscript><p class="noscript">Для работы сайта включите JavaScript: каталог и расчёт выводятся скриптом из config.js.</p></noscript>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top" data-brand aria-label="На главную"></a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <ul role="list">
+        <li><a href="#catalog" data-nav>Работы и цены</a></li>
+        <li><a href="#visit" data-nav>Как проходит визит</a></li>
+        <li><a href="#terms" data-nav>Условия</a></li>
+        <li><a href="#faq" data-nav>Вопросы</a></li>
+        <li><a href="#contacts" data-nav>Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm header__cta" href="#request">Оставить заявку</a>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <div class="grid hero__grid">
+      <div class="hero__text">
+        <p class="label" data-cfg="hero.eyebrow"></p>
+        <h1 class="hero__title" id="heroTitle" data-split></h1>
+        <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
+        <div class="hero__actions" data-reveal>
+          <a class="btn btn--accent btn--lg" id="heroCta" href="#request"></a>
+          <a class="btn btn--line btn--lg" href="#catalog">Выбрать работы</a>
+        </div>
+      </div>
+      <div class="car-pick" id="carPick" aria-labelledby="carPickTitle" role="group">
+        <h2 class="car-pick__title" id="carPickTitle">Ваш автомобиль</h2>
+        <div class="car-pick__fields">
+          <div class="field"><label for="pBrand">Марка</label><select id="pBrand"></select></div>
+          <div class="field"><label for="pModel">Модель</label><input id="pModel" type="text" maxlength="40" autocomplete="off" placeholder="Например, Octavia"></div>
+          <div class="field"><label for="pYear">Год</label><select id="pYear"></select></div>
+        </div>
+        <p class="car-pick__class" id="pClass" aria-live="polite"></p>
+        <div class="car-pick__media" id="heroMedia"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light catalog" id="catalog" aria-labelledby="catalogTitle">
+    <div class="grid">
+      <div class="catalog__head">
+        <p class="label">01 / Работы и цены</p>
+        <h2 id="catalogTitle" data-reveal>Каталог работ</h2>
+        <div class="search">
+          <label class="sr-only" for="svcSearch">Поиск по работам</label>
+          <input id="svcSearch" type="search" placeholder="Поиск: колодки, масло, развал…" autocomplete="off">
+        </div>
+      </div>
+      <div class="tabs" id="catTabs" role="tablist" aria-label="Категории работ"></div>
+      <div class="catalog__body">
+        <div class="catalog__list">
+          <div id="catPanel" role="tabpanel" tabindex="0" aria-live="polite"></div>
+          <label class="unknown" id="unknownCard">
+            <input type="checkbox" id="unknownToggle">
+            <span><b>Не знаю, какая услуга нужна</b><span>Опишите, что происходит с автомобилем, — мастер предложит диагностику.</span></span>
+          </label>
+        </div>
+        <aside class="estimate" id="estimate" aria-labelledby="estTitle">
+          <h3 id="estTitle">Предварительный расчёт</h3>
+          <div id="estBody" aria-live="polite"></div>
+          <a class="btn btn--accent estimate__cta" href="#request">Оставить заявку</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit" aria-labelledby="visitTitle">
+    <div class="grid">
+      <p class="label">02 / Визит</p>
+      <h2 id="visitTitle" data-reveal>Как проходит визит</h2>
+      <ol class="visit__list" id="visitList" role="list" data-stagger="70"></ol>
+    </div>
+  </section>
+
+  <section class="section section--light terms" id="terms" aria-labelledby="termsTitle">
+    <div class="grid terms__grid">
+      <div>
+        <p class="label">03 / Условия</p>
+        <h2 id="termsTitle" data-reveal>Без сюрпризов в счёте</h2>
+      </div>
+      <dl class="terms__list" id="termsList"></dl>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews" aria-labelledby="reviewsTitle">
+    <div class="grid"><h2 id="reviewsTitle">Отзывы</h2><div class="reviews__list" id="reviewsList"></div></div>
+  </section>
+
+  <section class="section section--light faq" id="faq" aria-labelledby="faqTitle">
+    <div class="grid">
+      <p class="label">04 / Вопросы</p>
+      <h2 id="faqTitle" data-reveal>Частые вопросы</h2>
+      <div class="faq__list" id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="section request" id="request" aria-labelledby="requestTitle">
+    <div class="grid request__grid">
+      <div>
+        <p class="label">05 / Заявка</p>
+        <h2 id="requestTitle">Оставить заявку</h2>
+        <p class="request__lead">Запись требует подтверждения: администратор свяжется и согласует время.</p>
+        <ol class="steps" id="reqSteps"></ol>
+        <form class="form" id="reqForm" novalidate>
+          <fieldset class="step" data-step data-title="Автомобиль">
+            <legend class="step__title">Автомобиль</legend>
+            <div class="row row--3">
+              <div class="field" data-field><label for="rBrand">Марка</label><select id="rBrand" name="brand" required></select></div>
+              <div class="field"><label for="rModel">Модель <span class="opt">необязательно</span></label><input id="rModel" name="model" type="text" maxlength="40"></div>
+              <div class="field"><label for="rYear">Год <span class="opt">необязательно</span></label><select id="rYear" name="year"></select></div>
+            </div>
+            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Работы" hidden>
+            <legend class="step__title">Работы или проблема</legend>
+            <div id="rWorks"></div>
+            <label class="check"><input type="checkbox" id="rUnknown" name="unknown" value="да"> <span>Не знаю, какая услуга нужна</span></label>
+            <div class="field" data-field id="rProblemBox" hidden>
+              <label for="rProblem">Что происходит с автомобилем?</label>
+              <textarea id="rProblem" name="problem" rows="4" maxlength="1500" data-validate="required min:10" data-msg="Опишите проблему хотя бы в двух словах" placeholder="Например: стук спереди справа на неровностях, появился неделю назад"></textarea>
+            </div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Время" hidden>
+            <legend class="step__title">Желаемое время</legend>
+            <p class="hint">Это пожелание, а не бронь. Администратор подтвердит время.</p>
+            <div class="row">
+              <div class="field" data-field><label for="rDate">Желаемая дата</label><input id="rDate" name="date" type="date" data-validate="required future"></div>
+              <div class="field" data-field><span class="field__label" id="rPartLabel">Время суток</span><div class="radios" id="rParts" role="radiogroup" aria-labelledby="rPartLabel"></div></div>
+            </div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Контакт" hidden>
+            <legend class="step__title">Контакт</legend>
+            <div class="row">
+              <div class="field" data-field><label for="rName">Имя</label><input id="rName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
+              <div class="field" data-field><label for="rPhone">Телефон</label><input id="rPhone" name="phone" type="tel" data-validate="required phone"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="rPlate">Госномер или VIN <span class="opt">необязательно</span></label><input id="rPlate" name="plate" type="text" maxlength="20" autocomplete="off"></div>
+              <div class="field"><label for="rMileage">Пробег, км <span class="opt">необязательно</span></label><input id="rMileage" name="mileage" type="number" inputmode="numeric" min="0" max="2000000" data-validate="num"></div>
+            </div>
+            <div class="field"><label for="rComment">Комментарий <span class="opt">необязательно</span></label><textarea id="rComment" name="comment" rows="3" maxlength="1500"></textarea></div>
+            <div id="rConsent"></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить заявку</button></div>
+          </fieldset>
+          <p data-form-error role="alert"></p>
+        </form>
+        <div class="result" id="reqResult" hidden aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light contacts" id="contacts" aria-labelledby="contactsTitle">
+    <div class="grid contacts__grid">
+      <div>
+        <p class="label">06 / Контакты</p>
+        <h2 id="contactsTitle" data-reveal>Контакты</h2>
+        <div class="quick">
+          <a class="btn btn--dark" href="#request">Оставить заявку</a>
+          <a class="btn btn--line-dark" data-quick="phone" hidden>Позвонить</a>
+          <a class="btn btn--line-dark" data-quick="telegram" hidden>Telegram</a>
+          <a class="btn btn--line-dark" data-quick="email" hidden>Почта</a>
+        </div>
+      </div>
+      <div data-contacts></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="grid footer__in">
+    <p class="footer__brand" data-brand></p>
+    <div data-legal></div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="../_shared/config-check.js"></script>
+<script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>
+<script src="../_shared/site.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

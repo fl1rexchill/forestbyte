@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Event-агентство — шаблон</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#0f0e0d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0d'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23ff5a1f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../_shared/fonts/unbounded.css">
+  <link rel="stylesheet" href="../_shared/fonts/onest.css">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+<noscript><p class="noscript">Для работы сайта включите JavaScript: данные и формы выводятся скриптом из config.js.</p></noscript>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top" data-brand aria-label="На главную"></a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <ul role="list">
+        <li><a href="#formats" data-nav>Форматы</a></li>
+        <li><a href="#projects" data-nav>Проекты</a></li>
+        <li><a href="#services" data-nav>Услуги</a></li>
+        <li><a href="#stages" data-nav>Этапы</a></li>
+        <li><a href="#team" data-nav>Команда</a></li>
+        <li><a href="#faq" data-nav>Вопросы</a></li>
+        <li><a href="#contacts" data-nav>Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm header__cta" href="#brief">Обсудить мероприятие</a>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <div class="hero__text">
+      <p class="eyebrow" data-cfg="hero.eyebrow"></p>
+      <h1 class="hero__title" id="heroTitle" data-split></h1>
+      <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
+      <div class="hero__actions" data-reveal>
+        <a class="btn btn--accent btn--lg" id="heroCta" href="#brief"></a>
+        <a class="btn btn--line btn--lg" href="#projects">Смотреть проекты</a>
+      </div>
+    </div>
+    <figure class="hero__media" data-reveal="scale" id="heroMedia"></figure>
+    <ul class="hero__formats" id="heroFormats" role="list" aria-label="Форматы"></ul>
+  </section>
+
+  <section class="section formats" id="formats" aria-labelledby="formatsTitle">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">01 · Форматы</p>
+        <h2 id="formatsTitle" data-reveal>С чего начинается событие</h2>
+        <p class="head__lead" data-reveal>Выберите формат — покажем проекты и откроем бриф с этим вариантом.</p>
+      </div>
+      <div class="formats__grid" id="formatsGrid" data-stagger="90"></div>
+    </div>
+  </section>
+
+  <section class="section projects" id="projects" aria-labelledby="projectsTitle">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <p class="eyebrow">02 · Проекты</p>
+          <h2 id="projectsTitle" data-reveal>Работа команды</h2>
+        </div>
+        <div class="chips" id="projectFilter" role="group" aria-label="Фильтр по формату"></div>
+      </div>
+      <p class="demo-note" id="projectsDemo" hidden>Проекты — примеры для демонстрации на стоковых фото. Замените их реальными кейсами агентства.</p>
+      <div class="projects__grid" id="projectsGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section services" id="services" aria-labelledby="servicesTitle">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">03 · Услуги</p>
+        <h2 id="servicesTitle" data-reveal>Что берём на себя</h2>
+      </div>
+      <ol class="services__list" id="servicesList" role="list"></ol>
+    </div>
+  </section>
+
+  <section class="section stages" id="stages" aria-labelledby="stagesTitle">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">04 · Этапы</p>
+        <h2 id="stagesTitle" data-reveal>Как готовим событие</h2>
+      </div>
+      <ol class="stages__list" id="stagesList" role="list" data-stagger="70"></ol>
+    </div>
+  </section>
+
+  <section class="section team" id="team" aria-labelledby="teamTitle">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">05 · Команда</p>
+        <h2 id="teamTitle" data-reveal>Кто ведёт ваш проект</h2>
+      </div>
+      <ul class="team__grid" id="teamGrid" role="list" data-stagger="80"></ul>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews" aria-labelledby="reviewsTitle">
+    <div class="wrap">
+      <h2 id="reviewsTitle" data-reveal>Отзывы</h2>
+      <div class="reviews__list" id="reviewsList"></div>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap wrap--narrow">
+      <h2 id="faqTitle" data-reveal>Частые вопросы</h2>
+      <div class="faq__list" id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="section brief" id="brief" aria-labelledby="briefTitle">
+    <div class="wrap brief__grid">
+      <div class="brief__main">
+        <p class="eyebrow">Бриф</p>
+        <h2 id="briefTitle">Расскажите о событии</h2>
+        <p class="brief__lead">Пять коротких шагов. Если чего-то ещё не знаете — отметьте, обсудим вместе.</p>
+        <ol class="steps" id="briefSteps"></ol>
+        <form class="form" id="briefForm" novalidate>
+          <fieldset class="step" data-step data-title="Формат">
+            <legend class="step__title">Какой формат?</legend>
+            <div class="choice-grid" id="fFormats" data-field></div>
+            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step data-title="Дата и город" hidden>
+            <legend class="step__title">Когда и где?</legend>
+            <div class="row">
+              <div class="field" data-field>
+                <label for="fDate">Дата события</label>
+                <input id="fDate" name="date" type="date" data-validate="required future">
+              </div>
+              <div class="field" data-field>
+                <label for="fCity">Город</label>
+                <input id="fCity" name="city" type="text" autocomplete="address-level2" maxlength="80" required>
+              </div>
+            </div>
+            <label class="check"><input type="checkbox" id="fNoDate" name="dateUnknown" value="да"> <span>Дата не выбрана</span></label>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step data-title="Гости и бюджет" hidden>
+            <legend class="step__title">Сколько гостей и какой бюджет?</legend>
+            <div class="row">
+              <div class="field" data-field>
+                <label for="fGuests">Число гостей</label>
+                <input id="fGuests" name="guests" type="number" inputmode="numeric" min="1" step="1" data-validate="required num">
+              </div>
+              <div class="field" data-field>
+                <label for="fBudget">Бюджет</label>
+                <select id="fBudget" name="budget" required></select>
+              </div>
+            </div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step data-title="Услуги" hidden>
+            <legend class="step__title">Что нужно от агентства?</legend>
+            <p class="hint">Можно не выбирать — подскажем на обсуждении.</p>
+            <div class="choice-list" id="fServices"></div>
+            <div class="row">
+              <div class="field">
+                <label for="fVenue">Площадка <span class="opt">необязательно</span></label>
+                <input id="fVenue" name="venue" type="text" maxlength="120" placeholder="Название или «ищем»">
+              </div>
+              <div class="field">
+                <label for="fCompany">Компания <span class="opt">необязательно</span></label>
+                <input id="fCompany" name="company" type="text" autocomplete="organization" maxlength="120">
+              </div>
+            </div>
+            <div class="field drop" data-drop>
+              <label for="fFile">Файл брифа <span class="opt">необязательно · PDF, JPG, PNG до 10 МБ</span></label>
+              <input id="fFile" type="file" accept="application/pdf,image/jpeg,image/png,image/webp">
+              <ul class="fb-files" id="fFileList"></ul>
+            </div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step data-title="Контакт" hidden>
+            <legend class="step__title">Как с вами связаться?</legend>
+            <div class="row">
+              <div class="field" data-field>
+                <label for="fName">Имя</label>
+                <input id="fName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name">
+              </div>
+              <div class="field" data-field>
+                <label for="fPhone">Телефон</label>
+                <input id="fPhone" name="phone" type="tel" data-validate="required phone">
+              </div>
+            </div>
+            <div class="field" data-field>
+              <label for="fEmail">Почта <span class="opt">необязательно</span></label>
+              <input id="fEmail" name="email" type="email" autocomplete="email" maxlength="120" data-validate="email">
+            </div>
+            <div class="field">
+              <label for="fComment">Что ещё важно знать <span class="opt">необязательно</span></label>
+              <textarea id="fComment" name="comment" rows="3" maxlength="1500"></textarea>
+            </div>
+            <div id="fConsent"></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить бриф</button></div>
+          </fieldset>
+          <p data-form-error role="alert"></p>
+        </form>
+        <div class="result" id="briefResult" hidden aria-live="polite"></div>
+      </div>
+
+      <aside class="estimate" id="estimate" aria-labelledby="estTitle" aria-live="polite">
+        <h3 id="estTitle">Предварительная смета</h3>
+        <div id="estBody"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section contacts" id="contacts" aria-labelledby="contactsTitle">
+    <div class="wrap contacts__grid">
+      <div>
+        <h2 id="contactsTitle" data-reveal>Контакты</h2>
+        <p class="contacts__lead">Удобнее всего начать с брифа: так мы сразу увидим задачу.</p>
+        <div class="quick">
+          <a class="btn btn--accent" href="#brief">Обсудить мероприятие</a>
+          <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
+          <a class="btn btn--line" data-quick="telegram" hidden>Написать в Telegram</a>
+          <a class="btn btn--line" data-quick="email" hidden>Написать на почту</a>
+        </div>
+      </div>
+      <div data-contacts></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <p class="footer__brand" data-brand></p>
+    <div data-legal></div>
+  </div>
+</footer>
+
+<div class="fb-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="fb-modal__backdrop"></div>
+  <div class="fb-modal__dialog pmodal" style="--modal-w:920px">
+    <button class="pmodal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div id="pmBody"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="../_shared/config-check.js"></script>
+<script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>
+<script src="../_shared/site.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

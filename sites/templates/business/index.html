@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Шаблоны сайтов для бизнеса — Forestbyte</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e2a24'/%3E%3Cpath d='M18 44 32 18l14 26z' fill='%23e8e2d4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="_shared/fonts/manrope.css">
+  <style>
+    :root { --bg: #f3f1ea; --fg: #1d201e; --muted: #5d625f; --line: rgba(29,32,30,.14); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.6 "Manrope", system-ui, sans-serif; overflow-x: clip; }
+    main { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 48px 0 80px; }
+    h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1.05; margin: 0 0 12px; font-weight: 700; letter-spacing: -.02em; }
+    .lead { color: var(--muted); max-width: 700px; margin: 0 0 12px; }
+    .note { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #fff1b8; color: #3d2f00; font-size: 14px; margin: 0 0 36px; }
+    .grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { display: flex; flex-direction: column; min-height: 100%; border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.4); }
+    .card:focus-visible { outline: 3px solid #1d201e; outline-offset: 3px; }
+    .card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .card__body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 6px; }
+    .card__tag { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .card h2 { margin: 0; font-size: 24px; line-height: 1.2; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; margin-right: 6px; }
+    .links { margin-top: 40px; display: grid; gap: 8px; }
+    .links a { color: inherit; display: inline-flex; min-height: 44px; align-items: center; }
+    code { background: #e7e3d8; padding: 2px 6px; border-radius: 6px; font-size: 15px; }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Шаблоны сайтов для бизнеса</h1>
+  <p class="lead">Пять самостоятельных шаблонов на общем ядре. Данные бизнеса — в <code>config.js</code> каждой папки. Запуск сервера из корня репозитория: <code>node sites/templates/business/server/server.mjs</code>.</p>
+  <p class="note">Демонстрационные шаблоны. Данные приведены для примера.</p>
+  <ul class="grid" role="list">
+    <li><a class="card" href="event/"><img src="event/img/hero.webp" alt="" width="960" height="640"><span class="card__body"><span class="card__tag"><span class="swatch" style="background:#ff5a1f"></span>event</span><h2>Event-агентство</h2><p>Форматы, проекты с фильтром, бриф из пяти шагов и предварительная смета.</p></span></a></li>
+    <li><a class="card" href="detailing/"><img src="detailing/img/hero.webp" alt="" width="960" height="640"><span class="card__body"><span class="card__tag"><span class="swatch" style="background:#c8f031"></span>detailing</span><h2>Детейлинг-студия</h2><p>Расчёт по классу автомобиля, пакеты, работы, сравнение до и после.</p></span></a></li>
+    <li><a class="card" href="auto/"><img src="auto/img/hero.webp" alt="" width="960" height="640" loading="lazy"><span class="card__body"><span class="card__tag"><span class="swatch" style="background:#ffd400"></span>auto</span><h2>Автосервис</h2><p>Выбор автомобиля, каталог с поиском, работа и запчасти в расчёте отдельно.</p></span></a></li>
+    <li><a class="card" href="cosmetology/"><img src="cosmetology/img/hero.webp" alt="" width="960" height="640" loading="lazy"><span class="card__body"><span class="card__tag"><span class="swatch" style="background:#2f5d50"></span>cosmetology</span><h2>Косметология</h2><p>Специалисты, каталог услуг, запрос консультации без медицинских данных.</p></span></a></li>
+    <li><a class="card" href="beauty/"><img src="beauty/img/hero.webp" alt="" width="960" height="640" loading="lazy"><span class="card__body"><span class="card__tag"><span class="swatch" style="background:#b0103a"></span>beauty</span><h2>Салон красоты</h2><p>Визит из нескольких услуг, мастер по квалификации, желаемое время.</p></span></a></li>
+  </ul>
+  <div class="links">
+    <a href="crm/">CRM-панель заявок (нужен ADMIN_TOKEN из server/.env)</a>
+  </div>
+</main>
+</body>
+</html>

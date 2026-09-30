@@ -183,10 +183,13 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 ### Сайты под 10 ниш — `sites/niches/` 🟢
 10 готовых функциональных сайтов (фитнес, мастер на час, автосервис, одежда, тату, клининг, косметология, кейтеринг, салон красоты, ветклиника) на общем ядре `_shared/core.js` + сервер заявок без зависимостей `server/server.mjs` (Telegram, CRM-адаптеры, занятость слотов, публичный статус) + CRM-панель `crm/` + оглавление `index.html`. Запуск: `node sites/niches/server/server.mjs`. Подробно — `sites/niches/README.md`, типичные ошибки ИИ — `sites/niches/AI_MISTAKES.md`.
 
+### Шаблоны для бизнеса — `sites/templates/business/` 🟢
+5 самостоятельных шаблонов (event-агентство, детейлинг, автосервис, косметология, салон красоты) на ядре из `sites/niches`. Все данные бизнеса — в `config.js` каждой папки (`window.SITE_CONFIG`), режимы `demo` / `production`, проверка конфигурации `_shared/config-check.js`, юр-страницы из `config.legal`, локальные шрифты и CC0-фото с источниками. Сервер `server/server.mjs` (порт 8090) читает конфигурации, проверяет заявки, разделяет сохранение и доставку. Запуск: `node sites/templates/business/server/server.mjs`. Подробно — `sites/templates/business/README.md`, проверка — `QA.md`.
+
 ### В работе 🟡
 | Раздел | Расположение | Статус |
 |--------|-------------|--------|
-| Полные шаблоны (vanilla / Next.js) | `sites/templates/` | 🟡 |
+| Шаблоны на Next.js | `sites/templates/` | 🟡 |
 
 ---
 
@@ -239,6 +242,7 @@ Instagram и MAX без сети; `npm run typecheck` проверяет тип�
 | Подключить Bitrix24 | `sites/integrations/crm/bitrix24/TUTORIAL.md` |
 | Подключить amoCRM | `sites/integrations/crm/amocrm/TUTORIAL.md` |
 | Сайт на WordPress (плагин+тема) | `sites/wordpress/` → `TUTORIAL.md` |
+| Сайт-шаблон для бизнеса с config.js (event, детейлинг, автосервис, косметология, салон) | `sites/templates/business/` |
 | Политика конфиденциальности 152-ФЗ | `sites/legal/privacy-policy-152fz.md` |
 | Согласие на обработку ПД (форма) | `sites/legal/consent-personal-data.md` |
 | Перекрасить виджеты под бренд | `sites/components/shared/tokens.css` (`--fb-*`) |

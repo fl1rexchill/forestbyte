@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3d42"/><stop offset="1" stop-color="#1c1e21"/></linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#g)"/>
+  <g fill="none" stroke="#8b8f96" stroke-opacity=".35" stroke-width="1.4">
+    <circle cx="420" cy="330" r="60"/><circle cx="420" cy="330" r="110"/><circle cx="420" cy="330" r="170"/><circle cx="420" cy="330" r="240"/>
+    <circle cx="820" cy="420" r="80"/><circle cx="820" cy="420" r="150"/><circle cx="820" cy="420" r="230"/>
+    <path d="M120 560 L360 470 M600 610 L900 520 M980 180 L1120 110 M200 150 L330 90"/>
+  </g>
+  <g fill="#c9ccd1" fill-opacity=".18"><circle cx="300" cy="520" r="3"/><circle cx="700" cy="220" r="2"/><circle cx="960" cy="600" r="3"/><circle cx="520" cy="610" r="2"/></g>
+  <text x="40" y="660" fill="#eceae4" fill-opacity=".7" font-family="monospace" font-size="26">ИЛЛЮСТРАЦИЯ · ДО</text>
+</svg>

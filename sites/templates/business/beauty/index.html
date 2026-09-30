@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Салон красоты — шаблон</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#f8efe6">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23b0103a'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-style='italic' font-size='32' text-anchor='middle' fill='%23f8efe6'%3EБ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../_shared/fonts/playfairdisplay.css">
+  <link rel="stylesheet" href="../_shared/fonts/montserrat.css">
+  <link rel="stylesheet" href="../_shared/core.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
+<noscript><p class="noscript">Для работы сайта включите JavaScript: данные выводятся скриптом из config.js.</p></noscript>
+
+<header class="header">
+  <div class="header__in">
+    <a class="logo" href="#top" data-brand aria-label="На главную"></a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <ul role="list">
+        <li><a href="#services" data-nav>Услуги</a></li>
+        <li><a href="#masters" data-nav>Мастера</a></li>
+        <li><a href="#works" data-nav>Работы</a></li>
+        <li><a href="#prices" data-nav>Цены</a></li>
+        <li><a href="#faq" data-nav>Вопросы</a></li>
+        <li><a href="#contacts" data-nav>Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm header__cta" href="#booking">Записаться</a>
+    <button class="burger" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow" data-cfg="hero.eyebrow"></p>
+        <h1 class="hero__title" id="heroTitle"></h1>
+        <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
+        <div class="hero__actions" data-reveal>
+          <a class="btn btn--accent btn--lg" id="heroCta" href="#services"></a>
+          <a class="btn btn--line btn--lg" href="#masters">Мастера</a>
+        </div>
+      </div>
+      <div class="hero__collage" id="heroCollage"></div>
+    </div>
+  </section>
+
+  <section class="section services" id="services" aria-labelledby="svcTitle">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="svcTitle" data-reveal>Соберите <em>визит</em></h2>
+        <p class="head__lead">Отметьте одну или несколько услуг — посчитаем стоимость и время.</p>
+      </div>
+      <div class="cat-tabs" id="catTabs" role="tablist" aria-label="Категории услуг"></div>
+      <div id="catPanel" role="tabpanel" tabindex="0"></div>
+    </div>
+  </section>
+
+  <section class="section masters" id="masters" aria-labelledby="mastersTitle">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="mastersTitle" data-reveal>Мастера</h2>
+        <p class="head__lead">У каждого мастера — свои услуги. При записи покажем только тех, кто выполняет выбранные.</p>
+      </div>
+      <div class="masters__grid" id="mastersGrid" data-stagger="80"></div>
+    </div>
+  </section>
+
+  <section class="section works" id="works" aria-labelledby="worksTitle">
+    <div class="wrap">
+      <div class="head head--row">
+        <h2 id="worksTitle" data-reveal>Работы</h2>
+        <div class="filters">
+          <label for="wfService" class="sr-only">Услуга</label>
+          <select id="wfService"></select>
+          <label for="wfMaster" class="sr-only">Мастер</label>
+          <select id="wfMaster"></select>
+        </div>
+      </div>
+      <p class="demo-note" id="worksDemo" hidden>Работы — примеры на стоковых фото. Замените их фотографиями работ мастеров салона.</p>
+      <div class="works__grid" id="worksGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section prices" id="prices" aria-labelledby="pricesTitle">
+    <div class="wrap">
+      <h2 id="pricesTitle" data-reveal>Цены</h2>
+      <p class="head__lead" id="pricesNote"></p>
+      <div class="prices__grid" id="pricesGrid"></div>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews" aria-labelledby="reviewsTitle">
+    <div class="wrap"><h2 id="reviewsTitle">Отзывы</h2><div class="reviews__list" id="reviewsList"></div></div>
+  </section>
+
+  <section class="section faq" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap wrap--narrow">
+      <h2 id="faqTitle" data-reveal>Вопросы</h2>
+      <div class="faq__list" id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="section booking" id="booking" aria-labelledby="bookTitle">
+    <div class="wrap wrap--narrow">
+      <h2 id="bookTitle">Запись</h2>
+      <p class="booking__lead">Желаемое время — не бронь. Запись требует подтверждения администратора.</p>
+      <ol class="steps" id="bookSteps"></ol>
+      <form class="form" id="bookForm" novalidate>
+        <fieldset class="step" data-step data-title="Услуги">
+          <legend class="step__title">Услуги визита</legend>
+          <div id="bVisit"></div>
+          <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+        </fieldset>
+        <fieldset class="step" data-step data-title="Мастер" hidden>
+          <legend class="step__title">Мастер</legend>
+          <div class="choices" id="bMasters" data-field></div>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+        </fieldset>
+        <fieldset class="step" data-step data-title="Время" hidden>
+          <legend class="step__title">Желаемое время</legend>
+          <div class="row">
+            <div class="field" data-field><label for="bDate">Желаемая дата</label><input id="bDate" name="date" type="date" data-validate="required future"></div>
+            <div class="field" data-field><span class="field__label" id="bPartLabel">Время суток</span><div class="choices choices--compact" id="bParts" role="radiogroup" aria-labelledby="bPartLabel"></div></div>
+          </div>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+        </fieldset>
+        <fieldset class="step" data-step data-title="Контакт" hidden>
+          <legend class="step__title">Контакт</legend>
+          <div class="row">
+            <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
+            <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
+          </div>
+          <div class="field"><label for="bComment">Комментарий <span class="opt">необязательно</span></label><textarea id="bComment" name="comment" rows="3" maxlength="800" placeholder="Например: длина волос до лопаток"></textarea></div>
+          <div id="bConsent"></div>
+          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить заявку на запись</button></div>
+        </fieldset>
+        <p data-form-error role="alert"></p>
+      </form>
+      <div class="result" id="bookResult" hidden aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section contacts" id="contacts" aria-labelledby="contactsTitle">
+    <div class="wrap contacts__grid">
+      <div>
+        <h2 id="contactsTitle" data-reveal>Контакты</h2>
+        <div class="quick">
+          <a class="btn btn--accent" href="#booking">Записаться</a>
+          <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
+          <a class="btn btn--line" data-quick="telegram" hidden>Telegram</a>
+          <a class="btn btn--line" data-quick="email" hidden>Почта</a>
+        </div>
+      </div>
+      <div data-contacts></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <p class="footer__brand" data-brand></p>
+    <div data-legal></div>
+  </div>
+</footer>
+
+<div class="visit-bar" id="visitBar" hidden>
+  <div class="visit-bar__in">
+    <p class="visit-bar__sum" id="visitSum" aria-live="polite"></p>
+    <a class="btn btn--accent btn--sm" href="#booking">Перейти к записи</a>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="../_shared/vendor/lenis.min.js"></script>
+<script src="../_shared/vendor/anime.umd.min.js"></script>
+<script src="../_shared/core.js"></script>
+<script src="../_shared/config-check.js"></script>
+<script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>
+<script src="../_shared/site.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

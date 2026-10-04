@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Детейлинг-студия — шаблон</title>
   <meta name="description" content="">
-  <meta name="theme-color" content="#16181b">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316181b'/%3E%3Cpath d='M14 40 L32 18 L50 40' stroke='%23c8f031' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0c0d0f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0b0c'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23ecebe7'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23ecebe7' stroke-opacity='.35' stroke-width='2'/%3E%3C/svg%3E">
+  <!-- предзагрузка шрифтов только по http(s): при открытии файлом браузер блокирует preload с crossorigin -->
+  <script>/^https?:$/.test(location.protocol)&&['../_shared/fonts/manrope/manrope-cyrillic.woff2'].forEach(function(h){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='anonymous';l.href=h;document.head.appendChild(l)})</script>
   <link rel="stylesheet" href="../_shared/fonts/manrope.css">
-  <link rel="stylesheet" href="../_shared/fonts/jetbrainsmono.css">
   <link rel="stylesheet" href="../_shared/core.css">
   <link rel="stylesheet" href="style.css">
   <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
@@ -25,8 +26,7 @@
         <li><a href="#services" data-nav>Услуги</a></li>
         <li><a href="#packages" data-nav>Пакеты</a></li>
         <li><a href="#works" data-nav>Работы</a></li>
-        <li><a href="#process" data-nav>Процесс</a></li>
-        <li><a href="#care" data-nav>Уход</a></li>
+        <li><a href="#process" data-nav>Как работаем</a></li>
         <li><a href="#faq" data-nav>Вопросы</a></li>
         <li><a href="#contacts" data-nav>Контакты</a></li>
       </ul>
@@ -37,163 +37,193 @@
 </header>
 
 <main id="main">
+  <!-- Первый экран: капот тёмного автомобиля в боксе, нарисованный на canvas, и инспекционная лампа.
+       Свет идёт за курсором (на телефоне — сам или за пальцем), проявляет лак и голограммы — кольца мелких
+       царапин вокруг блика. «После» — проход полировальника стирает их. Рисует app.js. -->
   <section class="hero" id="top" aria-labelledby="heroTitle">
-    <div class="hero__media" id="heroMedia"></div>
+    <div class="hero__media" id="heroMedia" aria-hidden="true">
+      <canvas class="hero__layer hero__layer--dark" id="hoodDark"></canvas>
+      <canvas class="hero__layer hero__layer--lit" id="hoodLit"></canvas>
+      <canvas class="hero__layer" id="hoodFx"></canvas>
+      <span class="hero__glow"></span>
+    </div>
     <div class="hero__in">
-      <p class="mono" data-cfg="hero.eyebrow"></p>
-      <h1 class="hero__title" id="heroTitle" data-split></h1>
-      <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
-      <div class="hero__actions" data-reveal>
-        <a class="btn btn--accent btn--lg" id="heroCta" href="#calc"></a>
-        <a class="btn btn--line btn--lg" href="#works">Смотреть работы</a>
+      <p class="hero__eyebrow" data-cfg="hero.eyebrow"></p>
+      <div class="hero__foot">
+        <div class="hero__copy">
+          <h1 class="hero__title" id="heroTitle" data-split></h1>
+          <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--accent btn--lg" id="heroCta" href="#calc"></a>
+            <a class="hero__link" href="#works">Смотреть работы</a>
+          </div>
+        </div>
+        <div class="inspect" role="group" aria-label="Осмотр лака">
+          <p class="hero__hint"><span class="hero__ring" aria-hidden="true"></span><span id="heroHintText">Ведите курсором: так мастер ищет голограммы и царапины на лаке</span></p>
+          <div class="seg" id="inspectSeg" role="radiogroup" aria-label="Состояние лака">
+            <button type="button" role="radio" aria-checked="true" data-state="before">До полировки</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-state="after">После</button>
+          </div>
+        </div>
       </div>
-      <ul class="hero__facts mono" id="heroFacts" role="list"></ul>
     </div>
   </section>
 
+  <!-- Услуги — перечень строками: номер, название, цена «от». Строка раскрывается: варианты, сроки, ограничения.
+       На компьютере справа закреплено фото услуги — меняется при наведении на строку. -->
   <section class="section services" id="services" aria-labelledby="servicesTitle">
     <div class="wrap">
       <div class="head">
-        <p class="mono">/ услуги</p>
-        <h2 id="servicesTitle" data-reveal>Уход и защита</h2>
+        <h2 id="servicesTitle" data-reveal>Что делаем</h2>
+        <p class="head__lead" id="servicesLead">Цены — для малого класса. Для вашего автомобиля посчитаем в калькуляторе.</p>
       </div>
-      <ol class="svc-list" id="svcList" role="list"></ol>
+      <div class="svc">
+        <ol class="svc__list" id="svcList" role="list"></ol>
+        <figure class="svc__media" id="svcMedia" aria-hidden="true"></figure>
+      </div>
     </div>
   </section>
 
+  <!-- Пакеты — лист сравнения: колонки без карточек, над колонкой при наведении загорается световая полоса -->
   <section class="section packages" id="packages" aria-labelledby="packagesTitle">
     <div class="wrap">
-      <div class="head">
-        <p class="mono">/ пакеты</p>
+      <div class="head head--row">
         <h2 id="packagesTitle" data-reveal>Готовые наборы</h2>
-        <p class="head__lead">Состав и ограничения — до выбора, без мелкого шрифта.</p>
+        <p class="head__lead">Когда нужно сразу несколько работ. Состав и то, что в пакет не входит, — до выбора.</p>
       </div>
-      <div class="pack-grid" id="packGrid" data-stagger="90"></div>
+      <div class="sheet" id="packGrid"></div>
+      <p class="demo-note" id="packDemo" hidden></p>
     </div>
   </section>
 
+  <!-- Работы — ровная сетка. Фото чёрно-белые и «загораются» цветом под курсором (на телефоне — в центре экрана) -->
   <section class="section works" id="works" aria-labelledby="worksTitle">
     <div class="wrap">
-      <div class="head head--row">
-        <div>
-          <p class="mono">/ работы</p>
-          <h2 id="worksTitle" data-reveal>Детали крупно</h2>
-        </div>
+      <div class="head">
+        <h2 id="worksTitle" data-reveal>Работы</h2>
         <div class="chips" id="worksFilter" role="group" aria-label="Фильтр по услуге"></div>
       </div>
-      <p class="demo-note" id="worksDemo" hidden>Работы — примеры на стоковых фото. Замените их фотографиями автомобилей студии.</p>
+      <p class="demo-note" id="worksDemo" hidden></p>
       <div class="works-grid" id="worksGrid" aria-live="polite"></div>
     </div>
   </section>
 
-  <section class="section compare" id="compare" aria-labelledby="compareTitle">
+  <!-- До/после — только пара реальных фото одного автомобиля (config.beforeAfter); пустой список — блока нет -->
+  <section class="section compare" id="compare" aria-labelledby="compareTitle" hidden>
     <div class="wrap">
-      <div class="head">
-        <p class="mono">/ до и после</p>
-        <h2 id="compareTitle" data-reveal>Одна машина, два кадра</h2>
-        <p class="head__lead" id="compareNote"></p>
+      <div class="head head--row">
+        <h2 id="compareTitle" data-reveal>До и после</h2>
+        <p class="head__lead">Оба кадра — один и тот же автомобиль до и после работы.</p>
       </div>
       <div id="compareList"></div>
     </div>
   </section>
 
+  <!-- Процесс: линия над этапами загорается по очереди, как световые полосы в боксе.
+       Ниже — паспорт работы в три колонки: материалы, команда, уход после студии (и гарантии, если есть). -->
   <section class="section process" id="process" aria-labelledby="processTitle">
-    <div class="wrap process__grid">
-      <div>
-        <p class="mono">/ процесс</p>
+    <div class="wrap">
+      <div class="head">
         <h2 id="processTitle" data-reveal>Как работаем</h2>
-        <ol class="proc" id="procList" role="list"></ol>
       </div>
-      <div class="process__side">
-        <div id="materialsBox">
+      <ol class="proc" id="procList" role="list"></ol>
+      <div class="passport" id="passport">
+        <div class="passport__col" id="materialsBox">
           <h3 class="side-title">Материалы</h3>
-          <ul class="mat" id="matList" role="list"></ul>
+          <ul class="rows" id="matList" role="list"></ul>
         </div>
-        <div id="teamBox">
+        <div class="passport__col" id="teamBox">
           <h3 class="side-title">Команда</h3>
-          <ul class="team" id="teamList" role="list"></ul>
+          <ul class="rows" id="teamList" role="list"></ul>
+        </div>
+        <div class="passport__col" id="careBox">
+          <h3 class="side-title">После студии</h3>
+          <ul class="rows rows--plain" id="careList" role="list"></ul>
+          <div id="warrantyBox">
+            <h3 class="side-title side-title--sub">Гарантии</h3>
+            <ul class="rows rows--plain" id="warrantyList" role="list"></ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section care" id="care" aria-labelledby="careTitle">
-    <div class="wrap care__grid">
-      <div>
-        <p class="mono">/ уход</p>
-        <h2 id="careTitle" data-reveal>После студии</h2>
-        <ul class="care__list" id="careList" role="list"></ul>
-      </div>
-      <div id="warrantyBox">
-        <h3 class="side-title">Гарантии</h3>
-        <ul class="care__list" id="warrantyList" role="list"></ul>
-      </div>
-    </div>
-  </section>
-
+  <!-- Расчёт: всё на одном экране (класс, услуга, вариант, допуслуги), справа — плашка ориентира; потом контакт -->
   <section class="section calc" id="calc" aria-labelledby="calcTitle">
-    <div class="wrap calc__grid">
-      <div>
-        <p class="mono">/ расчёт</p>
+    <div class="wrap">
+      <div class="head head--row">
         <h2 id="calcTitle">Рассчитать стоимость</h2>
         <ol class="steps" id="calcSteps"></ol>
-        <form class="form" id="calcForm" novalidate>
-          <fieldset class="step" data-step data-title="Класс">
-            <legend class="step__title">Класс автомобиля</legend>
-            <div class="opt-list" id="cClasses" data-field></div>
-            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Услуга" hidden>
-            <legend class="step__title">Что нужно сделать?</legend>
-            <div class="opt-list" id="cServices" data-field></div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Зона или пакет" hidden>
-            <legend class="step__title" id="cZoneTitle">Зона или пакет</legend>
-            <div class="opt-list" id="cZones" data-field></div>
-            <div id="cLimits"></div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Допуслуги" hidden>
-            <legend class="step__title">Добавить к работе</legend>
-            <p class="hint">Необязательно.</p>
-            <div class="opt-list opt-list--check" id="cExtras"></div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Контакт" hidden>
-            <legend class="step__title">Куда прислать расчёт</legend>
-            <div class="row">
-              <div class="field" data-field><label for="cName">Имя</label><input id="cName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
-              <div class="field" data-field><label for="cPhone">Телефон</label><input id="cPhone" name="phone" type="tel" data-validate="required phone"></div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="cBrand">Марка <span class="opt">необязательно</span></label><input id="cBrand" name="brand" type="text" maxlength="40"></div>
-              <div class="field"><label for="cModel">Модель <span class="opt">необязательно</span></label><input id="cModel" name="model" type="text" maxlength="40"></div>
-            </div>
-            <div class="field"><label for="cComment">Комментарий <span class="opt">необязательно</span></label><textarea id="cComment" name="comment" rows="3" maxlength="1500" placeholder="Например: есть скол на капоте"></textarea></div>
-            <div class="field drop" data-drop>
-              <label for="cPhotos">Фото автомобиля <span class="opt">необязательно · до 3 фото, до 10 МБ каждое</span></label>
-              <input id="cPhotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
-              <ul class="fb-files" id="cPhotoList"></ul>
-            </div>
-            <div id="cConsent"></div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить запрос расчёта</button></div>
-          </fieldset>
-          <p data-form-error role="alert"></p>
-        </form>
-        <div class="result" id="calcResult" hidden aria-live="polite"></div>
       </div>
-      <aside class="summary" aria-labelledby="sumTitle" aria-live="polite">
-        <h3 id="sumTitle" class="mono">Ориентир</h3>
-        <div id="sumBody"></div>
-      </aside>
+      <div class="calc__grid">
+        <div class="calc__main">
+          <form class="form" id="calcForm" novalidate>
+            <fieldset class="step" data-step data-title="Работа">
+              <legend class="sr-only">Работа</legend>
+              <div class="group" data-field>
+                <p class="group__title" id="gClass">Класс автомобиля</p>
+                <div class="seg seg--wide" id="cClasses" role="radiogroup" aria-labelledby="gClass"></div>
+                <p class="group__hint" id="cClassHint"></p>
+              </div>
+              <div class="group" data-field>
+                <p class="group__title" id="gService">Услуга</p>
+                <div class="pills" id="cServices" role="radiogroup" aria-labelledby="gService"></div>
+              </div>
+              <div class="group" data-field>
+                <p class="group__title" id="cZoneTitle">Вариант</p>
+                <div class="opt-list" id="cZones" role="radiogroup" aria-labelledby="cZoneTitle"></div>
+                <div id="cLimits"></div>
+              </div>
+              <div class="group">
+                <p class="group__title" id="gExtras">Добавить к работе <span class="opt">необязательно</span></p>
+                <div class="pills pills--check" id="cExtras" role="group" aria-labelledby="gExtras"></div>
+              </div>
+              <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше — контакт</button></div>
+            </fieldset>
+            <fieldset class="step" data-step data-title="Контакт" hidden>
+              <legend class="step__title">Куда прислать расчёт</legend>
+              <div class="row">
+                <div class="field" data-field><label for="cName">Имя</label><input id="cName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
+                <div class="field" data-field><label for="cPhone">Телефон</label><input id="cPhone" name="phone" type="tel" data-validate="required phone"></div>
+              </div>
+              <div class="row">
+                <div class="field"><label for="cBrand">Марка <span class="opt">необязательно</span></label><input id="cBrand" name="brand" type="text" maxlength="40"></div>
+                <div class="field"><label for="cModel">Модель <span class="opt">необязательно</span></label><input id="cModel" name="model" type="text" maxlength="40"></div>
+              </div>
+              <div class="field"><label for="cComment">Комментарий <span class="opt">необязательно</span></label><textarea id="cComment" name="comment" rows="3" maxlength="1500" placeholder="Например: есть скол на капоте"></textarea></div>
+              <!-- фото: своя кнопка вместо системной «Выберите файл»; можно перетащить файлы в рамку -->
+              <div class="field drop" data-drop>
+                <span class="field__label">Фото автомобиля <span class="opt">необязательно · до 3 фото, до 10 МБ</span></span>
+                <label class="drop__btn" for="cPhotos">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+                  <span>Добавить фото</span>
+                </label>
+                <span class="drop__hint">или перетащите сюда</span>
+                <input class="drop__input" id="cPhotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
+                <ul class="fb-files" id="cPhotoList"></ul>
+              </div>
+              <div id="cConsent"></div>
+              <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить запрос расчёта</button></div>
+            </fieldset>
+            <p data-form-error role="alert"></p>
+          </form>
+          <div class="result" id="calcResult" hidden aria-live="polite"></div>
+        </div>
+        <!-- Плашка ориентира: глянцевая; при смене суммы по ней проходит блик -->
+        <aside class="plate" id="summary" aria-labelledby="sumTitle" aria-live="polite">
+          <p class="plate__title" id="sumTitle">Ориентир</p>
+          <div id="sumBody"></div>
+        </aside>
+      </div>
     </div>
   </section>
 
   <section class="section faq" id="faq" aria-labelledby="faqTitle">
-    <div class="wrap wrap--narrow">
-      <p class="mono">/ вопросы</p>
-      <h2 id="faqTitle" data-reveal>Коротко о главном</h2>
+    <div class="wrap">
+      <div class="head head--row">
+        <h2 id="faqTitle" data-reveal>Вопросы</h2>
+        <p class="head__lead">Не нашли ответ — спросите мастера на осмотре или в заявке на расчёт.</p>
+      </div>
       <div class="faq__list" id="faqList"></div>
     </div>
   </section>
@@ -202,33 +232,41 @@
     <div class="wrap"><h2 id="reviewsTitle">Отзывы</h2><div class="reviews__list" id="reviewsList"></div></div>
   </section>
 
+  <!-- Финал: панель со световой полосой сверху, как потолочный свет бокса; контакты — одной строкой -->
   <section class="section contacts" id="contacts" aria-labelledby="contactsTitle">
-    <div class="wrap contacts__grid">
-      <div>
-        <p class="mono">/ контакты</p>
-        <h2 id="contactsTitle" data-reveal>Приезжайте на осмотр</h2>
-        <div class="quick">
-          <a class="btn btn--accent" href="#calc">Рассчитать стоимость</a>
-          <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
-          <a class="btn btn--line" data-quick="telegram" hidden>Telegram</a>
-          <a class="btn btn--line" data-quick="email" hidden>Почта</a>
+    <div class="wrap">
+      <div class="finale" data-reveal="fade">
+        <span class="finale__light" aria-hidden="true"></span>
+        <div class="finale__top">
+          <div>
+            <h2 id="contactsTitle" data-reveal>Приезжайте на осмотр</h2>
+            <p class="contacts__lead">Посмотрим лак при ярком свете, замерим толщину и назовём итоговую стоимость до начала работ.</p>
+          </div>
+          <div class="quick">
+            <a class="btn btn--accent" href="#calc">Рассчитать стоимость</a>
+            <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
+            <a class="btn btn--line" data-quick="telegram" hidden>Telegram</a>
+            <a class="btn btn--line" data-quick="email" hidden>Почта</a>
+          </div>
+        </div>
+        <div class="contacts__info">
+          <div data-contacts></div>
+          <p class="demo-note" id="contactsDemo" hidden></p>
         </div>
       </div>
-      <div data-contacts></div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <p class="footer__brand" data-brand></p>
+    <a class="logo logo--sm" href="#top" data-brand></a>
     <div data-legal></div>
   </div>
 </footer>
 
 <script src="config.js"></script>
-<script src="../_shared/vendor/lenis.min.js"></script>
-<script src="../_shared/vendor/anime.umd.min.js"></script>
+<!-- Lenis и anime.js не подключены: прокрутка нативная, анимации — CSS, Web Animations API и canvas (app.js). -->
 <script src="../_shared/core.js"></script>
 <script src="../_shared/config-check.js"></script>
 <script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>

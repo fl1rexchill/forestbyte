@@ -7,8 +7,8 @@
   <meta name="description" content="">
   <meta name="theme-color" content="#0f0e0d">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0d'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23ff5a1f'/%3E%3C/svg%3E">
-  <link rel="preload" href="../_shared/fonts/unbounded/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../_shared/fonts/onest/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- предзагрузка шрифтов только по http(s): при открытии файлом браузер блокирует preload с crossorigin -->
+  <script>/^https?:$/.test(location.protocol)&&['../_shared/fonts/unbounded/unbounded-cyrillic.woff2','../_shared/fonts/onest/onest-cyrillic.woff2'].forEach(function(h){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='anonymous';l.href=h;document.head.appendChild(l)})</script>
   <link rel="stylesheet" href="../_shared/fonts/unbounded.css">
   <link rel="stylesheet" href="../_shared/fonts/onest.css">
   <link rel="stylesheet" href="../_shared/fonts/jetbrainsmono.css">
@@ -40,17 +40,28 @@
 </header>
 
 <main id="main">
+  <!-- Первый экран: фото на всю ширину, табло «19:00» (время из названия агентства) и полоса тайминга вечера.
+       При прокрутке фото сжимается в карточку и уступает место следующему блоку. -->
   <section class="hero" id="top" aria-labelledby="heroTitle">
-    <div class="hero__text">
-      <p class="eyebrow" data-cfg="hero.eyebrow"></p>
-      <h1 class="hero__title" id="heroTitle" data-split></h1>
-      <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
-      <div class="hero__actions" data-reveal>
-        <a class="btn btn--accent btn--lg" id="heroCta" href="#brief"></a>
-        <a class="btn btn--line btn--lg" href="#projects">Смотреть проекты</a>
+    <figure class="hero__media" id="heroMedia" aria-hidden="true"></figure>
+    <div class="hero__in">
+      <p class="hero__eyebrow" data-cfg="hero.eyebrow"></p>
+      <p class="board" id="heroClock" role="img"></p>
+      <div class="hero__copy">
+        <h1 class="hero__title" id="heroTitle" data-split></h1>
+        <div class="hero__side">
+          <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--accent btn--lg" id="heroCta" href="#brief"></a>
+            <a class="hero__link" href="#projects">Смотреть проекты</a>
+          </div>
+        </div>
       </div>
     </div>
-    <figure class="hero__media" data-reveal="scale" id="heroMedia"></figure>
+    <div class="hero__run">
+      <p class="hero__run-title" id="heroRunTitle"></p>
+      <ol class="run" id="heroRun" role="list" aria-labelledby="heroRunTitle"></ol>
+    </div>
   </section>
 
   <section class="section formats" id="formats" aria-labelledby="formatsTitle">

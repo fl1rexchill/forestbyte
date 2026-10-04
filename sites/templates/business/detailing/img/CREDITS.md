@@ -14,7 +14,6 @@
 | `img/dash.webp` | 960×638 | https://stocksnap.io/photo/car-interior-FBC1FD9893 | David Marcu | stocksnap | CC0 1.0 ([текст](https://creativecommons.org/publicdomain/zero/1.0/)) |
 | `img/foam.webp` | 1200×900 | https://wordpress.org/photos/photo/2276524509/ | Michelle Frechette | wordpress | CC0 1.0 ([текст](https://creativecommons.org/publicdomain/zero/1.0/)) |
 | `img/brush.webp` | 1400×1050 | https://wordpress.org/photos/photo/9756524507/ | Michelle Frechette | wordpress | CC0 1.0 ([текст](https://creativecommons.org/publicdomain/zero/1.0/)) |
-| `img/ba-before.svg`, `img/ba-after.svg` | 1200×700 | нарисованы для шаблона | Forestbyte | — | свободно в составе шаблона |
 
 SVG «до/после» — схематичная иллюстрация работы блока сравнения, а не фото результата.
 

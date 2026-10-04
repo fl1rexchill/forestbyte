@@ -8,7 +8,7 @@
 |---|---|
 | [НАЗВАНИЕ] сервиса | `brand.name`, `brand.logoText` |
 | [ОПИСАНИЕ] | `brand.description`, `seo.description` |
-| [ГОРОД], [АДРЕС], [ЧАСЫ РАБОТЫ], [КАРТА] | `contacts.city`, `contacts.address`, `contacts.hours`, `contacts.map.url` |
+| [ГОРОД], [АДРЕС], [ЧАСЫ РАБОТЫ], [КАРТА] | `contacts.city`, `contacts.address`, `contacts.hours`, `contacts.map.url` и `contacts.map.embed` (виджет на странице) |
 | [ТЕЛЕФОН], [ПОЧТА] или [TELEGRAM] — хотя бы один | `contacts.*` |
 | [МАРКИ] и [КЛАССЫ] с коэффициентами | `carBrands`, `carClasses` |
 | [РАБОТЫ]: название, длительность, [ЦЕНА РАБОТЫ], [ЦЕНА ЗАПЧАСТЕЙ] | `services` |
@@ -23,8 +23,11 @@
 |---|---|
 | [ГАРАНТИЯ] на работы из договора | `policies.warranty` |
 | [ПОРЯДОК РАБОТЫ СО СВОИМИ ЗАПЧАСТЯМИ] | `policies.parts` |
-| [ЭТАПЫ ВИЗИТА] | `visit` |
-| [ОТЗЫВЫ] с источником | `reviews` |
+| [ЧТО ДЕЛАЕТЕ СО СТАРЫМИ ДЕТАЛЯМИ] | `policies.oldParts`, фраза для маркера — `policyMarks.oldParts` |
+| [ЭТАПЫ ВИЗИТА] и что клиент получает на каждом | `visit`, `visit[].gives` |
+| [ОТЗЫВЫ] с источником: машина, пробег, выполненные работы | `reviews`, `reviews[].car`, `reviews[].mileage`, `reviews[].works` |
+| [ФРАЗЫ ДЛЯ ВЫДЕЛЕНИЯ] в условиях | `policyMarks` |
+| [КОДЫ КАТЕГОРИЙ] и узлы схемы | `categories[].code`, `categories[].node` |
 | [ВАРИАНТЫ ЧАСТИ ДНЯ] | `booking.dayParts` |
 
 ## Фото
@@ -36,3 +39,5 @@
 
 - Показывать выдуманную занятость постов или готовность ремонта.
 - Обещать сроки ремонта без данных сервиса.
+
+Если меняете `carModels`, проверьте `carBodies`: модель должна быть в списке своего кузова (`hatch`, `suv`), иначе схема покажет седан.

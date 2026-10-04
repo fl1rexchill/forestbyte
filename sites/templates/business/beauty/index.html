@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Салон красоты — шаблон</title>
   <meta name="description" content="">
-  <meta name="theme-color" content="#f8efe6">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23b0103a'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-style='italic' font-size='32' text-anchor='middle' fill='%23f8efe6'%3EБ%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f6ece4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%237f1734'/%3E%3Ccircle cx='22' cy='32' r='8' fill='%23e0876a'/%3E%3Ccircle cx='42' cy='32' r='8' fill='%23d4848f'/%3E%3C/svg%3E">
+  <!-- предзагрузка шрифтов только по http(s): при открытии файлом браузер блокирует preload с crossorigin -->
+  <script>/^https?:$/.test(location.protocol)&&['../_shared/fonts/playfairdisplay/playfairdisplay-cyrillic.woff2','../_shared/fonts/montserrat/montserrat-cyrillic.woff2'].forEach(function(h){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='anonymous';l.href=h;document.head.appendChild(l)})</script>
   <link rel="stylesheet" href="../_shared/fonts/playfairdisplay.css">
   <link rel="stylesheet" href="../_shared/fonts/montserrat.css">
   <link rel="stylesheet" href="../_shared/core.css">
@@ -22,10 +24,9 @@
     <a class="logo" href="#top" data-brand aria-label="На главную"></a>
     <nav class="nav" id="nav" aria-label="Основное меню">
       <ul role="list">
-        <li><a href="#services" data-nav>Услуги</a></li>
+        <li><a href="#services" data-nav>Услуги и цены</a></li>
         <li><a href="#masters" data-nav>Мастера</a></li>
         <li><a href="#works" data-nav>Работы</a></li>
-        <li><a href="#prices" data-nav>Цены</a></li>
         <li><a href="#faq" data-nav>Вопросы</a></li>
         <li><a href="#contacts" data-nav>Контакты</a></li>
       </ul>
@@ -36,63 +37,75 @@
 </header>
 
 <main id="main">
+  <!-- Первый экран — открытая палетка: нюдовый корпус с ободком цвета розового золота, в крышке — зеркало с фото
+       и заголовком, в основании — матовые «пэны» категорий своего цвета. Пэн ведёт к услугам категории. -->
   <section class="hero" id="top" aria-labelledby="heroTitle">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="eyebrow" data-cfg="hero.eyebrow"></p>
-        <h1 class="hero__title" id="heroTitle"></h1>
-        <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
-        <div class="hero__actions" data-reveal>
-          <a class="btn btn--accent btn--lg" id="heroCta" href="#services"></a>
-          <a class="btn btn--line btn--lg" href="#masters">Мастера</a>
+    <div class="wrap">
+      <div class="compact">
+        <div class="compact__lid" id="heroLid">
+          <div class="compact__mirror">
+            <div class="compact__photo" id="heroPhoto" aria-hidden="true"></div>
+            <span class="compact__glare" aria-hidden="true"></span>
+            <div class="compact__text">
+              <p class="hero__eyebrow" data-cfg="hero.eyebrow"></p>
+              <h1 class="hero__title" id="heroTitle"></h1>
+              <p class="hero__lead" data-cfg="hero.text"></p>
+              <div class="hero__actions">
+                <a class="btn btn--accent btn--lg" id="heroCta" href="#services"></a>
+                <a class="hero__link" href="#masters">Мастера</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="compact__hinge" aria-hidden="true"><i></i><i></i></div>
+        <div class="compact__base">
+          <p class="compact__hint">Что хочется сделать?</p>
+          <ul class="pans" id="heroPans" role="list"></ul>
         </div>
       </div>
-      <div class="hero__collage" id="heroCollage"></div>
     </div>
   </section>
 
+  <!-- Услуги и цены — все категории сразу; «+» кладёт услугу в палетку визита -->
   <section class="section services" id="services" aria-labelledby="svcTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head head--row">
         <h2 id="svcTitle" data-reveal>Соберите <em>визит</em></h2>
-        <p class="head__lead">Отметьте одну или несколько услуг — посчитаем стоимость и время.</p>
+        <p class="head__lead" id="svcLead">Добавьте одну или несколько услуг — посчитаем общую стоимость и время, подберём мастера.</p>
       </div>
-      <div class="cat-tabs" id="catTabs" role="tablist" aria-label="Категории услуг"></div>
-      <div id="catPanel" role="tabpanel" tabindex="0"></div>
+      <p class="svc-msg" id="svcMsg" role="status" aria-live="polite"></p>
+      <div class="menu" id="svcMenu"></div>
+      <p class="demo-note" id="pricesNote"></p>
     </div>
   </section>
 
   <section class="section masters" id="masters" aria-labelledby="mastersTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head head--row">
         <h2 id="mastersTitle" data-reveal>Мастера</h2>
-        <p class="head__lead">У каждого мастера — свои услуги. При записи покажем только тех, кто выполняет выбранные.</p>
+        <p class="head__lead">У каждого мастера свои услуги. При записи покажем только тех, кто делает всё, что вы выбрали.</p>
       </div>
       <div class="masters__grid" id="mastersGrid" data-stagger="80"></div>
+      <p class="demo-note" id="mastersDemo" hidden></p>
     </div>
   </section>
 
+  <!-- Работы — лента с прокруткой вбок; фильтр: категории кнопками в одну строку, мастер — списком -->
   <section class="section works" id="works" aria-labelledby="worksTitle">
     <div class="wrap">
       <div class="head head--row">
         <h2 id="worksTitle" data-reveal>Работы</h2>
-        <div class="filters">
-          <label for="wfService" class="sr-only">Услуга</label>
-          <select id="wfService"></select>
-          <label for="wfMaster" class="sr-only">Мастер</label>
-          <select id="wfMaster"></select>
+        <div class="reel-nav">
+          <button class="reel-nav__btn" type="button" id="reelPrev" aria-label="Предыдущие работы"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="reel-nav__btn" type="button" id="reelNext" aria-label="Следующие работы"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
-      <p class="demo-note" id="worksDemo" hidden>Работы — примеры на стоковых фото. Замените их фотографиями работ мастеров салона.</p>
-      <div class="works__grid" id="worksGrid" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="section prices" id="prices" aria-labelledby="pricesTitle">
-    <div class="wrap">
-      <h2 id="pricesTitle" data-reveal>Цены</h2>
-      <p class="head__lead" id="pricesNote"></p>
-      <div class="prices__grid" id="pricesGrid"></div>
+      <div class="filters">
+        <div class="chips" id="wfCats" role="group" aria-label="Категория"></div>
+        <label class="select" id="wfMasterBox"><span class="sr-only">Мастер</span><select id="wfMaster"></select></label>
+      </div>
+      <p class="demo-note" id="worksDemo" hidden></p>
+      <div class="reel" id="worksGrid" aria-live="polite" tabindex="0" aria-label="Работы салона"></div>
     </div>
   </section>
 
@@ -101,56 +114,66 @@
   </section>
 
   <section class="section faq" id="faq" aria-labelledby="faqTitle">
-    <div class="wrap wrap--narrow">
-      <h2 id="faqTitle" data-reveal>Вопросы</h2>
+    <div class="wrap">
+      <div class="head head--row">
+        <h2 id="faqTitle" data-reveal>Вопросы</h2>
+        <p class="head__lead">Не нашли ответ — спросите администратора, когда он позвонит подтвердить запись.</p>
+      </div>
       <div class="faq__list" id="faqList"></div>
     </div>
   </section>
 
   <section class="section booking" id="booking" aria-labelledby="bookTitle">
-    <div class="wrap wrap--narrow">
-      <h2 id="bookTitle">Запись</h2>
-      <p class="booking__lead">Желаемое время — не бронь. Запись требует подтверждения администратора.</p>
-      <ol class="steps" id="bookSteps"></ol>
-      <form class="form" id="bookForm" novalidate>
-        <fieldset class="step" data-step data-title="Услуги">
-          <legend class="step__title">Услуги визита</legend>
-          <div id="bVisit"></div>
-          <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-        </fieldset>
-        <fieldset class="step" data-step data-title="Мастер" hidden>
-          <legend class="step__title">Мастер</legend>
-          <div class="choices" id="bMasters" data-field></div>
-          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-        </fieldset>
-        <fieldset class="step" data-step data-title="Время" hidden>
-          <legend class="step__title">Желаемое время</legend>
-          <div class="row">
-            <div class="field" data-field><label for="bDate">Желаемая дата</label><input id="bDate" name="date" type="date" data-validate="required future"></div>
-            <div class="field" data-field><span class="field__label" id="bPartLabel">Время суток</span><div class="choices choices--compact" id="bParts" role="radiogroup" aria-labelledby="bPartLabel"></div></div>
-          </div>
-          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-        </fieldset>
-        <fieldset class="step" data-step data-title="Контакт" hidden>
-          <legend class="step__title">Контакт</legend>
-          <div class="row">
-            <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
-            <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
-          </div>
-          <div class="field"><label for="bComment">Комментарий <span class="opt">необязательно</span></label><textarea id="bComment" name="comment" rows="3" maxlength="800" placeholder="Например: длина волос до лопаток"></textarea></div>
-          <div id="bConsent"></div>
-          <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить заявку на запись</button></div>
-        </fieldset>
-        <p data-form-error role="alert"></p>
-      </form>
-      <div class="result" id="bookResult" hidden aria-live="polite"></div>
+    <div class="wrap booking__grid">
+      <div class="booking__intro">
+        <h2 id="bookTitle">Запись</h2>
+        <p>Желаемое время — не бронь. Администратор сверит его с расписанием мастеров и подтвердит запись.</p>
+        <ol class="steps" id="bookSteps"></ol>
+      </div>
+      <div class="booking__main">
+        <form class="form" id="bookForm" novalidate>
+          <fieldset class="step" data-step data-title="Визит">
+            <legend class="step__title">Ваш визит</legend>
+            <div id="bVisit"></div>
+            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше — мастер</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Мастер" hidden>
+            <legend class="step__title">Мастер</legend>
+            <div class="people" id="bMasters" data-field role="radiogroup" aria-label="Мастер"></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше — время</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Время" hidden>
+            <legend class="step__title">Когда удобно прийти</legend>
+            <div class="group" data-field><p class="group__title" id="bDateTitle">Желаемый день</p><div class="days" id="bDays" role="radiogroup" aria-labelledby="bDateTitle"></div></div>
+            <div class="group" data-field><p class="group__title" id="bPartTitle">Время суток</p><div class="seg" id="bParts" role="radiogroup" aria-labelledby="bPartTitle"></div></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше — контакт</button></div>
+          </fieldset>
+          <fieldset class="step" data-step data-title="Контакт" hidden>
+            <legend class="step__title">Как с вами связаться</legend>
+            <div class="row">
+              <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
+              <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
+            </div>
+            <div class="field"><label for="bComment">Комментарий <span class="opt">необязательно</span></label><textarea id="bComment" name="comment" rows="3" maxlength="800" placeholder="Например: длина волос до лопаток"></textarea></div>
+            <div id="bConsent"></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить заявку на запись</button></div>
+          </fieldset>
+          <p data-form-error role="alert"></p>
+        </form>
+        <div class="result" id="bookResult" hidden aria-live="polite"></div>
+      </div>
     </div>
   </section>
 
+  <!-- Контакты — визитка салона: название, город и часы, контакты, кнопки -->
   <section class="section contacts" id="contacts" aria-labelledby="contactsTitle">
-    <div class="wrap contacts__grid">
-      <div>
-        <h2 id="contactsTitle" data-reveal>Контакты</h2>
+    <div class="wrap">
+      <div class="vcard" data-reveal="scale">
+        <h2 class="vcard__label" id="contactsTitle">Контакты</h2>
+        <p class="vcard__brand" data-brand-name></p>
+        <p class="vcard__sub" id="vcardSub"></p>
+        <div class="vcard__info" data-contacts></div>
+        <p class="demo-note" id="contactsDemo" hidden></p>
         <div class="quick">
           <a class="btn btn--accent" href="#booking">Записаться</a>
           <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
@@ -158,28 +181,28 @@
           <a class="btn btn--line" data-quick="email" hidden>Почта</a>
         </div>
       </div>
-      <div data-contacts></div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <p class="footer__brand" data-brand></p>
+    <a class="logo logo--sm" href="#top" data-brand></a>
     <div data-legal></div>
   </div>
 </footer>
 
+<!-- Палетка визита внизу экрана: по кружку на услугу, сумма и время; прячется у формы записи -->
 <div class="visit-bar" id="visitBar" hidden>
   <div class="visit-bar__in">
+    <ul class="visit-bar__pans" id="visitPans" role="list" aria-hidden="true"></ul>
     <p class="visit-bar__sum" id="visitSum" aria-live="polite"></p>
-    <a class="btn btn--accent btn--sm" href="#booking">Перейти к записи</a>
+    <a class="btn btn--accent btn--sm" href="#booking">К записи</a>
   </div>
 </div>
 
 <script src="config.js"></script>
-<script src="../_shared/vendor/lenis.min.js"></script>
-<script src="../_shared/vendor/anime.umd.min.js"></script>
+<!-- Lenis и anime.js не подключены: прокрутка нативная, анимации — CSS и Web Animations API (app.js). -->
 <script src="../_shared/core.js"></script>
 <script src="../_shared/config-check.js"></script>
 <script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>

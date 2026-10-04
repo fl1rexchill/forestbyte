@@ -37,6 +37,67 @@ T.boot(function (T, C) {
   $('#heroCta').href = '#' + (cta.target || 'brief');
   $('#heroMedia').innerHTML = T.img(C.hero && C.hero.image, { eager: true });
 
+  // табло «19:00»: при загрузке перещёлкивается с 18:57 — минута в минуту, как в названии
+  var timingItems = (C.timing && C.timing.items) || [];
+  var accentItem = timingItems.filter(function (t) { return t.accent; })[0];
+  var clockTime = (C.hero && C.hero.clock) || (accentItem && accentItem.time) || '19:00';
+  var board = $('#heroClock');
+  board.setAttribute('aria-label', 'Начало в ' + clockTime);
+  function boardHtml(t) {
+    return t.split('').map(function (ch) {
+      return ch === ':' ? '<span class="board__sep" aria-hidden="true">:</span>' : '<span class="board__cell" aria-hidden="true"><span class="board__d">' + ch + '</span></span>';
+    }).join('');
+  }
+  board.innerHTML = boardHtml(clockTime);
+  if (canAnimate && /^\d\d:\d\d$/.test(clockTime)) {
+    var target = mins(clockTime), cells = $$('.board__d', board);
+    var show = function (t) { t.replace(':', '').split('').forEach(function (ch, i) { cells[i].textContent = ch; }); };
+    show(clock(target - 3));
+    // каждая смена цифры — половина пластины уходит вверх, новая цифра выходит снизу
+    var flip = function (el, ch, delay) {
+      if (el.textContent === ch) return;
+      el.animate([{ transform: 'rotateX(0)' }, { transform: 'rotateX(-90deg)' }], { duration: 120, delay: delay, easing: 'ease-in', fill: 'forwards' }).onfinish = function () {
+        el.textContent = ch;
+        el.animate([{ transform: 'rotateX(90deg)' }, { transform: 'rotateX(0)' }], { duration: 160, easing: 'ease-out' });
+        el.getAnimations().forEach(function (x) { if (x.playState === 'finished') x.cancel(); });
+      };
+    };
+    [2, 1, 0].forEach(function (left, k) {
+      setTimeout(function () {
+        clock(target - left).replace(':', '').split('').forEach(function (ch, i) { flip(cells[i], ch, i * 40); });
+      }, 700 + k * 520);
+    });
+    // вкладка в фоне не анимирует — финальное время ставим в любом случае
+    setTimeout(function () { show(clockTime); }, 700 + 3 * 520 + 400);
+  }
+
+  // полоса тайминга вечера: пункты вокруг времени на табло, этот пункт подсвечен
+  var at = timingItems.map(function (t) { return t.time; }).indexOf(clockTime);
+  if (at < 0) at = accentItem ? timingItems.indexOf(accentItem) : 0;
+  var run = timingItems.slice(Math.max(0, at - 2), at + 4);
+  $('#heroRunTitle').textContent = (C.timing && C.timing.title) ? 'Тайминг: ' + C.timing.title.charAt(0).toLowerCase() + C.timing.title.slice(1) : 'Тайминг вечера';
+  $('#heroRun').innerHTML = run.map(function (t) {
+    var now = t.time === clockTime;
+    return '<li class="run__item' + (now ? ' is-now' : '') + '"' + (now ? ' aria-current="time"' : '') + '><time>' + esc(t.time) + '</time><span>' + esc(t.title) + '</span></li>';
+  }).join('');
+  $('.hero__run').hidden = !run.length;
+
+  // прокрутка: фото сжимается в карточку со скруглением и темнеет, текст уходит вверх
+  if (!FB.reduced) {
+    var hero = $('#top'), media = $('#heroMedia'), inner = $('.hero__in'), ticking = false;
+    var onHeroScroll = function () {
+      ticking = false;
+      var h = hero.offsetHeight || 1, p = Math.min(1, Math.max(0, window.scrollY / h));
+      var side = Math.min(window.innerWidth * 0.06, 72) * p;
+      media.style.clipPath = 'inset(' + (p * 40).toFixed(1) + 'px ' + side.toFixed(1) + 'px ' + (p * 120).toFixed(1) + 'px round ' + (p * 28).toFixed(1) + 'px)';
+      media.style.setProperty('--dim', (0.06 + p * 0.5).toFixed(3));
+      inner.style.transform = 'translateY(' + (-p * 60).toFixed(1) + 'px)';
+      inner.style.opacity = String(Math.max(0, 1 - p * 1.4));
+    };
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onHeroScroll); } }, { passive: true });
+    onHeroScroll();
+  }
+
   /* ---------------------------------------------------------------- форматы */
 
   T.section('formats', formats.length);
@@ -49,6 +110,7 @@ T.boot(function (T, C) {
       (n ? '<button class="btn btn--line btn--sm" type="button" data-show-format="' + esc(f.id) + '">Проекты · ' + n + '</button>' : '') +
       '<a class="btn btn--accent btn--sm" href="#brief" data-pick-format="' + esc(f.id) + '">Обсудить ' + esc(f.name.toLowerCase()) + '</a></div></div></article>';
   }).join('');
+  T.rail($('#formatsGrid'), 'Форматы событий');
 
   /* ---------------------------------------------------------------- проекты */
 
@@ -134,12 +196,22 @@ T.boot(function (T, C) {
 
   $('#servicesList').innerHTML = services.map(function (s) {
     return '<li class="srow" data-reveal data-svc="' + esc(s.id) + '">' +
-      '<div class="srow__main"><h3>' + esc(s.name) + (s.optional ? ' <span class="srow__opt">по запросу</span>' : '') + '</h3><p>' + esc(s.text || '') + '</p></div>' +
+      '<div class="srow__main"><h3>' + esc(s.name) + (s.optional ? ' <span class="srow__opt">по запросу</span>' : '') + '</h3><p>' + esc(s.text || '') + '</p>' +
+      (s.text || s.deliverable ? '<button class="srow__more" type="button" aria-expanded="false">Подробнее</button>' : '') + '</div>' +
       (s.deliverable ? '<p class="doc"><span class="doc__icon" aria-hidden="true"></span><span class="doc__txt"><span class="doc__label">На руках</span>' + esc(s.deliverable) + '</span></p>' : '<span></span>') +
       priceTag(s.price) +
       '<button class="add" type="button" data-add="' + esc(s.id) + '" aria-pressed="false" aria-label="В смету: ' + esc(s.name) + '"><span class="add__icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16"><path class="i-plus" d="M8 3v10M3 8h10"/><path class="i-check" d="M3.5 8.5l3 3 6-7"/></svg></span><span class="add__txt">В смету</span></button></li>';
   }).join('');
   T.section('services', services.length);
+  // на телефоне описание и «На руках» раскрываются по нажатию (стили — max-width: 760px)
+  $('#servicesList').addEventListener('click', function (e) {
+    var b = e.target.closest('.srow__more');
+    if (!b) return;
+    var open = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', String(open));
+    b.textContent = open ? 'Свернуть' : 'Подробнее';
+    b.closest('.srow').classList.toggle('is-open', open);
+  });
   // одна пометка на весь блок вместо метки у каждой цены
   var demoPrices = T.demo && services.some(function (s) { return s.demo; });
   $('#servicesDemo').hidden = !demoPrices;
@@ -161,11 +233,24 @@ T.boot(function (T, C) {
       '<span class="tl__dot" aria-hidden="true"></span>' +
       '<div class="tl__body"><h3>' + esc(it.title) + '</h3>' + (it.text ? '<p>' + esc(it.text) + '</p>' : '') + '</div></li>';
   }).join('');
+  var keyAt = Math.max(0, tItems.map(function (it) { return !!it.accent; }).indexOf(true));
+  var extra = 0;
+  $$('.tl__row', tl).forEach(function (r, i) { if (Math.abs(i - keyAt) > 2) { r.classList.add('is-extra'); extra++; } });
+  if (extra) {
+    tl.classList.add('is-short');
+    var more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'btn btn--line tl__more';
+    more.textContent = 'Показать весь день · ещё ' + extra;
+    more.addEventListener('click', function () { tl.classList.remove('is-short'); more.remove(); window.dispatchEvent(new Event('scroll')); });
+    tl.parentNode.insertBefore(more, tl.nextSibling);
+  }
 
   $('#prep').hidden = !stages.length;
   $('#stagesList').innerHTML = stages.map(function (s, i) {
     return '<li class="prep__step" data-reveal><span class="prep__n">' + (i + 1) + '</span><h4>' + esc(s.title) + '</h4><p>' + esc(s.text) + '</p></li>';
   }).join('');
+  T.rail($('#stagesList'), 'Этапы подготовки');
 
   // Прогресс тайминга: линия заполняется до середины экрана, пройденные пункты подсвечиваются.
   // Это состояние, а не украшение, поэтому работает и при prefers-reduced-motion (без переходов — их гасит core.css).
@@ -241,6 +326,7 @@ T.boot(function (T, C) {
         (p ? '<button class="ticket__btn" type="button" data-project="' + esc(p.id) + '">Смотреть проект<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>' : '') +
       '</div></figure>';
   }).join('');
+  T.rail($('#reviewsList'), 'Отзывы заказчиков');
   $('#reviewsList').addEventListener('click', function (e) {
     var b = e.target.closest('[data-project]');
     if (b) openProject(b.getAttribute('data-project'), b);

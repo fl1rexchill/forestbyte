@@ -7,8 +7,11 @@
   <meta name="description" content="">
   <meta name="theme-color" content="#111111">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Crect x='14' y='14' width='36' height='36' fill='none' stroke='%23ffd400' stroke-width='7'/%3E%3C/svg%3E">
+  <!-- предзагрузка шрифтов только по http(s): при открытии файлом браузер блокирует preload с crossorigin -->
+  <script>/^https?:$/.test(location.protocol)&&['../_shared/fonts/robotocondensed/robotocondensed-cyrillic.woff2','../_shared/fonts/golostext/golostext-cyrillic.woff2'].forEach(function(h){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='anonymous';l.href=h;document.head.appendChild(l)})</script>
   <link rel="stylesheet" href="../_shared/fonts/robotocondensed.css">
   <link rel="stylesheet" href="../_shared/fonts/golostext.css">
+  <link rel="stylesheet" href="../_shared/fonts/jetbrainsmono.css">
   <link rel="stylesheet" href="../_shared/core.css">
   <link rel="stylesheet" href="style.css">
   <script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('fb-motion');setTimeout(function(){if(!(window.FB&&FB.started))d.classList.remove('fb-motion')},2500)}})(document.documentElement)</script>
@@ -23,9 +26,9 @@
     <nav class="nav" id="nav" aria-label="Основное меню">
       <ul role="list">
         <li><a href="#catalog" data-nav>Работы и цены</a></li>
-        <li><a href="#visit" data-nav>Как проходит визит</a></li>
+        <li><a href="#visit" data-nav>Визит</a></li>
+        <li><a href="#reviews" data-nav>Отзывы</a></li>
         <li><a href="#terms" data-nav>Условия</a></li>
-        <li><a href="#faq" data-nav>Вопросы</a></li>
         <li><a href="#contacts" data-nav>Контакты</a></li>
       </ul>
     </nav>
@@ -35,26 +38,68 @@
 </header>
 
 <main id="main">
+  <!-- Первый экран — один лист чертежа на всю ширину: заголовок в левом верхнем углу, схема машины с узлами,
+       в правом нижнем углу — штамп чертежа, он же форма машины клиента (марка, модель, год, госномер). -->
   <section class="hero" id="top" aria-labelledby="heroTitle">
-    <div class="grid hero__grid">
-      <div class="hero__text">
-        <p class="label" data-cfg="hero.eyebrow"></p>
-        <h1 class="hero__title" id="heroTitle" data-split></h1>
-        <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
-        <div class="hero__actions" data-reveal>
-          <a class="btn btn--accent btn--lg" id="heroCta" href="#request"></a>
-          <a class="btn btn--line btn--lg" href="#catalog">Выбрать работы</a>
+    <div class="grid">
+      <div class="sheet">
+        <div class="sheet__head">
+          <p class="hero__eyebrow" data-cfg="hero.eyebrow"></p>
+          <h1 class="hero__title" id="heroTitle" data-split></h1>
         </div>
-      </div>
-      <div class="car-pick" id="carPick" aria-labelledby="carPickTitle" role="group">
-        <h2 class="car-pick__title" id="carPickTitle">Ваш автомобиль</h2>
-        <div class="car-pick__fields">
-          <div class="field"><label for="pBrand">Марка</label><select id="pBrand"></select></div>
-          <div class="field"><label for="pModel">Модель</label><input id="pModel" type="text" maxlength="40" autocomplete="off" placeholder="Например, Octavia"></div>
-          <div class="field"><label for="pYear">Год</label><select id="pYear"></select></div>
+
+        <!-- Схема-чертёж: клик по узлу открывает раздел каталога -->
+        <figure class="scheme" aria-labelledby="schemeCap">
+          <div class="scheme__stage" id="schemeStage">
+          <svg class="scheme__svg" viewBox="0 0 640 320" aria-hidden="true">
+            <g class="sk-body" id="skBody">
+              <path data-draw pathLength="1" d="M62 226 L58 196 Q58 182 74 178 L196 164 L244 154 L306 104 Q312 98 322 98 L452 98 Q466 98 474 106 L536 150 L586 160 Q594 162 594 172 L592 214 Q590 226 578 226 L536 226 A44 44 0 0 0 448 226 L194 226 A44 44 0 0 0 106 226 Z"/>
+              <path data-draw pathLength="1" d="M252 152 L308 108 Q313 103 322 103 L448 103 Q458 103 464 109 L516 146 Z"/>
+              <path data-draw pathLength="1" d="M376 103 L376 149 M246 158 L244 222 M378 150 L378 222 M510 152 L500 222 M196 214 L446 214"/>
+              <path data-draw pathLength="1" d="M330 172 L346 172 M452 170 L468 170 M252 152 L262 140 L274 142 L270 152 M64 186 L92 180 L92 188 L66 194 Z M588 168 L594 168 L594 186 L586 186"/>
+              <path class="sk-ground" d="M30 262 L612 262"/>
+            </g>
+            <!-- узлы: скрытые детали — пунктиром, как на чертеже -->
+            <g class="sk-node" data-node="engine"><rect class="sk-hidden" x="86" y="184" width="88" height="30" rx="3"/><path class="sk-hidden" d="M108 188 V210 M130 188 V210 M152 188 V210"/></g>
+            <g class="sk-node" data-node="battery"><rect class="sk-hidden" x="188" y="174" width="30" height="20" rx="2"/><path class="sk-hidden" d="M195 170 V174 M211 170 V174"/></g>
+            <g class="sk-node" data-node="dash"><path class="sk-hidden" d="M262 166 L286 142"/><ellipse class="sk-hidden" cx="291" cy="137" rx="5" ry="14" transform="rotate(-30 291 137)"/><rect class="sk-hidden" x="270" y="168" width="12" height="7"/></g>
+            <g class="sk-node" data-node="suspension"><path class="sk-hidden" d="M492 148 L484 153 L500 159 L484 165 L500 171 L484 177 L492 182 M502 146 V186"/></g>
+            <g class="sk-node" data-node="brakes"><circle data-draw pathLength="1" cx="150" cy="224" r="36"/><circle cx="150" cy="224" r="24"/><circle cx="150" cy="224" r="16"/><circle cx="150" cy="224" r="5"/><path class="sk-caliper" d="M143.2 242.8 A20 20 0 0 1 131.2 230.8"/></g>
+            <g class="sk-node" data-node="wheel"><circle data-draw pathLength="1" cx="492" cy="224" r="36"/><circle cx="492" cy="224" r="24"/><circle cx="492" cy="224" r="5"/></g>
+            <g class="sk-leaders" id="schemeLeaders"></g>
+          </svg>
+            <div class="scheme__spots" id="schemeSpots"></div>
+          </div>
+          <figcaption class="scheme__cap" id="schemeCap"><span class="scheme__body" id="schemeBody" aria-live="polite"></span><b>Что беспокоит?</b> Нажмите на узел — откроем нужный раздел каталога.</figcaption>
+        </figure>
+
+        <div class="sheet__go" data-reveal>
+          <p class="hero__lead" data-cfg="hero.text"></p>
+          <a class="btn btn--accent btn--lg" id="heroCta" href="#catalog"></a>
         </div>
-        <p class="car-pick__class" id="pClass" aria-live="polite"></p>
-        <div class="car-pick__media" id="heroMedia"></div>
+
+        <!-- Штамп чертежа = машина клиента. Марка определяет класс и коэффициент цены работ -->
+        <div class="stamp car" id="carPick" role="group" aria-labelledby="carPickTitle">
+          <p class="stamp__title" id="carPickTitle"><span>Ваш автомобиль</span><span class="stamp__class" id="pClass" aria-live="polite"></span></p>
+          <div class="car__fields">
+            <div class="field cb"><label for="pBrand">Марка</label><input id="pBrand" type="text" placeholder="Выберите" data-cb><svg class="cb__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></div>
+            <div class="field cb"><label for="pModel">Модель</label><input id="pModel" type="text" maxlength="40" placeholder="—" data-cb><svg class="cb__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></div>
+            <div class="field cb"><label for="pYear">Год</label><input id="pYear" type="text" inputmode="numeric" maxlength="4" placeholder="—" data-cb><svg class="cb__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></div>
+          </div>
+          <div class="stamp__plate">
+            <p class="stamp__lbl" id="plateLbl">Госномер <span>по желанию — попадёт в наряд</span></p>
+            <!-- Госномер в виде номерного знака: буквы и цифры по маске, регион отдельно -->
+            <div class="plate" role="group" aria-labelledby="plateLbl">
+              <label class="sr-only" for="pPlateNum">Номер</label>
+              <input class="plate__num" id="pPlateNum" type="text" maxlength="6" autocomplete="off" spellcheck="false" placeholder="А000АА">
+              <span class="plate__reg">
+                <label class="sr-only" for="pPlateReg">Регион</label>
+                <input class="plate__region" id="pPlateReg" type="text" inputmode="numeric" maxlength="3" autocomplete="off" placeholder="00">
+                <span class="plate__rus" aria-hidden="true">RUS<i></i></span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -62,8 +107,7 @@
   <section class="section section--light catalog" id="catalog" aria-labelledby="catalogTitle">
     <div class="grid">
       <div class="catalog__head">
-        <p class="label">01 / Работы и цены</p>
-        <h2 id="catalogTitle" data-reveal>Каталог работ</h2>
+        <h2 id="catalogTitle" data-reveal>Работы и цены</h2>
         <div class="search">
           <label class="sr-only" for="svcSearch">Поиск по работам</label>
           <input id="svcSearch" type="search" placeholder="Поиск: колодки, масло, развал…" autocomplete="off">
@@ -78,91 +122,98 @@
             <span><b>Не знаю, какая услуга нужна</b><span>Опишите, что происходит с автомобилем, — мастер предложит диагностику.</span></span>
           </label>
         </div>
-        <aside class="estimate" id="estimate" aria-labelledby="estTitle">
-          <h3 id="estTitle">Предварительный расчёт</h3>
+        <!-- Заказ-наряд (черновик): пересчитывается при каждом выборе -->
+        <aside class="order" id="estimate" aria-labelledby="estTitle">
+          <div class="order__head">
+            <h3 id="estTitle">Заказ-наряд</h3>
+            <p class="order__no">черновик от <span id="orderDate"></span></p>
+          </div>
+          <div class="order__car" id="orderCar"></div>
           <div id="estBody" aria-live="polite"></div>
-          <a class="btn btn--accent estimate__cta" href="#request">Оставить заявку</a>
+          <a class="btn btn--accent order__cta" href="#request">Оформить заявку</a>
         </aside>
       </div>
+      <p class="demo-note" id="catalogDemo" hidden></p>
     </div>
   </section>
 
   <section class="section visit" id="visit" aria-labelledby="visitTitle">
     <div class="grid">
-      <p class="label">02 / Визит</p>
-      <h2 id="visitTitle" data-reveal>Как проходит визит</h2>
-      <ol class="visit__list" id="visitList" role="list" data-stagger="70"></ol>
+      <div class="head">
+        <h2 id="visitTitle" data-reveal>Путь машины по сервису</h2>
+        <p class="head__lead" data-reveal>На каждом этапе у вас остаётся что-то на руках — от черновика наряда до старых деталей.</p>
+      </div>
+      <ol class="path" id="visitList" role="list" data-stagger="80"></ol>
+    </div>
+  </section>
+
+  <section class="section history" id="reviews" aria-labelledby="reviewsTitle">
+    <div class="grid">
+      <div class="head">
+        <h2 id="reviewsTitle" data-reveal>История обслуживания</h2>
+        <p class="head__lead" data-reveal>Отзывы привязаны к машине, пробегу и работам — видно, что именно делали.</p>
+      </div>
+      <p class="demo-note" id="reviewsDemo" hidden></p>
+      <div class="km" id="kmScale" aria-hidden="true"></div>
+      <ol class="hist" id="reviewsList" role="list"></ol>
     </div>
   </section>
 
   <section class="section section--light terms" id="terms" aria-labelledby="termsTitle">
-    <div class="grid terms__grid">
-      <div>
-        <p class="label">03 / Условия</p>
-        <h2 id="termsTitle" data-reveal>Без сюрпризов в счёте</h2>
-      </div>
-      <dl class="terms__list" id="termsList"></dl>
-    </div>
-  </section>
-
-  <section class="section reviews" id="reviews" aria-labelledby="reviewsTitle">
-    <div class="grid"><h2 id="reviewsTitle">Отзывы</h2><div class="reviews__list" id="reviewsList"></div></div>
-  </section>
-
-  <section class="section section--light faq" id="faq" aria-labelledby="faqTitle">
     <div class="grid">
-      <p class="label">04 / Вопросы</p>
-      <h2 id="faqTitle" data-reveal>Частые вопросы</h2>
-      <div class="faq__list" id="faqList"></div>
+      <div class="head">
+        <h2 id="termsTitle" data-reveal>Без мелкого шрифта</h2>
+        <p class="head__lead" data-reveal>Условия, которые обычно прячут в договоре, — крупно. Ниже ответы на частые вопросы.</p>
+      </div>
+      <div class="terms__grid">
+        <div>
+          <ol class="rules" id="termsList" role="list"></ol>
+          <p class="demo-note" id="termsDemo" hidden></p>
+        </div>
+        <div class="qa" id="faq" aria-labelledby="faqTitle">
+          <h3 class="qa__title" id="faqTitle">Частые вопросы</h3>
+          <div class="qa__list" id="faqList"></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section request" id="request" aria-labelledby="requestTitle">
     <div class="grid request__grid">
-      <div>
-        <p class="label">05 / Заявка</p>
+      <div class="request__side">
         <h2 id="requestTitle">Оставить заявку</h2>
         <p class="request__lead">Запись требует подтверждения: администратор свяжется и согласует время.</p>
         <ol class="steps" id="reqSteps"></ol>
+      </div>
+      <div class="request__main">
         <form class="form" id="reqForm" novalidate>
-          <fieldset class="step" data-step data-title="Автомобиль">
-            <legend class="step__title">Автомобиль</legend>
-            <div class="row row--3">
-              <div class="field" data-field><label for="rBrand">Марка</label><select id="rBrand" name="brand" required></select></div>
-              <div class="field"><label for="rModel">Модель <span class="opt">необязательно</span></label><input id="rModel" name="model" type="text" maxlength="40"></div>
-              <div class="field"><label for="rYear">Год <span class="opt">необязательно</span></label><select id="rYear" name="year"></select></div>
-            </div>
-            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Работы" hidden>
-            <legend class="step__title">Работы или проблема</legend>
-            <div id="rWorks"></div>
+          <fieldset class="step" data-step data-title="Машина и время">
+            <legend class="step__title">Когда удобно приехать</legend>
+            <div class="req-sum" id="rSummary"></div>
+            <!-- марка спрашивается, только если её не выбрали на первом экране -->
+            <div class="field cb" data-field id="rBrandBox"><label for="rBrand">Марка автомобиля</label><input id="rBrand" name="brand" type="text" placeholder="Выберите марку" required data-msg="Выберите марку из списка" data-cb><svg class="cb__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></div>
+            <!-- желаемая дата: ближайшие две недели кнопками вместо системного календаря -->
+            <div class="field" data-field><span class="field__label" id="rDateLabel">Желаемый день</span><div class="days" id="rDays" role="radiogroup" aria-labelledby="rDateLabel"></div></div>
+            <div class="field" data-field><span class="field__label" id="rPartLabel">Время суток</span><div class="seg" id="rParts" role="radiogroup" aria-labelledby="rPartLabel"></div></div>
+            <p class="hint">Это пожелание, а не бронь. Администратор подтвердит время.</p>
             <label class="check"><input type="checkbox" id="rUnknown" name="unknown" value="да"> <span>Не знаю, какая услуга нужна</span></label>
             <div class="field" data-field id="rProblemBox" hidden>
               <label for="rProblem">Что происходит с автомобилем?</label>
               <textarea id="rProblem" name="problem" rows="4" maxlength="1500" data-validate="required min:10" data-msg="Опишите проблему хотя бы в двух словах" placeholder="Например: стук спереди справа на неровностях, появился неделю назад"></textarea>
             </div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Время" hidden>
-            <legend class="step__title">Желаемое время</legend>
-            <p class="hint">Это пожелание, а не бронь. Администратор подтвердит время.</p>
-            <div class="row">
-              <div class="field" data-field><label for="rDate">Желаемая дата</label><input id="rDate" name="date" type="date" data-validate="required future"></div>
-              <div class="field" data-field><span class="field__label" id="rPartLabel">Время суток</span><div class="radios" id="rParts" role="radiogroup" aria-labelledby="rPartLabel"></div></div>
-            </div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше — контакт</button></div>
           </fieldset>
           <fieldset class="step" data-step data-title="Контакт" hidden>
-            <legend class="step__title">Контакт</legend>
+            <legend class="step__title">Как с вами связаться</legend>
             <div class="row">
               <div class="field" data-field><label for="rName">Имя</label><input id="rName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
               <div class="field" data-field><label for="rPhone">Телефон</label><input id="rPhone" name="phone" type="tel" data-validate="required phone"></div>
             </div>
             <div class="row">
-              <div class="field"><label for="rPlate">Госномер или VIN <span class="opt">необязательно</span></label><input id="rPlate" name="plate" type="text" maxlength="20" autocomplete="off"></div>
-              <div class="field"><label for="rMileage">Пробег, км <span class="opt">необязательно</span></label><input id="rMileage" name="mileage" type="number" inputmode="numeric" min="0" max="2000000" data-validate="num"></div>
+              <div class="field"><label for="rPlate">Госномер <span class="opt">необязательно</span></label><input id="rPlate" name="plate" type="text" maxlength="12" autocomplete="off" placeholder="А000АА 00"></div>
+              <div class="field" data-field><label for="rMileage">Пробег, км <span class="opt">необязательно</span></label><input id="rMileage" name="mileage" type="text" inputmode="numeric" maxlength="7" autocomplete="off" data-validate="num" min="0" max="2000000"></div>
             </div>
+            <div class="field"><label for="rVin">VIN <span class="opt">необязательно · 17 символов</span></label><input id="rVin" name="vin" type="text" maxlength="17" autocomplete="off" spellcheck="false"></div>
             <div class="field"><label for="rComment">Комментарий <span class="opt">необязательно</span></label><textarea id="rComment" name="comment" rows="3" maxlength="1500"></textarea></div>
             <div id="rConsent"></div>
             <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="submit">Отправить заявку</button></div>
@@ -176,9 +227,10 @@
 
   <section class="section section--light contacts" id="contacts" aria-labelledby="contactsTitle">
     <div class="grid contacts__grid">
-      <div>
-        <p class="label">06 / Контакты</p>
+      <div class="contacts__info">
         <h2 id="contactsTitle" data-reveal>Контакты</h2>
+        <div data-contacts></div>
+        <p class="demo-note" id="contactsDemo" hidden></p>
         <div class="quick">
           <a class="btn btn--dark" href="#request">Оставить заявку</a>
           <a class="btn btn--line-dark" data-quick="phone" hidden>Позвонить</a>
@@ -186,21 +238,21 @@
           <a class="btn btn--line-dark" data-quick="email" hidden>Почта</a>
         </div>
       </div>
-      <div data-contacts></div>
+      <!-- карта: contacts.map.embed (ссылка виджета Яндекс Карт); в демо — заглушка-схема -->
+      <div class="map" id="map" hidden></div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="grid footer__in">
-    <p class="footer__brand" data-brand></p>
+    <a class="logo logo--sm" href="#top" data-brand></a>
     <div data-legal></div>
   </div>
 </footer>
 
 <script src="config.js"></script>
-<script src="../_shared/vendor/lenis.min.js"></script>
-<script src="../_shared/vendor/anime.umd.min.js"></script>
+<!-- Lenis и anime.js не подключены: прокрутка нативная, анимации — CSS и Web Animations API (app.js). -->
 <script src="../_shared/core.js"></script>
 <script src="../_shared/config-check.js"></script>
 <script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>

@@ -12,7 +12,7 @@ window.SITE_CONFIG = {
     logoText: 'ГРАФИТ',
     logo: null,
     description: 'Демо-студия детейлинга: полировка, защитная плёнка, керамика, химчистка и уход за салоном.',
-    colors: { accent: '#c8f031' },
+    colors: { accent: '#ecebe7' },  // белый: главная кнопка и выбранное; цвет на странице дают фото
     fonts: {}
   },
 
@@ -25,10 +25,10 @@ window.SITE_CONFIG = {
   },
 
   hero: {
-    eyebrow: 'Детейлинг-студия',
+    eyebrow: 'Детейлинг-студия · Екатеринбург',
     title: 'Блеск, который держится',
     text: 'Полируем кузов, клеим защитную плёнку, наносим керамику и чистим салон. Посчитайте ориентир по стоимости за минуту — итог уточним после осмотра.',
-    image: 'hero',
+    image: 'hero',                // на странице не выводится: первый экран рисуется (капот и лампа); фото — для og:image
     cta: { label: 'Рассчитать стоимость', target: 'calc' }
   },
 
@@ -105,11 +105,10 @@ window.SITE_CONFIG = {
     { id: 'w6', title: 'Мойка перед нанесением защиты', service: 'ceramic', image: 'foam', demo: true }
   ],
 
-  // До/после: только пара фото ОДНОЙ работы (sameCar: true) с разрешением на публикацию.
-  // В демо — схематичная иллюстрация, чтобы показать работу блока. Пустой список — блок скрыт.
-  beforeAfter: [
-    { id: 'ba1', title: 'Пример блока сравнения', service: 'polish', before: 'ba-before', after: 'ba-after', sameCar: true, illustration: true, demo: true }
-  ],
+  // До/после: только пара реальных фото ОДНОЙ работы (sameCar: true) с разрешением на публикацию.
+  // Пустой список — блока на странице нет. Пример:
+  // { id: 'ba1', title: 'Полировка капота', service: 'polish', before: 'hood-before', after: 'hood-after', sameCar: true }
+  beforeAfter: [],
 
   process: [
     { title: 'Осмотр', text: 'Смотрим кузов при ярком свете, замеряем толщину лака, фиксируем сколы и царапины.' },
@@ -145,7 +144,10 @@ window.SITE_CONFIG = {
   faq: [
     { q: 'Почему на сайте цена «от»?', a: 'Стоимость зависит от класса, состояния лака и сложности элементов. Калькулятор показывает ориентир, итоговую стоимость называем после осмотра.' },
     { q: 'Сколько автомобиль пробудет в студии?', a: 'Ориентир по времени виден в расчёте. Точный срок назовём после осмотра — он зависит от состояния кузова и выбранных работ.' },
-    { q: 'Можно ли приехать просто на осмотр?', a: 'Да. Оставьте заявку без выбора услуги или напишите в комментарии, что хотите осмотр.' }
+    { q: 'Можно ли приехать просто на осмотр?', a: 'Да. Оставьте заявку без выбора услуги или напишите в комментарии, что хотите осмотр.' },
+    { q: 'Нужно ли мыть автомобиль перед приездом?', a: 'Нет. Перед любой работой студия сама моет и готовит кузов — это входит в процесс.' },
+    { q: 'Можно ли сочетать плёнку и керамику?', a: 'Да, часто плёнку клеят на зоны риска, а керамику наносят на остальной кузов. Порядок и совместимость материалов мастер объяснит на осмотре.' },
+    { q: 'Что делать, если после работы заметили дефект?', a: 'Напишите или позвоните в студию и приезжайте: мастер посмотрит автомобиль при свете и предложит решение.' }
   ],
 
   booking: {
@@ -186,8 +188,6 @@ window.SITE_CONFIG = {
     seats: { src: 'img/seats.webp', width: 960, height: 540, alt: 'Кожаные сиденья кабриолета сверху', role: 'service', source: 'https://stocksnap.io/photo/car-interior-SF6UIKA8HT', author: 'Mike Birdy', license: 'CC0 1.0', demo: true },
     dash: { src: 'img/dash.webp', width: 960, height: 638, alt: 'Руль и панель приборов классического автомобиля', role: 'service', source: 'https://stocksnap.io/photo/car-interior-FBC1FD9893', author: 'David Marcu', license: 'CC0 1.0', demo: true },
     foam: { src: 'img/foam.webp', width: 1200, height: 900, alt: 'Пена на лобовом стекле во время мойки', role: 'portfolio', source: 'https://wordpress.org/photos/photo/2276524509/', author: 'Michelle Frechette', license: 'CC0 1.0', demo: true },
-    brush: { src: 'img/brush.webp', width: 1400, height: 1050, alt: 'Щётки автомойки на стекле', role: 'decor', source: 'https://wordpress.org/photos/photo/9756524507/', author: 'Michelle Frechette', license: 'CC0 1.0', demo: true },
-    'ba-before': { src: 'img/ba-before.svg', width: 1200, height: 700, alt: 'Иллюстрация: поверхность с круговыми царапинами', role: 'illustration', source: 'создано для шаблона', author: 'Forestbyte', license: 'свободно в составе шаблона', demo: true },
-    'ba-after': { src: 'img/ba-after.svg', width: 1200, height: 700, alt: 'Иллюстрация: ровная глянцевая поверхность с бликом', role: 'illustration', source: 'создано для шаблона', author: 'Forestbyte', license: 'свободно в составе шаблона', demo: true }
+    brush: { src: 'img/brush.webp', width: 1400, height: 1050, alt: 'Щётки автомойки на стекле', role: 'decor', source: 'https://wordpress.org/photos/photo/9756524507/', author: 'Michelle Frechette', license: 'CC0 1.0', demo: true }
   }
 };

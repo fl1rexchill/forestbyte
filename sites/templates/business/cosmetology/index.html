@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Косметология — шаблон</title>
   <meta name="description" content="">
-  <meta name="theme-color" content="#f6f4ee">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%232f5d50'/%3E%3Cpath d='M32 16c8 8 8 24 0 32-8-8-8-24 0-32z' fill='%23f6f4ee'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../_shared/fonts/lora.css">
+  <meta name="theme-color" content="#f7f5f2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23f7f5f2'/%3E%3Cpath d='M32 12C24 24 19 31 19 38a13 13 0 0 0 26 0c0-7-5-14-13-26z' fill='%23d9a477'/%3E%3Cellipse cx='27' cy='36' rx='3' ry='5' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
+  <!-- предзагрузка шрифтов только по http(s): при открытии файлом браузер блокирует preload с crossorigin -->
+  <script>/^https?:$/.test(location.protocol)&&['../_shared/fonts/manrope/manrope-cyrillic.woff2','../_shared/fonts/onest/onest-cyrillic.woff2'].forEach(function(h){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='anonymous';l.href=h;document.head.appendChild(l)})</script>
+  <link rel="stylesheet" href="../_shared/fonts/manrope.css">
   <link rel="stylesheet" href="../_shared/fonts/onest.css">
   <link rel="stylesheet" href="../_shared/core.css">
   <link rel="stylesheet" href="style.css">
@@ -24,8 +26,7 @@
       <ul role="list">
         <li><a href="#specialists" data-nav>Специалисты</a></li>
         <li><a href="#services" data-nav>Услуги и цены</a></li>
-        <li><a href="#equipment" data-nav>Оборудование</a></li>
-        <li><a href="#space" data-nav>Пространство</a></li>
+        <li><a href="#cabinet" data-nav>Кабинет</a></li>
         <li><a href="#licenses" data-nav>Документы</a></li>
         <li><a href="#faq" data-nav>Вопросы</a></li>
         <li><a href="#contacts" data-nav>Контакты</a></li>
@@ -37,60 +38,70 @@
 </header>
 
 <main id="main">
-  <section class="hero" id="top" aria-labelledby="heroTitle">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="eyebrow" data-cfg="hero.eyebrow"></p>
-        <h1 class="hero__title" id="heroTitle" data-split></h1>
-        <p class="hero__lead" data-cfg="hero.text" data-reveal></p>
-        <div class="hero__actions" data-reveal>
-          <a class="btn btn--accent btn--lg" id="heroCta" href="#booking"></a>
-          <a class="btn btn--line btn--lg" href="#services">Услуги и цены</a>
-        </div>
+  <!-- Первый экран — «сыворотка»: фарфоровый фон с мягким свечением, крупный заголовок, на нём лежит стеклянная
+       капля и преломляет буквы под собой. Ниже — подзаголовок с кнопкой и три шага на матовом стекле. -->
+  <section class="cover" id="top" aria-labelledby="heroTitle">
+    <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap cover__in">
+      <p class="cover__eyebrow" id="coverMast"></p>
+      <div class="cover__head">
+        <h1 class="cover__title" id="heroTitle"></h1>
+        <span class="drop" id="coverDrop" aria-hidden="true"><span class="drop__body"></span><span class="drop__glint"></span><span class="drop__shade"></span></span>
       </div>
-      <figure class="hero__media" id="heroMedia" data-reveal="fade"></figure>
+      <div class="cover__sub">
+        <p class="cover__deck" data-cfg="hero.text"></p>
+        <a class="btn btn--accent btn--lg cover__cta" id="heroCta" href="#booking"></a>
+      </div>
+      <ol class="route" id="heroRoute" role="list"></ol>
+      <p class="cover__note" id="coverNote" hidden></p>
     </div>
   </section>
 
   <section class="section specialists" id="specialists" aria-labelledby="specTitle">
     <div class="wrap">
-      <div class="head">
-        <h2 id="specTitle" data-reveal>Специалисты</h2>
+      <header class="head head--row">
+        <h2 id="specTitle" data-reveal>Кто вас примет</h2>
         <p class="head__lead">С кем вы будете говорить на консультации и какие услуги ведёт каждый специалист.</p>
-      </div>
+      </header>
       <div class="spec-grid" id="specGrid" data-stagger="90"></div>
+      <p class="demo-note" id="specDemo" hidden></p>
     </div>
   </section>
 
+  <!-- Услуги — прайс на белой карточке: название, отточия, цена; строка раскрывается подробностями -->
   <section class="section services" id="services" aria-labelledby="svcTitle">
     <div class="wrap">
-      <div class="head">
-        <h2 id="svcTitle" data-reveal>Услуги и цены</h2>
-        <p class="head__lead" id="svcNote"></p>
+      <header class="head">
+        <p class="kicker">Услуги и цены</p>
+        <h2 id="svcTitle" data-reveal>Что можно сделать</h2>
+        <p class="head__lead">Нажмите на услугу — покажем длительность, специалистов и запись.</p>
+      </header>
+      <div class="toc" id="svcToc"></div>
+      <p class="price-note" id="svcNote" hidden></p>
+    </div>
+  </section>
+
+  <!-- Кабинет: три-четыре фото одной высоты в общей тёплой гамме, ниже — оборудование -->
+  <section class="section cabinet" id="cabinet" aria-labelledby="cabTitle">
+    <div class="wrap">
+      <header class="head head--row">
+        <h2 id="cabTitle" data-reveal>Где проходит приём</h2>
+        <p class="head__lead" id="cabLead"></p>
+      </header>
+      <div class="spread" id="spaceGrid"></div>
+      <div class="eq" id="eqBox">
+        <h3 class="eq__title">Оборудование</h3>
+        <dl class="eq__list" id="eqList"></dl>
       </div>
-      <div class="cats" id="svcCats" role="group" aria-label="Категории услуг"></div>
-      <div class="svc-grid" id="svcGrid" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="section equipment" id="equipment" aria-labelledby="eqTitle">
-    <div class="wrap">
-      <h2 id="eqTitle" data-reveal>Оборудование</h2>
-      <div class="eq-list" id="eqList"></div>
-    </div>
-  </section>
-
-  <section class="section space" id="space" aria-labelledby="spaceTitle">
-    <div class="wrap">
-      <h2 id="spaceTitle" data-reveal>Пространство</h2>
-      <div class="space-grid" id="spaceGrid"></div>
     </div>
   </section>
 
   <section class="section results" id="results" aria-labelledby="resTitle">
     <div class="wrap">
-      <h2 id="resTitle">Результаты</h2>
-      <p class="head__lead">Фото публикуются с письменного согласия пациентов. Результат индивидуален.</p>
+      <header class="head">
+        <h2 id="resTitle">Результаты</h2>
+        <p class="head__lead">Фото публикуются с письменного согласия пациентов. Результат индивидуален.</p>
+      </header>
       <div class="res-grid" id="resGrid"></div>
     </div>
   </section>
@@ -106,10 +117,14 @@
     <div class="wrap"><h2 id="reviewsTitle">Отзывы</h2><div class="reviews__list" id="reviewsList"></div></div>
   </section>
 
+  <!-- Вопросы — карточки: вопрос и ответ видны сразу, без раскрывашек -->
   <section class="section faq" id="faq" aria-labelledby="faqTitle">
-    <div class="wrap wrap--narrow">
-      <h2 id="faqTitle" data-reveal>Вопросы</h2>
-      <div class="faq__list" id="faqList"></div>
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Вопросы</p>
+        <h2 id="faqTitle" data-reveal>Что обычно спрашивают</h2>
+      </header>
+      <div class="qa" id="faqList"></div>
     </div>
   </section>
 
@@ -117,37 +132,37 @@
     <div class="wrap booking__grid">
       <div class="booking__intro">
         <h2 id="bookTitle">Запрос на консультацию</h2>
-        <p>Выберите услугу или консультацию, специалиста и желаемое время. Запись требует подтверждения: администратор свяжется с вами.</p>
+        <p>Запись требует подтверждения: администратор свяжется с вами и согласует время.</p>
         <p class="booking__warn">Не указывайте в форме сведения о здоровье — их обсудит специалист на консультации.</p>
+        <dl class="ask" id="bookSummary" aria-live="polite"></dl>
       </div>
-      <div>
+      <div class="booking__form">
         <ol class="steps" id="bookSteps"></ol>
         <form class="form" id="bookForm" novalidate>
           <fieldset class="step" data-step data-title="Услуга">
-            <legend class="step__title">Услуга или консультация</legend>
-            <div class="field" data-field>
-              <label for="bService">Услуга</label>
-              <select id="bService" name="serviceId" required></select>
+            <legend class="step__title">С чего начнём</legend>
+            <div class="group" data-field>
+              <div class="pick" id="bStart" role="radiogroup" aria-label="С чего начать"></div>
             </div>
-            <p class="picked" id="bServiceInfo" aria-live="polite"></p>
-            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
-          </fieldset>
-          <fieldset class="step" data-step data-title="Специалист" hidden>
-            <legend class="step__title">Специалист</legend>
-            <div class="choices" id="bSpecs" data-field></div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+            <div class="group" data-field id="bServiceBox" hidden>
+              <p class="group__title" id="bServiceTitle">Услуга</p>
+              <div class="svc-pick" id="bServices" role="radiogroup" aria-labelledby="bServiceTitle"></div>
+            </div>
+            <div class="group" data-field>
+              <p class="group__title" id="bSpecTitle">Специалист</p>
+              <div class="people" id="bSpecs" role="radiogroup" aria-labelledby="bSpecTitle"></div>
+            </div>
+            <div class="step__nav"><button class="btn btn--accent" type="button" data-next>Дальше — время</button></div>
           </fieldset>
           <fieldset class="step" data-step data-title="Время" hidden>
-            <legend class="step__title">Желаемое время</legend>
+            <legend class="step__title">Когда удобно прийти</legend>
+            <div class="group" data-field><p class="group__title" id="bDateTitle">Желаемый день</p><div class="days" id="bDays" role="radiogroup" aria-labelledby="bDateTitle"></div></div>
+            <div class="group" data-field><p class="group__title" id="bPartTitle">Время суток</p><div class="seg" id="bParts" role="radiogroup" aria-labelledby="bPartTitle"></div></div>
             <p class="hint">Это пожелание, а не бронь. Свободное время подтвердит администратор.</p>
-            <div class="row">
-              <div class="field" data-field><label for="bDate">Желаемая дата</label><input id="bDate" name="date" type="date" data-validate="required future"></div>
-              <div class="field" data-field><span class="field__label" id="bPartLabel">Время суток</span><div class="choices choices--compact" id="bParts" role="radiogroup" aria-labelledby="bPartLabel"></div></div>
-            </div>
-            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше</button></div>
+            <div class="step__nav"><button class="btn btn--line" type="button" data-prev>Назад</button><button class="btn btn--accent" type="button" data-next>Дальше — контакт</button></div>
           </fieldset>
           <fieldset class="step" data-step data-title="Контакт" hidden>
-            <legend class="step__title">Контакт</legend>
+            <legend class="step__title">Как с вами связаться</legend>
             <div class="row">
               <div class="field" data-field><label for="bName">Имя</label><input id="bName" name="name" type="text" autocomplete="name" maxlength="60" data-validate="required name"></div>
               <div class="field" data-field><label for="bPhone">Телефон</label><input id="bPhone" name="phone" type="tel" data-validate="required phone"></div>
@@ -167,42 +182,40 @@
     </div>
   </section>
 
+  <!-- Контакты — карточка на матовом стекле: фраза-приглашение с кнопкой, ниже контакты в строку -->
   <section class="section contacts" id="contacts" aria-labelledby="contactsTitle">
-    <div class="wrap contacts__grid">
-      <div>
-        <h2 id="contactsTitle" data-reveal>Контакты</h2>
+    <div class="wrap"><div class="colophon">
+      <h2 class="colophon__title" id="contactsTitle">Контакты</h2>
+      <div class="colophon__top">
+        <p class="colophon__say" id="colophonSay" data-reveal></p>
         <div class="quick">
-          <a class="btn btn--accent" href="#booking">Записаться на консультацию</a>
+          <a class="btn btn--accent" id="contactsCta" href="#booking">Записаться на консультацию</a>
           <a class="btn btn--line" data-quick="phone" hidden>Позвонить</a>
           <a class="btn btn--line" data-quick="telegram" hidden>Telegram</a>
           <a class="btn btn--line" data-quick="email" hidden>Почта</a>
         </div>
       </div>
-      <div data-contacts></div>
-    </div>
+      <div class="contacts__info">
+        <div data-contacts></div>
+        <p class="demo-note" id="contactsDemo" hidden></p>
+      </div>
+    </div></div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <p class="footer__brand" data-brand></p>
     <p class="footer__med" data-cfg="legal.medicalWarning"></p>
-    <p class="footer__med" data-cfg="legal.medicalLicense"></p>
-    <div data-legal></div>
+    <p class="footer__lic" data-cfg="legal.medicalLicense"></p>
+    <div class="footer__row">
+      <a class="logo logo--sm" href="#top" data-brand></a>
+      <div data-legal></div>
+    </div>
   </div>
 </footer>
 
-<div class="fb-modal" id="svcModal" role="dialog" aria-modal="true" aria-labelledby="smTitle">
-  <div class="fb-modal__backdrop"></div>
-  <div class="fb-modal__dialog smodal">
-    <button class="smodal__close" type="button" data-close aria-label="Закрыть">×</button>
-    <div id="smBody"></div>
-  </div>
-</div>
-
 <script src="config.js"></script>
-<script src="../_shared/vendor/lenis.min.js"></script>
-<script src="../_shared/vendor/anime.umd.min.js"></script>
+<!-- Lenis и anime.js не подключены: прокрутка нативная, анимации — CSS и Web Animations API (app.js). -->
 <script src="../_shared/core.js"></script>
 <script src="../_shared/config-check.js"></script>
 <script src="../_shared/components/cookie-consent/fb-cookie-consent.js"></script>

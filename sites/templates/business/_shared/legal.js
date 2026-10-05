@@ -76,8 +76,25 @@
   var custom = L.docs && typeof L.docs[doc] === 'string' && L.docs[doc].trim();
   document.title = d.title + (B.name ? ' — ' + B.name : '');
   if (demo) { var m = document.createElement('meta'); m.name = 'robots'; m.content = 'noindex, nofollow'; document.head.appendChild(m); }
+  // акцент бренда красит ссылки, только если читается на светлом фоне документа (WCAG AA 4.5:1);
+  // светлый или жёлтый акцент тёмных шаблонов оставляет цвет ссылок по умолчанию
   var accent = B.colors && B.colors.accent;
-  if (accent) document.documentElement.style.setProperty('--accent', accent);
+  var lum = function (hex) {
+    var m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(hex || '').trim());
+    if (!m) return null;
+    var h = m[1].length === 3 ? m[1].replace(/./g, '$&$&') : m[1];
+    var c = [0, 2, 4].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  var la = lum(accent), lp = lum('#fbfaf7');
+  if (la != null && (lp + 0.05) / (la + 0.05) >= 4.5) document.documentElement.style.setProperty('--accent', accent);
+  // у страниц документа нет своей иконки — без неё браузер запрашивает /favicon.ico и получает 404
+  if (!document.querySelector('link[rel~="icon"]')) {
+    var icon = document.createElement('link');
+    icon.rel = 'icon';
+    icon.href = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="' + (accent || '#1f5c4a') + '"/></svg>');
+    document.head.appendChild(icon);
+  }
 
   var warn = L.approved === true && custom ? '' :
     '<div class="doc-warn" role="note"><b>Шаблон документа.</b> Текст основан на общем шаблоне 152-ФЗ и не подтверждает, что сайт соответствует всем требованиям. ' +

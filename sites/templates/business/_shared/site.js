@@ -189,7 +189,8 @@
     bar.setAttribute('role', 'note');
     bar.innerHTML = FB.config.mode === 'server-test'
       ? '<b>Демонстрационный шаблон. Тестовая отправка.</b> Данные приведены для примера. Заявка сохранится на локальном сервере с пометкой «тест», уведомления не отправляются.'
-      : '<b>Демонстрационный шаблон.</b> Данные приведены для примера. Заявки сохраняются только в этом браузере.';
+      : '<span class="demo-bar__full"><b>Демонстрационный шаблон.</b> Данные приведены для примера. Заявки сохраняются только в этом браузере.</span>' +
+        '<span class="demo-bar__short"><b>Демо-шаблон</b> · заявки только в этом браузере</span>';
     document.body.insertBefore(bar, document.body.firstChild);
   };
 
@@ -415,7 +416,8 @@
     }).join('');
   };
 
-  /** Нижняя панель действия на телефоне. Прячется, когда целевой блок на экране. */
+  /** Нижняя панель действия на телефоне. Прячется, когда на экране целевой блок или кнопка страницы, ведущая туда же
+   *  (иначе на первом экране панель дублирует и перекрывает кнопку обложки). */
   T.mobileCta = function (label, targetId) {
     var bar = document.createElement('div');
     bar.className = 'mcta';
@@ -424,8 +426,47 @@
     document.documentElement.classList.add('has-mcta');
     var target = document.getElementById(targetId);
     if (target && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { bar.classList.toggle('is-hidden', en[0].isIntersecting); }, { threshold: 0.05 }).observe(target);
+      var seen = [];
+      var watch = [target].concat($$('main a.btn[href="#' + targetId + '"]'));
+      var io = new IntersectionObserver(function (en) {
+        en.forEach(function (e) { var i = watch.indexOf(e.target); if (i > -1) seen[i] = e.isIntersecting; });
+        bar.classList.toggle('is-hidden', seen.some(Boolean));
+      }, { threshold: 0.05 });
+      watch.forEach(function (el) { io.observe(el); });
     }
+  };
+
+  /**
+   * Карусель на телефоне: контейнер с однотипными карточками листается вбок (стили — core.css, [data-rail]).
+   * Под лентой — счётчик «2 / 5» и полоска прогресса. На компьютере контейнер остаётся сеткой ниши.
+   */
+  T.rail = function (box, label) {
+    if (!box) return;
+    box.setAttribute('data-rail', '');
+    if (label) box.setAttribute('aria-label', label);
+    var cnt = box.nextElementSibling && box.nextElementSibling.classList.contains('rail-count') ? box.nextElementSibling : null;
+    if (!cnt) {
+      cnt = document.createElement('p');
+      cnt.className = 'rail-count';
+      cnt.setAttribute('aria-hidden', 'true');
+      box.parentNode.insertBefore(cnt, box.nextSibling);
+    }
+    function update() {
+      var items = Array.prototype.filter.call(box.children, function (c) { return !c.hidden && c.offsetWidth; });
+      if (items.length < 2 || box.scrollWidth <= box.clientWidth + 2) { cnt.hidden = true; return; }
+      cnt.hidden = false;
+      var left = box.getBoundingClientRect().left, i = 0;
+      items.forEach(function (c, k) { if (c.getBoundingClientRect().left - left < c.offsetWidth / 2) i = k; });
+      if (box.scrollLeft + box.clientWidth >= box.scrollWidth - 4) i = items.length - 1;
+      cnt.innerHTML = '<span>' + (i + 1) + ' / ' + items.length + '</span><span class="rail-count__bar"><i style="--p:' + Math.round((i + 1) / items.length * 100) + '%"></i></span>';
+    }
+    if (!box.__rail) {
+      box.__rail = true;
+      box.addEventListener('scroll', FB.debounce(update, 60), { passive: true });
+      window.addEventListener('resize', FB.debounce(update, 150));
+    }
+    update();
+    return update;
   };
 
   /** Минимальная дата для поля «Желаемая дата» — сегодня (в часовом поясе устройства). */

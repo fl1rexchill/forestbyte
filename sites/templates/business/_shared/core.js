@@ -179,10 +179,13 @@
       return;
     }
     if (!el) return;
+    // позиция без сдвига анимации появления ([data-reveal] до показа смещён вниз на 28 px)
+    var y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    var m = /matrix.*\((.+)\)/.exec(getComputedStyle(el).transform || '');
+    if (m) { var v = m[1].split(','); y -= parseFloat(v[v.length === 6 ? 5 : 13]) || 0; }
     if (FB.lenis) {
-      FB.lenis.scrollTo(el, { offset: offset, duration: opts.duration || 1.2, immediate: reduced });
+      FB.lenis.scrollTo(y, { duration: opts.duration || 1.2, immediate: reduced });
     } else {
-      var y = el.getBoundingClientRect().top + window.pageYOffset + offset;
       window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
     }
     // переносим фокус для клавиатуры/скринридеров
@@ -391,8 +394,11 @@
     FB.$$('[data-nav-toggle]').forEach(function (btn) {
       var target = document.getElementById(btn.getAttribute('aria-controls'));
       if (!target) return;
+      var header = btn.closest('header');
       var set = function (open) {
         btn.setAttribute('aria-expanded', String(open));
+        // меню открывается под фактическим низом шапки: над ней может стоять демо-плашка
+        target.style.top = open && header ? Math.max(0, header.getBoundingClientRect().bottom) + 'px' : '';
         target.classList.toggle('is-open', open);
         root.classList.toggle('nav-open', open);
         FB.lockScroll(open);
@@ -400,7 +406,8 @@
       btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
       target.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { set(false); btn.focus(); } });
-      window.addEventListener('resize', FB.debounce(function () { if (window.innerWidth > 960 && btn.getAttribute('aria-expanded') === 'true') set(false); }, 150));
+      // брейкпоинт бургера у каждой ниши свой: закрываем меню, когда кнопка скрыта стилями
+      window.addEventListener('resize', FB.debounce(function () { if (!btn.offsetParent && btn.getAttribute('aria-expanded') === 'true') set(false); }, 150));
     });
   }
 

@@ -139,3 +139,22 @@ textarea { resize: vertical; }
   html.has-mcta body { padding-bottom: 76px; }
   html.nav-open .mcta { display: none; }
 }
+
+/* ------------------------------------------------------------------ мобильная версия: общие приёмы */
+.demo-bar__short { display: none; }
+@media (max-width: 760px) {
+  /* демо-плашка в одну строку */
+  .demo-bar { padding: 7px 12px; font-size: 12.5px; line-height: 1.35; }
+  .demo-bar__full { display: none; }
+  .demo-bar__short { display: inline; }
+
+  /* карусель: однотипные карточки листаются вбок, следующая выглядывает (T.rail в site.js) */
+  html [data-rail] { display: flex; gap: 12px; margin-inline: -16px; padding: 2px 16px 6px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; scrollbar-width: none; }
+  html [data-rail]::-webkit-scrollbar { display: none; }
+  html [data-rail] > * { flex: 0 0 min(84%, 340px); min-width: 0; margin: 0; scroll-snap-align: start; }
+  html [data-rail] > [hidden] { display: none; }
+  .rail-count { display: flex; align-items: center; gap: 10px; margin: 10px 0 0; font: 500 13px/1 var(--font-body, system-ui); color: var(--muted, #666); font-variant-numeric: tabular-nums; }
+  .rail-count__bar { position: relative; flex: 1; max-width: 120px; height: 2px; border-radius: 2px; background: var(--line, rgba(127,127,127,.3)); overflow: hidden; }
+  .rail-count__bar i { position: absolute; inset: 0 auto 0 0; width: var(--p, 0%); background: currentColor; transition: width .2s; }
+}
+@media (min-width: 761px) { .rail-count { display: none; } }

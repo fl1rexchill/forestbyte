@@ -350,7 +350,10 @@ async function serveStatic(url, res) {
 
 /* ---------- роутер ---------- */
 http.createServer(async (req, res) => {
-  const url = new URL(req.url, 'http://x');
+  // адрес вида «//» или «//host» не разбирается как путь — отвечаем 400, а не роняем процесс
+  let url;
+  try { url = new URL(req.url, 'http://x'); }
+  catch { return send(res, 400, 'Неверный адрес запроса'); }
   const p = url.pathname;
   try {
     if (p === '/api/lead' && req.method === 'POST') return await createLead(req, res);
